@@ -144,6 +144,27 @@ body {
   font-size: 1.1rem;
 }
 
+.cooldown-info {
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 24px 0;
+  color: #ffc107;
+  text-align: center;
+}
+
+.cooldown-info p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.cooldown-info small {
+  color: rgba(255, 193, 7, 0.8);
+  font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
   .shrine-container {
     padding: 32px 24px;

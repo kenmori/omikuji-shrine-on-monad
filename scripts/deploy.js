@@ -1,4 +1,5 @@
-const { ethers } = require("hardhat");
+import pkg from 'hardhat';
+const { ethers, hardhatArguments } = pkg;
 
 async function main() {
   console.log("おみくじ神社スマートコントラクトをデプロイ中...");

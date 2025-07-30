@@ -1,7 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseEther, formatEther } from 'viem';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 // Contract ABI - simplified for the main functions
@@ -16,6 +16,20 @@ const OMIKUJI_ABI = [
   {
     "inputs": [],
     "name": "omikujiPrice",
+    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "address", "name": "user", "type": "address"}],
+    "name": "canDrawOmikuji",
+    "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "address", "name": "user", "type": "address"}],
+    "name": "getTimeUntilNextDraw",
     "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
     "stateMutability": "view",
     "type": "function"
@@ -45,7 +59,7 @@ const OMIKUJI_ABI = [
   }
 ] as const;
 
-const CONTRACT_ADDRESS = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512';
+const CONTRACT_ADDRESS = '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9';
 
 const fortuneNames = [
   "大吉 (Daikichi)",
@@ -65,12 +79,29 @@ interface OmikujiResult {
 function App() {
   const { address, isConnected } = useAccount();
   const [lastResult, setLastResult] = useState<OmikujiResult | null>(null);
+  const [timeLeft, setTimeLeft] = useState<number>(0);
 
   // Read the omikuji price
   const { data: price } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: OMIKUJI_ABI,
     functionName: 'omikujiPrice',
+  });
+
+  // Check if user can draw omikuji
+  const { data: canDraw } = useReadContract({
+    address: CONTRACT_ADDRESS,
+    abi: OMIKUJI_ABI,
+    functionName: 'canDrawOmikuji',
+    args: address ? [address] : undefined,
+  });
+
+  // Get time until next draw
+  const { data: timeUntilNext } = useReadContract({
+    address: CONTRACT_ADDRESS,
+    abi: OMIKUJI_ABI,
+    functionName: 'getTimeUntilNextDraw',
+    args: address ? [address] : undefined,
   });
 
   // Write contract hook for drawing omikuji
@@ -114,6 +145,42 @@ function App() {
     handleDrawComplete();
   }
 
+  // Update countdown timer
+  useEffect(() => {
+    if (timeUntilNext && Number(timeUntilNext) > 0) {
+      setTimeLeft(Number(timeUntilNext));
+      
+      const timer = setInterval(() => {
+        setTimeLeft(prev => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+      
+      return () => clearInterval(timer);
+    } else {
+      setTimeLeft(0);
+    }
+  }, [timeUntilNext]);
+
+  // Format time remaining
+  const formatTimeLeft = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    
+    if (hours > 0) {
+      return `${hours}時間${minutes}分${secs}秒`;
+    } else if (minutes > 0) {
+      return `${minutes}分${secs}秒`;
+    } else {
+      return `${secs}秒`;
+    }
+  };
+
   return (
     <div className="app">
       <div className="shrine-container">
@@ -134,13 +201,21 @@ function App() {
             </div>
 
             <div className="omikuji-section">
+              {canDraw === false && timeLeft > 0 && (
+                <div className="cooldown-info">
+                  <p>⏰ 次のおみくじまで: {formatTimeLeft(timeLeft)}</p>
+                  <small>24時間に1回まで引くことができます</small>
+                </div>
+              )}
+              
               <button 
                 className="omikuji-button" 
                 onClick={drawOmikuji}
-                disabled={isPending || isConfirming}
+                disabled={isPending || isConfirming || canDraw === false}
               >
                 {isPending ? '⏳ 送信中...' : 
-                 isConfirming ? '🔄 確認中...' : 
+                 isConfirming ? '🔄 確認中...' :
+                 canDraw === false ? '⏳ 待機中...' :
                  '🎋 おみくじを引く 🎋'}
               </button>
             </div>

@@ -49,7 +49,9 @@ contract OmikujiShrine is ERC721, ERC721URIStorage, Ownable {
 
     function drawOmikuji() external payable returns (uint256) {
         require(msg.value >= omikujiPrice, "Insufficient payment for omikuji");
+        require(canDrawOmikuji(msg.sender), "Must wait 24 hours before drawing again");
         
+        lastDrawTime[msg.sender] = block.timestamp;
         _currentTokenId++;
         uint256 newTokenId = _currentTokenId;
         
@@ -142,6 +144,17 @@ contract OmikujiShrine is ERC721, ERC721URIStorage, Ownable {
     
     function getUserOmikujis(address user) external view returns (uint256[] memory) {
         return userOmikujis[user];
+    }
+    
+    function canDrawOmikuji(address user) public view returns (bool) {
+        return block.timestamp >= lastDrawTime[user] + 24 hours;
+    }
+    
+    function getTimeUntilNextDraw(address user) external view returns (uint256) {
+        if (canDrawOmikuji(user)) {
+            return 0;
+        }
+        return (lastDrawTime[user] + 24 hours) - block.timestamp;
     }
     
     function setOmikujiPrice(uint256 _price) external onlyOwner {
