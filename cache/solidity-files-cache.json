@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/kenjimorita/git/omikuji-shrine-on-monad/contracts/OmikujiShrine.sol": {
-      "lastModificationDate": 1753840848349,
-      "contentHash": "f5d136218ac7ef75f54bb94fddfe79d8",
+      "lastModificationDate": 1753851256561,
+      "contentHash": "adfd8d35232635a51c1d2b4dc4bb011a",
       "sourceName": "contracts/OmikujiShrine.sol",
       "solcConfig": {
         "version": "0.8.27",

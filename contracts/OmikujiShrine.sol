@@ -10,7 +10,7 @@ contract OmikujiShrine is ERC721, ERC721URIStorage, Ownable {
     using Strings for uint256;
 
     uint256 private _currentTokenId;
-    uint256 public omikujiPrice = 0.001 ether;
+    uint256 public omikujiPrice = 0.01 ether;
     
     enum OmikujiResult { DAIKICHI, KICHI, CHUKICHI, SHOKICHI, SUE_KICHI, KYO }
     

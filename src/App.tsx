@@ -59,7 +59,7 @@ const OMIKUJI_ABI = [
   }
 ] as const;
 
-const CONTRACT_ADDRESS = '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9';
+const CONTRACT_ADDRESS = '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707';
 
 const fortuneNames = [
   "Great Fortune (Daikichi)",
@@ -80,6 +80,7 @@ function App() {
   const { address, isConnected } = useAccount();
   const [lastResult, setLastResult] = useState<OmikujiResult | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(0);
+  const [showAnimation, setShowAnimation] = useState(false);
 
   // Read the omikuji price
   const { data: price } = useReadContract({
@@ -130,13 +131,19 @@ function App() {
   // Mock result for demo (in real app, you'd read this from contract events)
   const handleDrawComplete = () => {
     if (isConfirmed && !lastResult) {
-      // This is a simplified demo - in a real app you'd read the event logs
-      const mockResult: OmikujiResult = {
-        tokenId: Math.floor(Math.random() * 1000).toString(),
-        result: Math.floor(Math.random() * 6),
-        message: "Today will be a wonderful day filled with opportunities!"
-      };
-      setLastResult(mockResult);
+      // Show animation first
+      setShowAnimation(true);
+      
+      // After animation, show result
+      setTimeout(() => {
+        const mockResult: OmikujiResult = {
+          tokenId: Math.floor(Math.random() * 1000).toString(),
+          result: Math.floor(Math.random() * 6),
+          message: "Today will be a wonderful day filled with opportunities!"
+        };
+        setLastResult(mockResult);
+        setShowAnimation(false);
+      }, 3000); // 3 second animation
     }
   };
 
@@ -181,6 +188,7 @@ function App() {
     }
   };
 
+
   return (
     <div className="app">
       <div className="logo-container">
@@ -192,16 +200,9 @@ function App() {
       <div className="shrine-container">
         <h1 className="shrine-title">🏮 Omikuji Shrine 🏮</h1>
         <p className="shrine-subtitle">Digital Fortune Telling on Monad Network</p>
-        
-        <div className="torii">⛩️</div>
 
         {isConnected && (
           <>
-            <div className="price-info">
-              <strong>🎋 Omikuji Price: {price ? formatEther(price) : '0.001'} MON</strong><br />
-              <small>Your fortune will be minted as an NFT</small>
-            </div>
-
             <div className="omikuji-section">
               {canDraw === false && timeLeft > 0 && (
                 <div className="cooldown-info">
@@ -210,19 +211,47 @@ function App() {
                 </div>
               )}
               
-              <button 
-                className="omikuji-button" 
-                onClick={drawOmikuji}
-                disabled={isPending || isConfirming || canDraw === false}
-              >
-                {isPending ? '⏳ Sending...' : 
-                 isConfirming ? '🔄 Confirming...' :
-                 canDraw === false ? '⏳ Waiting...' :
-                 '🎋 Draw Omikuji 🎋'}
-              </button>
+              <div className="omikuji-container">
+                <img src="/asset/omikuji.png" alt="Omikuji" className="omikuji-image" />
+                <button 
+                  className="omikuji-button" 
+                  onClick={drawOmikuji}
+                  disabled={isPending || isConfirming || canDraw === false}
+                >
+                  {isPending ? 'Sending...':
+                   isConfirming ? '🔄 Confirming...' :
+                   canDraw === false ? '⏳ Waiting...' :
+                   'Draw Omikuji'}
+                </button>
+              </div>
+              <div className="price-display">
+                Price: {price ? formatEther(price) : '0.01'} MON
+              </div>
             </div>
 
-            {lastResult && (
+            {showAnimation && (
+              <div className="omikuji-animation">
+                <div className="animation-container">
+                  <div className="falling-petals">
+                    <div className="petal">🌸</div>
+                    <div className="petal">🌸</div>
+                    <div className="petal">🌸</div>
+                    <div className="petal">🌸</div>
+                    <div className="petal">🌸</div>
+                    <div className="petal">🌸</div>
+                  </div>
+                  <div className="fortune-reveal">
+                    <div className="torii-animation">⛩️</div>
+                    <div className="drawing-text">Drawing your fortune...</div>
+                    <div className="omikuji-paper">
+                      <div className="paper-shake">📜</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {lastResult && !showAnimation && (
               <div className="result-card">
                 <div className="fortune-result">{fortuneNames[lastResult.result]}</div>
                 <div className="fortune-message">"{lastResult.message}"</div>
@@ -237,7 +266,7 @@ function App() {
 
         {!isConnected && (
           <div className="connect-prompt">
-            <p>Please connect your wallet to draw omikuji</p>
+            <p>⛩️ Connect Wallet to Draw Omikuji ⛩️</p>
           </div>
         )}
       </div>

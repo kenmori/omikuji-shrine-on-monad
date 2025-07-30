@@ -53,7 +53,7 @@ body::before {
 }
 
 .shrine-container {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(255 255 255 / 20%);
   backdrop-filter: blur(15px);
   border: 2px solid rgba(255, 215, 0, 0.3);
   border-radius: 24px;
@@ -81,21 +81,6 @@ body::before {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-.torii {
-  font-size: 4rem;
-  margin: 32px 0;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
-  animation: glow 3s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
-  }
-  to {
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
-  }
-}
 
 .wallet-section {
   position: fixed;
@@ -104,43 +89,107 @@ body::before {
   z-index: 1000;
 }
 
-.price-info {
-  background: rgba(255, 193, 7, 0.1);
-  border: 1px solid rgba(255, 193, 7, 0.2);
-  border-radius: 12px;
-  padding: 20px;
-  margin: 24px 0;
-  color: #ffc107;
+/* RainbowKit Connect Button Custom Styles */
+.wallet-section button[data-testid="rk-connect-button"] {
+  background: white !important;
+  color: #dc143c !important;
+  border: 2px solid #dc143c !important;
+  border-radius: 8px !important;
+  padding: 12px 20px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
+
+.wallet-section button[data-testid="rk-connect-button"]:hover {
+  background: #dc143c !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(220, 20, 60, 0.3) !important;
+}
+
+/* Account Button (when connected) */
+.wallet-section button[data-testid="rk-account-button"] {
+  background: white !important;
+  color: #dc143c !important;
+  border: 2px solid #dc143c !important;
+  border-radius: 8px !important;
+  padding: 12px 20px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.wallet-section button[data-testid="rk-account-button"]:hover {
+  background: #dc143c !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(220, 20, 60, 0.3) !important;
+}
+
+/* RainbowKit internal elements override */
+.wallet-section [data-rk] {
+  background: white !important;
+  color: #dc143c !important;
+  border-color: #dc143c !important;
+}
+
+
 
 .omikuji-section {
   margin: 32px 0;
 }
 
+.omikuji-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
 .omikuji-button {
-  background: linear-gradient(135deg, #4ecdc4, #44a08d);
+  background: #632adb;
   color: white;
   border: none;
-  padding: 20px 48px;
-  font-size: 1.4rem;
+  padding: 12px 16px;
+  font-size: 1rem;
   font-weight: 600;
-  border-radius: 16px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  min-width: 120px;
+  white-space: nowrap;
 }
 
 .omikuji-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .omikuji-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
+}
+
+.omikuji-image {
+  width: 120px;
+  height: 214px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.price-display {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 1.1rem;
+  color: white;
+  font-weight: 500;
 }
 
 .result-card {
@@ -182,6 +231,136 @@ body::before {
   font-size: 1.1rem;
 }
 
+/* Omikuji Animation */
+.omikuji-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+}
+
+.animation-container {
+  position: relative;
+  text-align: center;
+  max-width: 400px;
+  padding: 40px;
+}
+
+.falling-petals {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 200px;
+  pointer-events: none;
+}
+
+.petal {
+  position: absolute;
+  font-size: 24px;
+  animation: falling 3s linear infinite;
+  opacity: 0.8;
+}
+
+.petal:nth-child(1) { left: 10%; animation-delay: 0s; }
+.petal:nth-child(2) { left: 20%; animation-delay: 0.5s; }
+.petal:nth-child(3) { left: 40%; animation-delay: 1s; }
+.petal:nth-child(4) { left: 60%; animation-delay: 1.5s; }
+.petal:nth-child(5) { left: 80%; animation-delay: 2s; }
+.petal:nth-child(6) { left: 90%; animation-delay: 2.5s; }
+
+@keyframes falling {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(400px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.fortune-reveal {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: fadeInScale 0.8s ease-out;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.torii-animation {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+    transform: scale(1);
+  }
+  100% {
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+    transform: scale(1.1);
+  }
+}
+
+.drawing-text {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 600;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.omikuji-paper {
+  margin-top: 20px;
+}
+
+.paper-shake {
+  font-size: 3rem;
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0) rotate(-2deg);
+  }
+  25% {
+    transform: translateX(-5px) rotate(2deg);
+  }
+  75% {
+    transform: translateX(5px) rotate(-1deg);
+  }
+}
+
 .cooldown-info {
   background: rgba(255, 193, 7, 0.1);
   border: 1px solid rgba(255, 193, 7, 0.2);
@@ -213,10 +392,23 @@ body::before {
     font-size: 2.5rem;
   }
   
+  .omikuji-container {
+    max-width: 180px;
+  }
+
   .omikuji-button {
-    width: 100%;
-    padding: 16px 32px;
-    font-size: 1.2rem;
+    min-width: 100px;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .omikuji-image {
+    width: 100px;
+    height: 178px;
+  }
+
+  .price-display {
+    font-size: 1rem;
   }
 
   .logo-container {
@@ -234,4 +426,5 @@ body::before {
     top: 10px;
     right: 10px;
   }
+
 }
