@@ -1,24 +1,41 @@
 {
-  "name": "monad_d",
+  "name": "omikuji-shrine-monad",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
     "deploy": "npx hardhat run scripts/deploy.js",
     "deploy:localhost": "npx hardhat run scripts/deploy.js --network localhost",
     "deploy:monad": "npx hardhat run scripts/deploy.js --network monad",
-    "node": "npx hardhat node"
+    "node": "npx hardhat node",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
+  "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.1.6",
+    "@tanstack/react-query": "^5.40.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "viem": "^2.17.5",
+    "wagmi": "^2.10.10"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^3.1.0",
     "@nomicfoundation/hardhat-toolbox": "^6.1.0",
     "@openzeppelin/contracts": "^5.4.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "ethers": "^6.15.0",
-    "hardhat": "^2.26.1"
+    "hardhat": "^2.26.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.3.1"
   }
 }

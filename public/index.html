@@ -5,149 +5,195 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>おみくじ神社 - Omikuji Shrine</title>
     <style>
-        body {
-            font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #2d1b3d 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            color: white;
         }
 
         .shrine-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3);
             text-align: center;
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
         }
 
         .shrine-title {
-            font-size: 2.5em;
-            color: #8b4513;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            text-shadow: none;
         }
 
         .shrine-subtitle {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 32px;
+            font-weight: 500;
         }
 
         .torii {
-            font-size: 4em;
-            color: #dc143c;
-            margin: 20px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 4rem;
+            margin: 32px 0;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
         }
 
         .wallet-section {
-            margin: 30px 0;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border: 2px solid #e9ecef;
+            margin: 32px 0;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .button {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        .rainbow-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 25%, #feca57 50%, #48cae4 75%, #6c5ce7 100%);
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.1em;
-            border-radius: 25px;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            margin: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
-        .button:hover {
+        .rainbow-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
+        .rainbow-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .rainbow-button:hover:before {
+            left: 100%;
         }
 
         .omikuji-button {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-            font-size: 1.3em;
-            padding: 20px 40px;
-            margin: 20px 0;
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            font-size: 1.4rem;
+            padding: 20px 48px;
+            margin: 32px 0;
+            border-radius: 16px;
         }
 
         .status-text {
-            margin: 15px 0;
-            padding: 10px;
-            border-radius: 5px;
-            font-weight: bold;
+            margin: 16px 0;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
         }
 
-        .success { background: #d4edda; color: #155724; }
-        .error { background: #f8d7da; color: #721c24; }
-        .info { background: #d1ecf1; color: #0c5460; }
+        .success { 
+            background: rgba(34, 197, 94, 0.1); 
+            color: #22c55e; 
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        .error { 
+            background: rgba(239, 68, 68, 0.1); 
+            color: #ef4444; 
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        .info { 
+            background: rgba(59, 130, 246, 0.1); 
+            color: #3b82f6; 
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
 
         .result-card {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 165, 0, 0.1) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            backdrop-filter: blur(10px);
         }
 
         .fortune-result {
-            font-size: 1.8em;
-            color: #8b4513;
-            margin-bottom: 15px;
-            font-weight: bold;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 16px;
         }
 
         .fortune-message {
-            font-size: 1.2em;
-            color: #333;
-            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 16px;
             font-style: italic;
+            line-height: 1.6;
         }
 
         .nft-info {
-            background: #e8f5e8;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 16px;
+            color: #22c55e;
         }
 
         .wallet-address {
-            font-family: monospace;
-            background: #f1f1f1;
-            padding: 8px;
-            border-radius: 5px;
-            font-size: 0.9em;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
             word-break: break-all;
+            margin: 8px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .price-info {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+            color: #ffc107;
         }
 
         .loading {
             display: inline-block;
             width: 20px;
             height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #3498db;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #fff;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -155,6 +201,250 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        .connect-status {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 16px;
+            border-radius: 12px;
+            color: #22c55e;
+            margin: 16px 0;
+        }
+
+        .disconnect-btn {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .disconnect-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        /* RainbowKit Style Modal */
+        .rainbow-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .rainbow-modal-content {
+            background: linear-gradient(135deg, #1a1b23 0%, #2d2e3f 100%);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 720px;
+            color: white;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.5);
+            display: flex;
+            min-height: 480px;
+        }
+
+        .modal-left {
+            flex: 1;
+            padding: 32px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-right {
+            flex: 1;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            z-index: 1;
+        }
+
+        .modal-close:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: white;
+        }
+
+        .wallet-section-title {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            margin-bottom: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .wallet-list {
+            margin-bottom: 32px;
+        }
+
+        .wallet-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+        }
+
+        .wallet-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .wallet-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .wallet-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .info-section {
+            text-align: left;
+        }
+
+        .info-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .info-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .info-card-desc {
+            font-size: 0.95rem;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+
+        .get-wallet-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 24px;
+            width: 100%;
+        }
+
+        .get-wallet-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .learn-more {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-top: 16px;
+            display: block;
+            text-align: center;
+        }
+
+        .learn-more:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .shrine-container {
+                padding: 32px 24px;
+                margin: 16px;
+            }
+            
+            .shrine-title {
+                font-size: 2.5rem;
+            }
+            
+            .rainbow-button, .omikuji-button {
+                width: 100%;
+            }
+
+            .rainbow-modal-content {
+                flex-direction: column;
+                max-width: 400px;
+                min-height: auto;
+            }
+
+            .modal-left {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
         }
     </style>
 </head>
@@ -167,17 +457,19 @@
         
         <div class="wallet-section">
             <div id="wallet-status">
-                <button id="connect-wallet" class="button">ウォレット接続</button>
+                <button id="connect-wallet" class="rainbow-button">
+                    <span>🌈 Connect Wallet</span>
+                </button>
             </div>
         </div>
 
         <div class="price-info">
-            <strong>おみくじ料金: 0.001 MON</strong><br>
+            <strong>🎋 おみくじ料金: 0.001 MON</strong><br>
             <small>結果はNFTとしてmintされます</small>
         </div>
 
         <div id="omikuji-section" style="display: none;">
-            <button id="draw-omikuji" class="button omikuji-button">
+            <button id="draw-omikuji" class="rainbow-button omikuji-button">
                 🎋 おみくじを引く 🎋
             </button>
         </div>
@@ -212,45 +504,222 @@
             "凶 (Kyo)"
         ];
 
-        async function connectWallet() {
+        // RainbowKit style wallet providers
+        const walletProviders = {
+            rainbow: {
+                name: 'Rainbow',
+                icon: '🌈',
+                color: 'linear-gradient(135deg, #FF6B6B, #4ECDC4)',
+                detect: () => window.ethereum?.isRainbow,
+                provider: () => window.ethereum
+            },
+            coinbase: {
+                name: 'Coinbase Wallet',
+                icon: '🔵',
+                color: 'linear-gradient(135deg, #0052FF, #0041CC)',
+                detect: () => window.ethereum?.isCoinbaseWallet,
+                provider: () => window.ethereum
+            },
+            metamask: {
+                name: 'MetaMask',
+                icon: '🦊',
+                color: 'linear-gradient(135deg, #F6851B, #E2761B)',
+                detect: () => window.ethereum && (window.ethereum.isMetaMask || window.ethereum._metamask),
+                provider: () => window.ethereum
+            },
+            walletconnect: {
+                name: 'WalletConnect',
+                icon: '🔗',
+                color: 'linear-gradient(135deg, #3B99FC, #1E88E5)',
+                detect: () => true,
+                provider: () => window.ethereum
+            },
+            ledger: {
+                name: 'Ledger Live',
+                icon: '⬜',
+                color: 'linear-gradient(135deg, #2C3E50, #34495E)',
+                detect: () => false,
+                provider: () => null
+            },
+            trust: {
+                name: 'Trust',
+                icon: '🛡️',
+                color: 'linear-gradient(135deg, #3375BB, #1E5AA8)',
+                detect: () => window.ethereum?.isTrust,
+                provider: () => window.ethereum
+            },
+            argent: {
+                name: 'Argent',
+                icon: '🔶',
+                color: 'linear-gradient(135deg, #FF875B, #FF6B35)',
+                detect: () => false,
+                provider: () => null
+            }
+        };
+
+        function showRainbowModal() {
+            const modal = document.createElement('div');
+            modal.className = 'rainbow-modal';
+            modal.id = 'rainbow-modal';
+
+            const modalContent = document.createElement('div');
+            modalContent.className = 'rainbow-modal-content';
+
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'modal-close';
+            closeBtn.innerHTML = '✕';
+            closeBtn.onclick = () => document.body.removeChild(modal);
+
+            const leftPanel = document.createElement('div');
+            leftPanel.className = 'modal-left';
+
+            const rightPanel = document.createElement('div');
+            rightPanel.className = 'modal-right';
+
+            // Left panel content
+            leftPanel.innerHTML = `
+                <h2 class="modal-title">Connect a Wallet</h2>
+                <div class="wallet-list">
+                    <div class="wallet-section-title">Popular</div>
+                    <div id="popular-wallets"></div>
+                </div>
+                <div class="wallet-list">
+                    <div class="wallet-section-title">More</div>
+                    <div id="more-wallets"></div>
+                </div>
+            `;
+
+            // Right panel content
+            rightPanel.innerHTML = `
+                <div class="info-section">
+                    <h3 class="info-title">What is a Wallet?</h3>
+                    <div class="info-card">
+                        <div class="info-card-icon">🏠</div>
+                        <div class="info-card-title">A Home for your Digital Assets</div>
+                        <div class="info-card-desc">Wallets are used to send, receive, store, and display digital assets like Ethereum and NFTs.</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-icon">🔐</div>
+                        <div class="info-card-title">A New Way to Log In</div>
+                        <div class="info-card-desc">Instead of creating new accounts and passwords on every website, just connect your wallet.</div>
+                    </div>
+                    <button class="get-wallet-btn" onclick="window.open('https://rainbow.me/', '_blank')">
+                        Get a Wallet
+                    </button>
+                    <a href="https://ethereum.org/wallets/" target="_blank" class="learn-more">Learn More</a>
+                </div>
+            `;
+
+            modalContent.appendChild(closeBtn);
+            modalContent.appendChild(leftPanel);
+            modalContent.appendChild(rightPanel);
+            modal.appendChild(modalContent);
+
+            // Populate wallets
+            const popularWallets = modal.querySelector('#popular-wallets');
+            const moreWallets = modal.querySelector('#more-wallets');
+
+            const popularKeys = ['rainbow', 'coinbase', 'metamask', 'walletconnect'];
+            const moreKeys = ['ledger', 'trust', 'argent'];
+
+            popularKeys.forEach(key => {
+                const wallet = walletProviders[key];
+                if (key === 'walletconnect' || wallet.detect()) {
+                    popularWallets.appendChild(createWalletItem(key, wallet));
+                }
+            });
+
+            moreKeys.forEach(key => {
+                const wallet = walletProviders[key];
+                moreWallets.appendChild(createWalletItem(key, wallet));
+            });
+
+            // Close on backdrop click
+            modal.onclick = (e) => {
+                if (e.target === modal) document.body.removeChild(modal);
+            };
+
+            document.body.appendChild(modal);
+        }
+
+        function createWalletItem(key, wallet) {
+            const item = document.createElement('div');
+            item.className = 'wallet-item';
+            
+            const isDetected = key === 'walletconnect' || wallet.detect();
+            
+            item.innerHTML = `
+                <div class="wallet-icon" style="background: ${wallet.color};">${wallet.icon}</div>
+                <div class="wallet-name">${wallet.name}</div>
+            `;
+
+            if (isDetected) {
+                item.onclick = () => {
+                    document.body.removeChild(document.getElementById('rainbow-modal'));
+                    connectWallet(key);
+                };
+                item.style.cursor = 'pointer';
+            } else {
+                item.style.opacity = '0.5';
+                item.style.cursor = 'not-allowed';
+            }
+
+            return item;
+        }
+
+        async function connectWallet(walletKey) {
             try {
+                const wallet = walletProviders[walletKey];
+                showStatus(`${wallet.name}に接続中...`, "info");
+                
                 if (!window.ethereum) {
-                    showStatus("MetaMaskをインストールしてください", "error");
-                    return;
+                    throw new Error('ウォレットが見つかりません');
                 }
 
-                showStatus("ウォレット接続中...", "info");
+                provider = new ethers.providers.Web3Provider(window.ethereum);
+                await provider.send("eth_requestAccounts", []);
                 
-                // Check if connected to Monad network  
                 const network = await provider.getNetwork();
                 console.log("Current network:", network);
-                // Allow both localhost (31337) and Monad testnet (41454)
+                
                 if (network.chainId !== 31337 && network.chainId !== 41454) {
                     showStatus("MonadネットワークまたはLocalhostに切り替えてください", "error");
                     return;
                 }
                 
-                provider = new ethers.providers.Web3Provider(window.ethereum);
-                await provider.send("eth_requestAccounts", []);
                 signer = provider.getSigner();
                 userAddress = await signer.getAddress();
                 
                 contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
 
                 document.getElementById("wallet-status").innerHTML = `
-                    <div class="success">✅ 接続済み</div>
-                    <div class="wallet-address">${userAddress}</div>
+                    <div class="connect-status">
+                        ✅ ${wallet.name}で接続済み
+                        <div class="wallet-address">${userAddress}</div>
+                        <button id="disconnect-wallet" class="disconnect-btn">接続解除</button>
+                    </div>
                 `;
                 
-                document.getElementById("connect-wallet").style.display = "none";
                 document.getElementById("omikuji-section").style.display = "block";
+                document.getElementById("disconnect-wallet").addEventListener("click", disconnectWallet);
                 
-                showStatus("ウォレット接続完了！", "success");
+                showStatus(`${wallet.name}接続完了！`, "success");
                 
             } catch (error) {
                 console.error("Wallet connection error:", error);
-                showStatus("ウォレット接続に失敗しました", "error");
+                showStatus(`ウォレット接続に失敗しました: ${error.message}`, "error");
             }
+        }
+
+        function disconnectWallet() {
+            document.getElementById("wallet-status").innerHTML = `
+                <button id="connect-wallet" class="rainbow-button">
+                    <span>🌈 Connect Wallet</span>
+                </button>
+            `;
+            document.getElementById("omikuji-section").style.display = "none";
+            document.getElementById("connect-wallet").addEventListener("click", showRainbowModal);
+            showStatus("ウォレットの接続を解除しました", "info");
         }
 
         async function drawOmikuji() {
@@ -259,7 +728,7 @@
                 document.getElementById("draw-omikuji").disabled = true;
                 document.getElementById("draw-omikuji").innerHTML = '<span class="loading"></span> 引いています...';
 
-                const price = ethers.utils.parseEther("0.001"); // 0.001 MON
+                const price = ethers.utils.parseEther("0.001");
                 const tx = await contract.drawOmikuji({ value: price });
                 
                 showStatus("トランザクション送信完了。確認中...", "info");
@@ -314,13 +783,21 @@
             }
         }
 
-        document.getElementById("connect-wallet").addEventListener("click", connectWallet);
+        // Event listeners
+        document.getElementById("connect-wallet").addEventListener("click", showRainbowModal);
         document.getElementById("draw-omikuji").addEventListener("click", drawOmikuji);
 
-        // Check if wallet is already connected
+        // Auto-connect check
         window.addEventListener("load", async () => {
+            await new Promise(resolve => setTimeout(resolve, 100)); // Wait for wallet injection
+            
             if (window.ethereum && window.ethereum.selectedAddress) {
-                await connectWallet();
+                for (const [key, wallet] of Object.entries(walletProviders)) {
+                    if (key !== 'walletconnect' && wallet.detect()) {
+                        await connectWallet(key);
+                        break;
+                    }
+                }
             }
         });
     </script>
