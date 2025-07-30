@@ -62,12 +62,12 @@ const OMIKUJI_ABI = [
 const CONTRACT_ADDRESS = '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9';
 
 const fortuneNames = [
-  "大吉 (Daikichi)",
-  "吉 (Kichi)", 
-  "中吉 (Chukichi)",
-  "小吉 (Shokichi)",
-  "末吉 (Sue-kichi)",
-  "凶 (Kyo)"
+  "Great Fortune (Daikichi)",
+  "Good Fortune (Kichi)", 
+  "Middle Blessing (Chukichi)",
+  "Small Blessing (Shokichi)",
+  "Future Blessing (Sue-kichi)",
+  "Bad Fortune (Kyo)"
 ];
 
 interface OmikujiResult {
@@ -134,7 +134,7 @@ function App() {
       const mockResult: OmikujiResult = {
         tokenId: Math.floor(Math.random() * 1000).toString(),
         result: Math.floor(Math.random() * 6),
-        message: "今日は良い一日になりそうです"
+        message: "Today will be a wonderful day filled with opportunities!"
       };
       setLastResult(mockResult);
     }
@@ -173,38 +173,40 @@ function App() {
     const secs = seconds % 60;
     
     if (hours > 0) {
-      return `${hours}時間${minutes}分${secs}秒`;
+      return `${hours}h ${minutes}m ${secs}s`;
     } else if (minutes > 0) {
-      return `${minutes}分${secs}秒`;
+      return `${minutes}m ${secs}s`;
     } else {
-      return `${secs}秒`;
+      return `${secs}s`;
     }
   };
 
   return (
     <div className="app">
+      <div className="logo-container">
+        <img src="/asset/logo.svg" alt="Omikuji Shrine Logo" className="app-logo" />
+      </div>
+      <div className="wallet-section">
+        <ConnectButton />
+      </div>
       <div className="shrine-container">
-        <h1 className="shrine-title">🏮 おみくじ神社 🏮</h1>
-        <p className="shrine-subtitle">Digital Omikuji Shrine on Monad</p>
+        <h1 className="shrine-title">🏮 Omikuji Shrine 🏮</h1>
+        <p className="shrine-subtitle">Digital Fortune Telling on Monad Network</p>
         
         <div className="torii">⛩️</div>
-        
-        <div className="wallet-section">
-          <ConnectButton />
-        </div>
 
         {isConnected && (
           <>
             <div className="price-info">
-              <strong>🎋 おみくじ料金: {price ? formatEther(price) : '0.001'} MON</strong><br />
-              <small>結果はNFTとしてmintされます</small>
+              <strong>🎋 Omikuji Price: {price ? formatEther(price) : '0.001'} MON</strong><br />
+              <small>Your fortune will be minted as an NFT</small>
             </div>
 
             <div className="omikuji-section">
               {canDraw === false && timeLeft > 0 && (
                 <div className="cooldown-info">
-                  <p>⏰ 次のおみくじまで: {formatTimeLeft(timeLeft)}</p>
-                  <small>24時間に1回まで引くことができます</small>
+                  <p>⏰ Next draw in: {formatTimeLeft(timeLeft)}</p>
+                  <small>You can draw once every 24 hours</small>
                 </div>
               )}
               
@@ -213,10 +215,10 @@ function App() {
                 onClick={drawOmikuji}
                 disabled={isPending || isConfirming || canDraw === false}
               >
-                {isPending ? '⏳ 送信中...' : 
-                 isConfirming ? '🔄 確認中...' :
-                 canDraw === false ? '⏳ 待機中...' :
-                 '🎋 おみくじを引く 🎋'}
+                {isPending ? '⏳ Sending...' : 
+                 isConfirming ? '🔄 Confirming...' :
+                 canDraw === false ? '⏳ Waiting...' :
+                 '🎋 Draw Omikuji 🎋'}
               </button>
             </div>
 
@@ -225,8 +227,8 @@ function App() {
                 <div className="fortune-result">{fortuneNames[lastResult.result]}</div>
                 <div className="fortune-message">"{lastResult.message}"</div>
                 <div className="nft-info">
-                  <strong>🎨 NFT #{lastResult.tokenId} がmintされました！</strong><br />
-                  <small>あなたのウォレットで確認できます</small>
+                  <strong>🎨 NFT #{lastResult.tokenId} has been minted!</strong><br />
+                  <small>Check your wallet to view your fortune NFT</small>
                 </div>
               </div>
             )}
@@ -235,7 +237,7 @@ function App() {
 
         {!isConnected && (
           <div className="connect-prompt">
-            <p>ウォレットを接続してください</p>
+            <p>Please connect your wallet to draw omikuji</p>
           </div>
         )}
       </div>
