@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おみくじ神社 - Omikuji Shrine</title>
+    <style>
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .shrine-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .shrine-title {
+            font-size: 2.5em;
+            color: #8b4513;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .shrine-subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .torii {
+            font-size: 4em;
+            color: #dc143c;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .wallet-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+
+        .button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .omikuji-button {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            font-size: 1.3em;
+            padding: 20px 40px;
+            margin: 20px 0;
+        }
+
+        .status-text {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+
+        .result-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .fortune-result {
+            font-size: 1.8em;
+            color: #8b4513;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .fortune-message {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .nft-info {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .wallet-address {
+            font-family: monospace;
+            background: #f1f1f1;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            word-break: break-all;
+        }
+
+        .price-info {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="shrine-container">
+        <h1 class="shrine-title">🏮 おみくじ神社 🏮</h1>
+        <p class="shrine-subtitle">Digital Omikuji Shrine on Monad</p>
+        
+        <div class="torii">⛩️</div>
+        
+        <div class="wallet-section">
+            <div id="wallet-status">
+                <button id="connect-wallet" class="button">ウォレット接続</button>
+            </div>
+        </div>
+
+        <div class="price-info">
+            <strong>おみくじ料金: 0.001 MON</strong><br>
+            <small>結果はNFTとしてmintされます</small>
+        </div>
+
+        <div id="omikuji-section" style="display: none;">
+            <button id="draw-omikuji" class="button omikuji-button">
+                🎋 おみくじを引く 🎋
+            </button>
+        </div>
+
+        <div id="status-message" class="status-text" style="display: none;"></div>
+        
+        <div id="omikuji-result" style="display: none;"></div>
+    </div>
+
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+    <script>
+        const CONTRACT_ADDRESS = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+        const CONTRACT_ABI = [
+            "function drawOmikuji() external payable returns (uint256)",
+            "function omikujiPrice() external view returns (uint256)",
+            "function omikujis(uint256) external view returns (uint8, string, uint256, address)",
+            "function getUserOmikujis(address) external view returns (uint256[])",
+            "event OmikujiDrawn(address indexed drawer, uint256 indexed tokenId, uint8 result, string message)"
+        ];
+
+        let provider;
+        let signer;
+        let contract;
+        let userAddress;
+
+        const fortuneNames = [
+            "大吉 (Daikichi)",
+            "吉 (Kichi)", 
+            "中吉 (Chukichi)",
+            "小吉 (Shokichi)",
+            "末吉 (Sue-kichi)",
+            "凶 (Kyo)"
+        ];
+
+        async function connectWallet() {
+            try {
+                if (!window.ethereum) {
+                    showStatus("MetaMaskをインストールしてください", "error");
+                    return;
+                }
+
+                showStatus("ウォレット接続中...", "info");
+                
+                // Check if connected to Monad network  
+                const network = await provider.getNetwork();
+                console.log("Current network:", network);
+                // Allow both localhost (31337) and Monad testnet (41454)
+                if (network.chainId !== 31337 && network.chainId !== 41454) {
+                    showStatus("MonadネットワークまたはLocalhostに切り替えてください", "error");
+                    return;
+                }
+                
+                provider = new ethers.providers.Web3Provider(window.ethereum);
+                await provider.send("eth_requestAccounts", []);
+                signer = provider.getSigner();
+                userAddress = await signer.getAddress();
+                
+                contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+
+                document.getElementById("wallet-status").innerHTML = `
+                    <div class="success">✅ 接続済み</div>
+                    <div class="wallet-address">${userAddress}</div>
+                `;
+                
+                document.getElementById("connect-wallet").style.display = "none";
+                document.getElementById("omikuji-section").style.display = "block";
+                
+                showStatus("ウォレット接続完了！", "success");
+                
+            } catch (error) {
+                console.error("Wallet connection error:", error);
+                showStatus("ウォレット接続に失敗しました", "error");
+            }
+        }
+
+        async function drawOmikuji() {
+            try {
+                showStatus("おみくじを引いています...", "info");
+                document.getElementById("draw-omikuji").disabled = true;
+                document.getElementById("draw-omikuji").innerHTML = '<span class="loading"></span> 引いています...';
+
+                const price = ethers.utils.parseEther("0.001"); // 0.001 MON
+                const tx = await contract.drawOmikuji({ value: price });
+                
+                showStatus("トランザクション送信完了。確認中...", "info");
+                const receipt = await tx.wait();
+                
+                const event = receipt.events.find(e => e.event === 'OmikujiDrawn');
+                if (event) {
+                    const [drawer, tokenId, result, message] = event.args;
+                    displayOmikujiResult(tokenId.toString(), result, message);
+                    showStatus("おみくじ完了！NFTがmintされました", "success");
+                } else {
+                    showStatus("結果の取得に失敗しました", "error");
+                }
+                
+            } catch (error) {
+                console.error("Draw omikuji error:", error);
+                showStatus(`エラー: ${error.message}`, "error");
+            } finally {
+                document.getElementById("draw-omikuji").disabled = false;
+                document.getElementById("draw-omikuji").innerHTML = '🎋 おみくじを引く 🎋';
+            }
+        }
+
+        function displayOmikujiResult(tokenId, resultIndex, message) {
+            const fortuneName = fortuneNames[resultIndex];
+            const resultDiv = document.getElementById("omikuji-result");
+            
+            resultDiv.innerHTML = `
+                <div class="result-card">
+                    <div class="fortune-result">${fortuneName}</div>
+                    <div class="fortune-message">"${message}"</div>
+                    <div class="nft-info">
+                        <strong>🎨 NFT #${tokenId} がmintされました！</strong><br>
+                        <small>あなたのウォレットで確認できます</small>
+                    </div>
+                </div>
+            `;
+            
+            resultDiv.style.display = "block";
+        }
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById("status-message");
+            statusDiv.textContent = message;
+            statusDiv.className = `status-text ${type}`;
+            statusDiv.style.display = "block";
+            
+            if (type === "success") {
+                setTimeout(() => {
+                    statusDiv.style.display = "none";
+                }, 3000);
+            }
+        }
+
+        document.getElementById("connect-wallet").addEventListener("click", connectWallet);
+        document.getElementById("draw-omikuji").addEventListener("click", drawOmikuji);
+
+        // Check if wallet is already connected
+        window.addEventListener("load", async () => {
+            if (window.ethereum && window.ethereum.selectedAddress) {
+                await connectWallet();
+            }
+        });
+    </script>
+</body>
+</html>
