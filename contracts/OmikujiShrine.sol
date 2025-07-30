@@ -10,9 +10,19 @@ contract OmikujiShrine is ERC721, ERC721URIStorage, Ownable {
     using Strings for uint256;
 
     uint256 private _currentTokenId;
+    uint256 public constant MAX_SUPPLY = 10000;
     uint256 public omikujiPrice = 0.01 ether;
+    bool public developmentMode;
     
-    enum OmikujiResult { DAIKICHI, KICHI, CHUKICHI, SHOKICHI, SUE_KICHI, KYO }
+    enum OmikujiResult { 
+        DAI_DAI_DAI_KICHI,  // Super Ultra Great Blessing (大大大吉)
+        DAI_DAI_KICHI,      // Ultra Great Blessing (大大吉)
+        DAI_KICHI,          // Great Blessing (大吉)
+        CHU_KICHI,          // Middle Blessing (中吉)
+        SHO_KICHI,          // Small Blessing (小吉)
+        KICHI,              // Blessing (吉)
+        SUE_KICHI           // Minor Blessing (末吉)
+    }
     
     struct Omikuji {
         OmikujiResult result;
@@ -25,59 +35,86 @@ contract OmikujiShrine is ERC721, ERC721URIStorage, Ownable {
     mapping(address => uint256[]) public userOmikujis;
     mapping(address => uint256) public lastDrawTime;
     
-    string[6] private fortunes = [
-        "Daikichi - Great Blessing",
-        "Kichi - Good Fortune", 
-        "Chukichi - Middle Blessing",
-        "Shokichi - Small Blessing",
-        "Sue-kichi - Future Blessing",
-        "Kyo - Bad Fortune"
+    string[7] private fortunes = [
+        "Super Ultra Great Blessing (Dai-Dai-Dai-Kichi)",
+        "Ultra Great Blessing (Dai-Dai-Kichi)",
+        "Great Blessing (Dai-Kichi)",
+        "Middle Blessing (Chu-Kichi)",
+        "Small Blessing (Sho-Kichi)",
+        "Blessing (Kichi)",
+        "Minor Blessing (Sue-Kichi)"
     ];
     
-    string[6] private messages = [
+    string[7] private messages = [
+        "Extraordinary fortune! Everything you touch turns to gold!",
+        "Incredible luck awaits! Your dreams will exceed expectations!",
         "Your wishes will come true magnificently!",
+        "Steady progress brings great success!",
+        "Small steps lead to wonderful achievements!",
         "Good things are coming your way!",
-        "Steady progress brings success!",
-        "Small steps lead to great achievements!",
-        "Patience will be rewarded!",
-        "Reflection brings new opportunities!"
+        "Patience will be rewarded with future blessings!"
     ];
 
     event OmikujiDrawn(address indexed drawer, uint256 indexed tokenId, OmikujiResult result, string message);
 
-    constructor() ERC721("Omikuji Shrine NFT", "OMIKUJI") Ownable(msg.sender) {}
+    constructor() ERC721("Omikuji Shrine NFT", "OMIKUJI") Ownable(msg.sender) {
+        // Enable development mode for local testing (chain ID 31337)
+        developmentMode = (block.chainid == 31337);
+    }
 
     function drawOmikuji() external payable returns (uint256) {
         require(msg.value >= omikujiPrice, "Insufficient payment for omikuji");
         require(canDrawOmikuji(msg.sender), "Must wait 24 hours before drawing again");
+        require(_currentTokenId < MAX_SUPPLY, "Maximum supply reached");
         
         lastDrawTime[msg.sender] = block.timestamp;
         _currentTokenId++;
         uint256 newTokenId = _currentTokenId;
         
-        uint256 randomValue = uint256(keccak256(abi.encodePacked(
-            block.timestamp,
-            block.prevrandao,
-            msg.sender,
-            newTokenId
-        ))) % 100;
-        
         OmikujiResult result;
-        if (randomValue < 5) {
-            result = OmikujiResult.DAIKICHI;
-        } else if (randomValue < 20) {
-            result = OmikujiResult.KICHI;
-        } else if (randomValue < 40) {
-            result = OmikujiResult.CHUKICHI;
-        } else if (randomValue < 65) {
-            result = OmikujiResult.SHOKICHI;
-        } else if (randomValue < 85) {
-            result = OmikujiResult.SUE_KICHI;
-        } else {
-            result = OmikujiResult.KYO;
-        }
+        string memory message;
         
-        string memory message = messages[uint256(result)];
+        // Special lucky numbers
+        if (newTokenId == 777) {
+            result = OmikujiResult.DAI_KICHI;
+            message = "Lucky #777! The spirits have blessed you with great fortune!";
+        } else if (newTokenId == 7777) {
+            result = OmikujiResult.DAI_DAI_KICHI;
+            message = "Incredible #7777! Ultra rare blessing from the divine spirits!";
+        } else {
+            // Normal probability distribution
+            uint256 randomValue = uint256(keccak256(abi.encodePacked(
+                block.timestamp,
+                block.prevrandao,
+                msg.sender,
+                newTokenId
+            ))) % 1000;
+            
+            if (randomValue < 1) {
+                // 0.1% (1/1000)
+                result = OmikujiResult.DAI_DAI_DAI_KICHI;
+            } else if (randomValue < 20) {
+                // 1.9% (19/1000)
+                result = OmikujiResult.DAI_DAI_KICHI;
+            } else if (randomValue < 100) {
+                // 8% (80/1000)
+                result = OmikujiResult.DAI_KICHI;
+            } else if (randomValue < 250) {
+                // 15% (150/1000)
+                result = OmikujiResult.CHU_KICHI;
+            } else if (randomValue < 500) {
+                // 25% (250/1000)
+                result = OmikujiResult.SHO_KICHI;
+            } else if (randomValue < 800) {
+                // 30% (300/1000)
+                result = OmikujiResult.KICHI;
+            } else {
+                // 20% (200/1000)
+                result = OmikujiResult.SUE_KICHI;
+            }
+            
+            message = messages[uint256(result)];
+        }
         
         omikujis[newTokenId] = Omikuji({
             result: result,
@@ -134,12 +171,13 @@ contract OmikujiShrine is ERC721, ERC721URIStorage, Ownable {
     }
     
     function getColorByResult(OmikujiResult result) internal pure returns (string memory) {
-        if (result == OmikujiResult.DAIKICHI) return "#ff6b6b";
-        if (result == OmikujiResult.KICHI) return "#4ecdc4";
-        if (result == OmikujiResult.CHUKICHI) return "#45b7d1";
-        if (result == OmikujiResult.SHOKICHI) return "#96ceb4";
-        if (result == OmikujiResult.SUE_KICHI) return "#feca57";
-        return "#a55eea";
+        if (result == OmikujiResult.DAI_DAI_DAI_KICHI) return "#ffd700"; // Gold
+        if (result == OmikujiResult.DAI_DAI_KICHI) return "#ff6b6b";      // Red
+        if (result == OmikujiResult.DAI_KICHI) return "#ff8c42";          // Orange
+        if (result == OmikujiResult.CHU_KICHI) return "#4ecdc4";          // Teal
+        if (result == OmikujiResult.SHO_KICHI) return "#45b7d1";          // Blue
+        if (result == OmikujiResult.KICHI) return "#96ceb4";              // Green
+        return "#feca57"; // Yellow for SUE_KICHI
     }
     
     function getUserOmikujis(address user) external view returns (uint256[] memory) {
@@ -147,6 +185,9 @@ contract OmikujiShrine is ERC721, ERC721URIStorage, Ownable {
     }
     
     function canDrawOmikuji(address user) public view returns (bool) {
+        if (developmentMode) {
+            return true; // Skip cooldown in development mode
+        }
         return block.timestamp >= lastDrawTime[user] + 24 hours;
     }
     
@@ -159,6 +200,10 @@ contract OmikujiShrine is ERC721, ERC721URIStorage, Ownable {
     
     function setOmikujiPrice(uint256 _price) external onlyOwner {
         omikujiPrice = _price;
+    }
+    
+    function setDevelopmentMode(bool _developmentMode) external onlyOwner {
+        developmentMode = _developmentMode;
     }
     
     function withdraw() external onlyOwner {

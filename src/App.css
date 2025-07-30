@@ -6,6 +6,14 @@
   box-sizing: border-box;
 }
 
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: url('/asset/jinnja.jpg') no-repeat center center fixed;
@@ -55,7 +63,7 @@ body::before {
 .shrine-container {
   background: rgb(255 255 255 / 20%);
   backdrop-filter: blur(15px);
-  border: 2px solid rgba(255, 215, 0, 0.3);
+  border: 2px solid rgb(136 0 255 / 30%);
   border-radius: 24px;
   padding: 48px;
   box-shadow: 0 32px 64px rgba(0, 0, 0, 0.7);
@@ -76,9 +84,66 @@ body::before {
 .shrine-subtitle {
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   font-weight: 500;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Supply Information */
+.supply-info {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 32px;
+  backdrop-filter: blur(10px);
+}
+
+.supply-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.supply-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.supply-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.supply-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.supply-value.remaining {
+  color: #ffd700;
+}
+
+.supply-progress {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.supply-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #632adb 0%, #8b6edb 100%);
+  border-radius: 8px;
+  transition: width 0.3s ease;
 }
 
 
@@ -201,6 +266,84 @@ body::before {
   backdrop-filter: blur(10px);
 }
 
+.nft-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.nft-number {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nft-collection {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Lucky Number Styles */
+.result-card.lucky-number {
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  animation: luckyGlow 2s ease-in-out infinite alternate;
+}
+
+.nft-number.lucky-number-glow {
+  font-size: 2.2rem;
+  animation: numberPulse 1.5s ease-in-out infinite;
+  position: relative;
+}
+
+.lucky-sparkle {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  font-size: 1rem;
+  animation: sparkle 1s ease-in-out infinite;
+}
+
+@keyframes luckyGlow {
+  0% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+  }
+}
+
+@keyframes numberPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: rotate(180deg) scale(1.2);
+  }
+}
+
 .fortune-result {
   font-size: 2rem;
   font-weight: 700;
@@ -234,31 +377,39 @@ body::before {
 /* Omikuji Animation */
 .omikuji-animation {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
 }
 
 .animation-container {
   position: relative;
   text-align: center;
-  max-width: 400px;
+  max-width: 450px;
+  width: 90%;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .falling-petals {
   position: absolute;
-  top: -50px;
-  left: 0;
-  right: 0;
-  height: 200px;
+  top: -100px;
+  left: -50px;
+  right: -50px;
+  height: 300px;
+  width: calc(100% + 100px);
   pointer-events: none;
 }
 
@@ -290,9 +441,11 @@ body::before {
 .fortune-reveal {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  padding: 50px 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   animation: fadeInScale 0.8s ease-out;
+  min-width: 300px;
+  text-align: center;
 }
 
 @keyframes fadeInScale {
@@ -345,8 +498,11 @@ body::before {
 }
 
 .paper-shake {
-  font-size: 3rem;
+  width: 80px;
+  height: auto;
   animation: shake 0.5s ease-in-out infinite;
+  display: block;
+  margin: 0 auto;
 }
 
 @keyframes shake {
@@ -427,4 +583,161 @@ body::before {
     right: 10px;
   }
 
+}
+
+/* Notifications */
+.notifications-container {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+}
+
+.notification {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  animation: slideInRight 0.3s ease-out;
+  position: relative;
+  min-width: 300px;
+}
+
+.notification.success {
+  border-left: 4px solid #22c55e;
+}
+
+.notification.error {
+  border-left: 4px solid #ef4444;
+}
+
+.notification-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-right: 30px;
+}
+
+.notification-message {
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.notification-link {
+  color: #632adb;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.notification-link:hover {
+  color: #4c1d95;
+  text-decoration: underline;
+}
+
+.notification-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #666;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.notification-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .notifications-container {
+    top: 80px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .notification {
+    min-width: auto;
+  }
+  
+  .animation-container {
+    max-width: 350px;
+    padding: 30px 20px;
+  }
+  
+  .fortune-reveal {
+    min-width: 250px;
+    padding: 40px 30px;
+  }
+  
+  .torii-animation {
+    font-size: 3rem;
+  }
+  
+  .drawing-text {
+    font-size: 1.3rem;
+  }
+  
+  .paper-shake {
+    width: 60px;
+  }
+  
+  .supply-stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .supply-item {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .supply-label {
+    margin-bottom: 0;
+  }
+  
+  .nft-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .nft-number {
+    font-size: 1.5rem;
+  }
+  
+  .nft-collection {
+    font-size: 0.8rem;
+  }
 }
