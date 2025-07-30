@@ -4,7 +4,13 @@
       "Bash(npm init:*)",
       "Bash(npm install:*)",
       "Bash(npx hardhat:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "WebFetch(domain:app.atlantisdex.xyz)",
+      "WebFetch(domain:rainbowkit.com)",
+      "Bash(ls:*)",
+      "Bash(rm:*)",
+      "Bash(npm run dev:*)",
+      "Bash(node:*)"
     ],
     "deny": []
   }

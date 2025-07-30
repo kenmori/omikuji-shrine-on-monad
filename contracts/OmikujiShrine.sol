@@ -23,6 +23,7 @@ contract OmikujiShrine is ERC721, ERC721URIStorage, Ownable {
     
     mapping(uint256 => Omikuji) public omikujis;
     mapping(address => uint256[]) public userOmikujis;
+    mapping(address => uint256) public lastDrawTime;
     
     string[6] private fortunes = [
         "Daikichi - Great Blessing",
