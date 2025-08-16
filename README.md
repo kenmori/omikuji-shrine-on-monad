@@ -106,6 +106,7 @@
 ベーシック30% 普通の幸運末吉 普通20.1%後から良くなる
 
 確率分布
+
 Super Ultra Great Blessing (大大大吉): 0.1% (1/1000)
 Ultra Great Blessing (大大吉): 1.9% (19/1000)
 Great Blessing (大吉): 8% (80/1000)

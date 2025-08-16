@@ -49,13 +49,11 @@ body::before {
   top: 20px;
   left: 20px;
   z-index: 1000;
-  background: white;
   padding: 12px 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .app-logo {
-  width: 180px;
+  width: 60px;
   height: 60px;
   display: block;
 }
@@ -63,7 +61,7 @@ body::before {
 .shrine-container {
   background: rgb(255 255 255 / 20%);
   backdrop-filter: blur(15px);
-  border: 2px solid rgb(136 0 255 / 30%);
+  border: 2px solid rgb(131,110,249);
   border-radius: 24px;
   padding: 48px;
   box-shadow: 0 32px 64px rgba(0, 0, 0, 0.7);
@@ -78,7 +76,6 @@ body::before {
   font-weight: 700;
   color: white;
   margin-bottom: 16px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .shrine-subtitle {
@@ -86,7 +83,6 @@ body::before {
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 24px;
   font-weight: 500;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 /* Supply Information */
@@ -125,11 +121,10 @@ body::before {
   font-size: 1.2rem;
   font-weight: 700;
   color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .supply-value.remaining {
-  color: #ffd700;
+  color: #836ef9;
 }
 
 .supply-progress {
@@ -201,6 +196,34 @@ body::before {
   border-color: #dc143c !important;
 }
 
+/* Network switch button */
+.network-switch-button {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.network-switch-button:hover {
+  background: linear-gradient(135deg, #e55b2b, #e07b1a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 107, 53, 0.4);
+}
+
+.network-info {
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
 
 
 .omikuji-section {
@@ -217,7 +240,7 @@ body::before {
 }
 
 .omikuji-button {
-  background: #632adb;
+  background: #836ef9;
   color: white;
   border: none;
   padding: 12px 16px;
@@ -279,7 +302,6 @@ body::before {
   font-size: 1.8rem;
   font-weight: 800;
   color: #ffd700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   background: linear-gradient(45deg, #ffd700, #ffed4e);
   background-clip: text;
   -webkit-background-clip: text;
@@ -372,6 +394,35 @@ body::before {
   padding: 40px 20px;
   color: rgba(255, 255, 255, 0.7);
   font-size: 1.1rem;
+  text-align: center;
+}
+
+.connect-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.connect-page-button {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #333 !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  cursor: pointer !important;
+}
+
+.connect-page-button:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* Omikuji Animation */
@@ -497,12 +548,12 @@ body::before {
   margin-top: 20px;
 }
 
-.paper-shake {
-  width: 80px;
-  height: auto;
+.paper-shake-text {
+  font-size: 60px;
   animation: shake 0.5s ease-in-out infinite;
   display: block;
   margin: 0 auto;
+  text-align: center;
 }
 
 @keyframes shake {
@@ -739,5 +790,326 @@ body::before {
   
   .nft-collection {
     font-size: 0.8rem;
+  }
+}
+
+
+/* Mint price display */
+.mint-price {
+  margin-top: 16px;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.price-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-right: 8px;
+}
+
+.price-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #836ef9;
+}
+
+
+/* Balance display */
+.balance-info {
+  margin-top: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  text-align: center;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* NFT Image Display */
+.nft-image-display {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.nft-image {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .nft-image {
+    max-width: 250px;
+  }
+}
+
+/* Artwork Information */
+.artwork-info {
+  margin: 20px 0;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  text-align: left;
+}
+
+.artwork-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffd700;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.artwork-artist {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 4px;
+}
+
+.artwork-period {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.artwork-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .artwork-info {
+    margin: 16px 0;
+    padding: 16px;
+  }
+  
+  .artwork-title {
+    font-size: 1rem;
+  }
+  
+  .artwork-artist {
+    font-size: 0.9rem;
+  }
+  
+  .artwork-period {
+    font-size: 0.8rem;
+  }
+  
+  .artwork-description {
+    font-size: 0.85rem;
+  }
+}
+
+/* Creator Attribution */
+.creator-attribution {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.creator-link {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.creator-link:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .creator-attribution {
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .creator-link {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+}
+
+/* Art Credits */
+.art-credits-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.credits-button {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.credits-button:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.credits-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  backdrop-filter: blur(5px);
+  padding: 20px;
+}
+
+.credits-modal {
+  background: white;
+  border-radius: 16px;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.credits-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.credits-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.credits-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.credits-close:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.credits-content {
+  padding: 20px 24px;
+}
+
+.credit-item {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  line-height: 1.5;
+}
+
+.credit-item:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.credit-item strong {
+  color: #632adb;
+  font-weight: 600;
+}
+
+.artwork-link {
+  color: #632adb;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.artwork-link:hover {
+  color: #4c1d95;
+}
+
+.credits-note {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .art-credits-toggle {
+    bottom: 10px;
+    left: 10px;
+  }
+  
+  .credits-button {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+  
+  .credits-modal {
+    max-width: 90vw;
+    margin: 10px;
+  }
+  
+  .credits-header {
+    padding: 16px 20px;
+  }
+  
+  .credits-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .credits-content {
+    padding: 16px 20px;
+  }
+  
+  .credit-item {
+    font-size: 14px;
   }
 }

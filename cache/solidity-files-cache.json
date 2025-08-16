@@ -1,47 +1,6 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/kenjimorita/git/omikuji-shrine-on-monad/contracts/OmikujiShrine.sol": {
-      "lastModificationDate": 1753872311074,
-      "contentHash": "ee462ed5add00b8b5674ebe3c7e652eb",
-      "sourceName": "contracts/OmikujiShrine.sol",
-      "solcConfig": {
-        "version": "0.8.27",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/utils/Strings.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.27"
-      ],
-      "artifacts": [
-        "OmikujiShrine"
-      ]
-    },
     "/Users/kenjimorita/git/omikuji-shrine-on-monad/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
       "lastModificationDate": 1753830328819,
       "contentHash": "d3c790edc9ccf808a17c5a6cd13614fd",
@@ -764,6 +723,45 @@
         ">=0.6.2"
       ],
       "artifacts": []
+    },
+    "/Users/kenjimorita/git/omikuji-shrine-on-monad/contracts/UpdatedIPFSOmikujiNFT.sol": {
+      "lastModificationDate": 1755384314181,
+      "contentHash": "2027602a3787d3d30bfc8ef9126f3dae",
+      "sourceName": "contracts/UpdatedIPFSOmikujiNFT.sol",
+      "solcConfig": {
+        "version": "0.8.27",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.27"
+      ],
+      "artifacts": [
+        "UpdatedIPFSOmikujiNFT"
+      ]
     }
   }
 }
