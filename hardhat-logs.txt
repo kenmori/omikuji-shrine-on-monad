@@ -1,0 +1,2786 @@
+2025-08-15T08:10:14.883Z hardhat:core:vars:varsManager Creating a new instance of VarsManager
+2025-08-15T08:10:14.884Z hardhat:core:vars:varsManager Loading ENV variables if any
+2025-08-15T08:10:14.892Z hardhat:core:config Loading Hardhat config from /Users/kenjimorita/git/omikuji-shrine-on-monad/hardhat.config.cjs
+2025-08-15T08:10:15.404Z hardhat:core:hre Creating HardhatRuntimeEnvironment
+2025-08-15T08:10:15.407Z hardhat:core:global-dir Looking up Client Id at /Users/kenjimorita/Library/Application Support/hardhat-nodejs/analytics.json
+2025-08-15T08:10:15.408Z hardhat:core:global-dir Client Id found: 069068b9-ac48-4977-818b-6a0854e275d5
+2025-08-15T08:10:15.452Z hardhat:core:analytics Sending hit for task
+2025-08-15T08:10:15.452Z hardhat:core:analytics Hit payload: {"client_id":"069068b9-ac48-4977-818b-6a0854e275d5","user_id":"069068b9-ac48-4977-818b-6a0854e275d5","user_properties":{"projectId":{"value":"hardhat-project"},"userType":{"value":"Developer"},"hardhatVersion":{"value":"Hardhat 2.26.1"},"operatingSystem":{"value":"darwin"},"nodeVersion":{"value":"v22.15.0"}},"events":[{"name":"task","params":{"engagement_time_msec":"10000","session_id":"0.009295318577386524"}}]}
+2025-08-15T08:10:15.483Z hardhat:core:hre Running task node
+2025-08-15T08:10:15.484Z hardhat:core:hre Running task node:get-provider
+2025-08-15T08:10:15.484Z hardhat:core:tasks:node Creating hardhat provider for JSON-RPC server
+2025-08-15T08:10:15.835Z hardhat:core:hardhat-network:provider Making tracing config
+2025-08-15T08:10:15.840Z hardhat:core:hardhat-network:provider Creating EDR provider
+2025-08-15T08:10:15.885Z hardhat:core:hardhat-network:provider EDR provider created
+2025-08-15T08:10:15.893Z hardhat:core:hre Running task node:create-server
+2025-08-15T08:10:15.903Z hardhat:core:hre Running task node:server-created
+2025-08-15T08:10:15.903Z hardhat:core:hardhat-network:jsonrpc Starting JSON-RPC server on port 8545
+2025-08-15T08:10:15.907Z hardhat:core:compilation-watcher Watching changes on '/Users/kenjimorita/git/omikuji-shrine-on-monad/artifacts/build-info'
+2025-08-15T08:10:15.908Z hardhat:core:hre Running task node:server-ready
+Started HTTP and WebSocket JSON-RPC server at http://127.0.0.1:8545/
+
+Accounts
+========
+
+WARNING: These accounts, and their private keys, are publicly known.
+Any funds sent to them on Mainnet or any other live network WILL BE LOST.
+
+Account #0: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (10000 ETH)
+Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+
+Account #1: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8 (10000 ETH)
+Private Key: 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+
+Account #2: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC (10000 ETH)
+Private Key: 0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a
+
+Account #3: 0x90F79bf6EB2c4f870365E785982E1f101E93b906 (10000 ETH)
+Private Key: 0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6
+
+Account #4: 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65 (10000 ETH)
+Private Key: 0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a
+
+Account #5: 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc (10000 ETH)
+Private Key: 0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba
+
+Account #6: 0x976EA74026E726554dB657fA54763abd0C3a0aa9 (10000 ETH)
+Private Key: 0x92db14e403b83dfe3df233f83dfa3a0d7096f21ca9b0d6d6b8d88b2b4ec1564e
+
+Account #7: 0x14dC79964da2C08b23698B3D3cc7Ca32193d9955 (10000 ETH)
+Private Key: 0x4bbbf85ce3377467afe5d46f804f221813b2bb87f24d81f60f1fcdbf7cbf4356
+
+Account #8: 0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f (10000 ETH)
+Private Key: 0xdbda1821b80551c9d65939329250298aa3472ba22feea921c0cf5d620ea67b97
+
+Account #9: 0xa0Ee7A142d267C1f36714E4a8F75612F20a79720 (10000 ETH)
+Private Key: 0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6
+
+Account #10: 0xBcd4042DE499D14e55001CcbB24a551F3b954096 (10000 ETH)
+Private Key: 0xf214f2b2cd398c806f84e317254e0f0b801d0643303237d97a22a48e01628897
+
+Account #11: 0x71bE63f3384f5fb98995898A86B02Fb2426c5788 (10000 ETH)
+Private Key: 0x701b615bbdfb9de65240bc28bd21bbc0d996645a3dd57e7b12bc2bdf6f192c82
+
+Account #12: 0xFABB0ac9d68B0B445fB7357272Ff202C5651694a (10000 ETH)
+Private Key: 0xa267530f49f8280200edf313ee7af6b827f2a8bce2897751d06a843f644967b1
+
+Account #13: 0x1CBd3b2770909D4e10f157cABC84C7264073C9Ec (10000 ETH)
+Private Key: 0x47c99abed3324a2707c28affff1267e45918ec8c3f20b8aa892e8b065d2942dd
+
+Account #14: 0xdF3e18d64BC6A983f673Ab319CCaE4f1a57C7097 (10000 ETH)
+Private Key: 0xc526ee95bf44d8fc405a158bb884d9d1238d99f0612e9f33d006bb0789009aaa
+
+Account #15: 0xcd3B766CCDd6AE721141F452C550Ca635964ce71 (10000 ETH)
+Private Key: 0x8166f546bab6da521a8369cab06c5d2b9e46670292d85c875ee9ec20e84ffb61
+
+Account #16: 0x2546BcD3c84621e976D8185a91A922aE77ECEc30 (10000 ETH)
+Private Key: 0xea6c44ac03bff858b476bba40716402b03e41b8e97e276d1baec7c37d42484a0
+
+Account #17: 0xbDA5747bFD65F08deb54cb465eB87D40e51B197E (10000 ETH)
+Private Key: 0x689af8efa8c651a91ad287602527f3af2fe9f6501a7ac4b061667b5a93e037fd
+
+Account #18: 0xdD2FD4581271e230360230F9337D5c0430Bf44C0 (10000 ETH)
+Private Key: 0xde9be858da4a475276426320d5e9262ecfc3ba460bfac56360bfa6c4c28b4ee0
+
+Account #19: 0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199 (10000 ETH)
+Private Key: 0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e
+
+WARNING: These accounts, and their private keys, are publicly known.
+Any funds sent to them on Mainnet or any other live network WILL BE LOST.
+
+2025-08-15T08:10:16.298Z hardhat:core:analytics Hit for task sent successfully
+[32meth_chainId[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32meth_getBalance[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32meth_blockNumber[0m
+[32meth_getBlockByNumber[0m
+[32meth_feeHistory[0m
+[32meth_maxPriorityFeePerGas[0m
+[32meth_sendTransaction[0m
+  Contract deployment: OmikujiShrine
+  Contract address:    0x5fbdb2315678afecb367f032d93f642f64180aa3
+  Transaction:         0x6f975812528df8fe6f1972df8d4f0ad2278843840bb32ce73a7acc95e74e2f6e
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  Value:               0 ETH
+  Gas used:            5322124 of 30000000
+  Block #1:            0x03da5c03520f1f24b47d3828238a1ce55ca5016a2e3220c53898d6aedb4493a3
+
+[32meth_getTransactionByHash[0m
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_chainId[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32meth_chainId[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32meth_call[0m
+  Contract call:       OmikujiShrine#developmentMode
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#lastDrawTime
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_getBlockByNumber[0m
+[32meth_accounts[0m
+[32meth_accounts (2)[0m
+[32meth_accounts (3)[0m
+[32meth_accounts (4)[0m
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_blockNumber[0m
+[32meth_getCode[0m
+[32meth_getCode (2)[0m
+[32meth_gasPrice[0m
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OmikujiShrine#supportsInterface
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#symbol
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#name
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_blockNumber[0m
+[32meth_getBalance[0m
+[32meth_getBalance (2)[0m
+[32meth_getBalance (3)[0m
+[32meth_getBalance (4)[0m
+[32meth_getBalance (5)[0m
+[32meth_getStorageAt[0m
+[32meth_getStorageAt (2)[0m
+[32meth_getTransactionCount[0m
+[32meth_blockNumber[0m
+[31meth_sendRawTransaction[0m
+  Contract call:       OmikujiShrine#drawOmikuji
+  Transaction:         0xe1e5370ca4770f2b7a13ddf74cd50b58adb10cfb858ba05745f6b78a744a9262
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+  Value:               0.1 ETH
+  Gas used:            300000 of 300000
+  Block #2:            0x614ee96dd95b2b7391ae9227c67364009ce7642921f931d1ddf01acb8d41cbe6
+
+  TransactionExecutionError: Transaction ran out of gas
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_blockNumber[0m
+[32meth_getCode[0m
+[32meth_getCode (2)[0m
+[32meth_gasPrice[0m
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OmikujiShrine#supportsInterface
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#symbol
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#name
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_blockNumber[0m
+[32meth_getBalance[0m
+[32meth_getBalance (2)[0m
+[32meth_getBalance (3)[0m
+[32meth_getBalance (4)[0m
+[32meth_getBalance (5)[0m
+[32meth_getStorageAt[0m
+[32meth_getStorageAt (2)[0m
+[32meth_getTransactionCount[0m
+[32meth_blockNumber[0m
+[31meth_sendRawTransaction[0m
+  Contract call:       OmikujiShrine#drawOmikuji
+  Transaction:         0xa4a05b38bb1636ab35c777ca77dcbef0fcfc59cda7726fe681768b2909a47be0
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+  Value:               0.1 ETH
+  Gas used:            1000000 of 1000000
+  Block #3:            0x3f6b68b05bdaa2cd15c0c26cfbcfd1037c108f92ea392c9b57181f7c52dc858b
+
+  TransactionExecutionError: Transaction ran out of gas
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+2025-08-15T08:17:31.598Z hardhat:core:compilation-watcher Adding new compilation result to the node
+[32mhardhat_addCompilationResult[0m
+[32meth_chainId[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32meth_getBalance[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32meth_blockNumber[0m
+[32meth_getBlockByNumber[0m
+[32meth_feeHistory[0m
+[32meth_sendTransaction[0m
+  Contract deployment: SimpleOmikuji
+  Contract address:    0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  Transaction:         0xe1332249dfdc1f6a9deccd0ddfea224b29df2fd4a9eab723253e2b42c38daea9
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  Value:               0 ETH
+  Gas used:            800000 of 30000000
+  Block #4:            0x48f295bbf37a3df9c780d9cbabef527c2df8a0f8c2a24880f7f847095e6690f9
+
+[32meth_getTransactionByHash[0m
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OmikujiShrine#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_blockNumber[0m
+[32meth_getCode[0m
+[32meth_estimateGas[0m
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[32meth_blockNumber[0m
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[32meth_getStorageAt[0m
+[32meth_getStorageAt (2)[0m
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[32meth_sendRawTransaction[0m
+  Contract call:       SimpleOmikuji#drawOmikuji
+  Transaction:         0x4252d5bf9b9f85e4b2b49329bede78d388cadc2ca3096461e0297163080bd6ac
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  Value:               0.1 ETH
+  Gas used:            139762 of 139762
+  Block #5:            0x5b2851d04beb9f5bf6d7e1971c0b6a627be140449d6e69aad34e188f665f7692
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[32meth_getTransactionReceipt[0m
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[32meth_getTransactionReceipt[0m
+[32meth_blockNumber[0m
+[32meth_getBlockByHash[0m
+[32meth_getBalance[0m
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[32meth_gasPrice[0m
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_blockNumber[0m
+[32meth_getCode[0m
+[32meth_getCode (2)[0m
+[32meth_getBlockByNumber[0m
+[32meth_estimateGas[0m
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[32meth_blockNumber[0m
+[32meth_getBalance[0m
+[32meth_getBalance (2)[0m
+[32meth_getBalance (3)[0m
+[32meth_getBalance (4)[0m
+[32meth_getBalance (5)[0m
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[32meth_getStorageAt[0m
+[32meth_getStorageAt (2)[0m
+[32meth_getTransactionCount[0m
+[32meth_blockNumber[0m
+[32meth_sendRawTransaction[0m
+  Contract call:       SimpleOmikuji#drawOmikuji
+  Transaction:         0xdab2cd6698c45719838b9e093b7a0e79bd02c3b050ac16e9b63e5f9190672e55
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  Value:               0.1 ETH
+  Gas used:            122662 of 122662
+  Block #6:            0x88ed0711d1b758a891c84ee781ea914d902ec5ce395550752d8cd74228749442
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[32meth_getTransactionReceipt[0m
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[32meth_getTransactionReceipt[0m
+[32meth_blockNumber[0m
+[32meth_getBlockByHash[0m
+[32meth_getBalance[0m
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[31meth_call[0m
+  Contract call:       SimpleOmikuji#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+  Error: Transaction reverted without a reason
+
+[32meth_gasPrice[0m
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+2025-08-15T08:26:19.889Z hardhat:core:compilation-watcher Adding new compilation result to the node
+[32mhardhat_addCompilationResult[0m
+[32meth_chainId[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32meth_getBalance[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32meth_blockNumber[0m
+[32meth_getBlockByNumber[0m
+[32meth_feeHistory[0m
+[32meth_sendTransaction[0m
+  Contract deployment: OptimizedOmikujiNFT
+  Contract address:    0x0165878a594ca255338adfa4d48449f69242eb8f
+  Transaction:         0xbd3542359fc1f3e886bbf701ad1cc0978d1500d7a233b3d1587870116830a85b
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  Value:               0 ETH
+  Gas used:            3561115 of 30000000
+  Block #7:            0x43d15b60aeab9cf5fe476b953fe48b7fd0ab60b853c7a0911394544ef73d4b3c
+
+[32meth_getTransactionByHash[0m
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       SimpleOmikuji#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_blockNumber[0m
+[32meth_getCode[0m
+[32meth_getCode (2)[0m
+[32meth_getBlockByNumber[0m
+[32meth_estimateGas[0m
+[32meth_gasPrice[0m
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#supportsInterface
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#symbol
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#name
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_blockNumber[0m
+[32meth_getBalance[0m
+[32meth_getBalance (2)[0m
+[32meth_getBalance (3)[0m
+[32meth_getBalance (4)[0m
+[32meth_getBalance (5)[0m
+[32meth_getStorageAt[0m
+[32meth_getStorageAt (2)[0m
+[32meth_getTransactionCount[0m
+[32meth_blockNumber[0m
+[32meth_sendRawTransaction[0m
+  Contract call:       OptimizedOmikujiNFT#drawOmikuji
+  Transaction:         0x8590f30b4d8ef365ea18de4e2e794763d46a0f4e57059d9b3943553bebc3f0a6
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+  Value:               0.1 ETH
+  Gas used:            126974 of 126974
+  Block #8:            0x51298d2700c718e08a4098da6b19371a91a0ed4e11a61af1b7758b7ab5e904d0
+
+[32meth_getTransactionReceipt[0m
+[32meth_getTransactionReceipt (2)[0m
+[32meth_blockNumber[0m
+[32meth_getBlockByHash[0m
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#supportsInterface
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#supportsInterface
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#symbol
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#name
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#tokenURI
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_gasPrice[0m
+[32meth_blockNumber[0m
+[32meth_getBalance[0m
+[32meth_getBalance (2)[0m
+[32meth_getBalance (3)[0m
+[32meth_getBalance (4)[0m
+[32meth_getBalance (5)[0m
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+
+[32meth_blockNumber[0m
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getCode[0m
+[32meth_getCode (2)[0m
+[32meth_getBlockByNumber[0m
+[32meth_estimateGas[0m
+[32meth_blockNumber[0m
+[32meth_getStorageAt[0m
+[32meth_getStorageAt (2)[0m
+[32meth_getTransactionCount[0m
+[32meth_blockNumber[0m
+[32meth_sendRawTransaction[0m
+  Contract call:       OptimizedOmikujiNFT#drawOmikuji
+  Transaction:         0x665b99853721cc23acb10f59f1a770a076310fe3a3c70b5634608a7770be9e1e
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+  Value:               0.1 ETH
+  Gas used:            92774 of 92774
+  Block #9:            0x20e5f9643abab18aa5df4b7235cde0a0baeea784d6785d5ab5ffb4ffdc4cee4c
+
+[32meth_getTransactionReceipt[0m
+[32meth_getTransactionReceipt (2)[0m
+[32meth_blockNumber[0m
+[32meth_getBlockByHash[0m
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#supportsInterface
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#supportsInterface
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#symbol
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#name
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#tokenURI
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_gasPrice[0m
+[32meth_blockNumber[0m
+[32meth_getBalance[0m
+[32meth_getBalance (2)[0m
+[32meth_getBalance (3)[0m
+[32meth_getBalance (4)[0m
+[32meth_getBalance (5)[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#ownerOf
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_blockNumber[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_getBalance (2)[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_getBalance (2)[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_getBalance (2)[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_getBalance (2)[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#canDrawOmikuji
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#getTimeUntilNextDraw
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_getBalance[0m
+[32meth_call[0m
+  Contract call:       OptimizedOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x0165878a594ca255338adfa4d48449f69242eb8f
+
+[32meth_blockNumber[0m
+[32meth_getBlockByNumber[0m
+[32meth_blockNumber[0m
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xc2d2d200a446ad03f89a012bcdfe2838cc3bd896
+
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xc2d2d200a446ad03f89a012bcdfe2838cc3bd896
+
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xc2d2d200a446ad03f89a012bcdfe2838cc3bd896
+
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xc2d2d200a446ad03f89a012bcdfe2838cc3bd896
+
+[32meth_blockNumber[0m
+[32meth_getStorageAt[0m
+[32meth_getStorageAt (2)[0m
+[32meth_getTransactionCount[0m
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+
+[32meth_blockNumber[0m
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+
+[32meth_call[0m
+  WARNING: Calling an account which is not a contract
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+
+[32meth_getCode[0m
+2025-08-16T14:19:58.262Z hardhat:core:compilation-watcher Adding new compilation result to the node
+[32meth_chainId[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32mhardhat_addCompilationResult[0m
+[32meth_getBalance[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32meth_blockNumber[0m
+[32meth_getBlockByNumber[0m
+[32meth_feeHistory[0m
+[32meth_sendTransaction[0m
+  Contract deployment: IPFSOmikujiNFT
+  Contract address:    0x8a791620dd6260079bf849dc5567adc3f2fdc318
+  Transaction:         0xd4643fa1c6ecb036ae6fef1eccf3bae6961b5beaad2a7bac083c9484eabd1247
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  Value:               0 ETH
+  Gas used:            4697518 of 30000000
+  Block #10:           0x1875fb7575e61a6fc4777155f3b5c9da122d4068030958be2107795f0fe8eefe
+
+[32meth_getTransactionByHash[0m
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       IPFSOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x8a791620dd6260079bf849dc5567adc3f2fdc318
+
+[32meth_blockNumber[0m
+[32meth_feeHistory[0m
+[32meth_sendTransaction[0m
+  Contract call:       IPFSOmikujiNFT#setAllFortuneImageHashes
+  Transaction:         0x7a2eef98bb05037970f3e31cbe521fa3df50f4bf252fce3cdd2ac60419a03bec
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x8a791620dd6260079bf849dc5567adc3f2fdc318
+  Value:               0 ETH
+  Gas used:            389985 of 30000000
+  Block #11:           0x89b018adb1737ece50960396df9121dffa8ea48cbab3c4fe1beecc2e3c6ec433
+
+[32meth_getTransactionByHash[0m
+[32meth_getTransactionReceipt[0m
+2025-08-16T14:27:24.201Z hardhat:core:compilation-watcher Adding new compilation result to the node
+[32mhardhat_addCompilationResult[0m
+[32meth_chainId[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32meth_getBalance[0m
+[32meth_accounts[0m
+[32mhardhat_metadata[0m
+[32mhardhat_metadata (2)[0m
+[32mhardhat_metadata (3)[0m
+[32mhardhat_metadata (4)[0m
+[32mhardhat_metadata (5)[0m
+[32mhardhat_metadata (6)[0m
+[32mhardhat_metadata (7)[0m
+[32mhardhat_metadata (8)[0m
+[32mhardhat_metadata (9)[0m
+[32mhardhat_metadata (10)[0m
+[32mhardhat_metadata (11)[0m
+[32mhardhat_metadata (12)[0m
+[32mhardhat_metadata (13)[0m
+[32mhardhat_metadata (14)[0m
+[32mhardhat_metadata (15)[0m
+[32mhardhat_metadata (16)[0m
+[32mhardhat_metadata (17)[0m
+[32mhardhat_metadata (18)[0m
+[32mhardhat_metadata (19)[0m
+[32mhardhat_metadata (20)[0m
+[32meth_blockNumber[0m
+[32meth_getBlockByNumber[0m
+[32meth_feeHistory[0m
+[32meth_sendTransaction[0m
+  Contract deployment: UpdatedIPFSOmikujiNFT
+  Contract address:    0xb7f8bc63bbcad18155201308c8f3540b07f84f5e
+  Transaction:         0x629bb542293efa068ea0d40b8d84227baf18285a48a727cfd08df34fc15434fe
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  Value:               0 ETH
+  Gas used:            5335507 of 30000000
+  Block #12:           0xe2389bc42d89d14802adb15e1282c4becd9406e54f4d382d04bb895d42048b17
+
+[32meth_getTransactionByHash[0m
+[32meth_getTransactionReceipt[0m
+[32meth_call[0m
+  Contract call:       UpdatedIPFSOmikujiNFT#omikujiPrice
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xb7f8bc63bbcad18155201308c8f3540b07f84f5e
+
+[32meth_call[0m
+  Contract call:       UpdatedIPFSOmikujiNFT#MAX_SUPPLY
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xb7f8bc63bbcad18155201308c8f3540b07f84f5e
+
+[32meth_call[0m
+  Contract call:       UpdatedIPFSOmikujiNFT#totalSupply
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xb7f8bc63bbcad18155201308c8f3540b07f84f5e
+

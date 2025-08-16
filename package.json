@@ -19,8 +19,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@helia/unixfs": "^5.1.0",
     "@rainbow-me/rainbowkit": "^2.1.6",
     "@tanstack/react-query": "^5.40.0",
+    "helia": "^5.5.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "viem": "^2.17.5",

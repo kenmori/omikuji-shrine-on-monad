@@ -1,0 +1,51 @@
+{
+  "fortune-0": {
+    "name": "Super Ultra Great Blessing",
+    "ipfsHash": "bafybeid2uda5hamkzb4lse5rc7htcbcjffo7dgukjo4bjqdjuvhe44gg7a",
+    "ipfsUrl": "https://gateway.pinata.cloud/ipfs/bafybeid2uda5hamkzb4lse5rc7htcbcjffo7dgukjo4bjqdjuvhe44gg7a",
+    "filename": "fortune-0.png",
+    "fileSize": "0.39MB"
+  },
+  "fortune-1": {
+    "name": "Ultra Great Blessing",
+    "ipfsHash": "bafybeihs5auuxwu44f4geqwhgyzdoamdgaqxj6wbtcws47ft64mayaxsce",
+    "ipfsUrl": "https://gateway.pinata.cloud/ipfs/bafybeihs5auuxwu44f4geqwhgyzdoamdgaqxj6wbtcws47ft64mayaxsce",
+    "filename": "fortune-1.png",
+    "fileSize": "0.45MB"
+  },
+  "fortune-2": {
+    "name": "Great Blessing",
+    "ipfsHash": "bafybeicart4oeg6gxhqgivm5knbooqn4bxa374jpg73aqdehz234zh6qum",
+    "ipfsUrl": "https://gateway.pinata.cloud/ipfs/bafybeicart4oeg6gxhqgivm5knbooqn4bxa374jpg73aqdehz234zh6qum",
+    "filename": "fortune-2.png",
+    "fileSize": "0.37MB"
+  },
+  "fortune-3": {
+    "name": "Middle Blessing",
+    "ipfsHash": "bafybeihmntq3rxhd5j6nxk6j3vblzq6rhloiz2ircmdwg243raczy7qlau",
+    "ipfsUrl": "https://gateway.pinata.cloud/ipfs/bafybeihmntq3rxhd5j6nxk6j3vblzq6rhloiz2ircmdwg243raczy7qlau",
+    "filename": "fortune-3.png",
+    "fileSize": "0.26MB"
+  },
+  "fortune-4": {
+    "name": "Small Blessing",
+    "ipfsHash": "bafkreigio3u25g2pgbfo3ajohy5qcida74akfln3ttlxh443xgjy33ospm",
+    "ipfsUrl": "https://gateway.pinata.cloud/ipfs/bafkreigio3u25g2pgbfo3ajohy5qcida74akfln3ttlxh443xgjy33ospm",
+    "filename": "fortune-4.png",
+    "fileSize": "0.25MB"
+  },
+  "fortune-5": {
+    "name": "Blessing",
+    "ipfsHash": "bafybeidlyt73ucjmtczrtcvdcfksulgfpx5gdag2j76hqdo3kcpdx2v2ve",
+    "ipfsUrl": "https://gateway.pinata.cloud/ipfs/bafybeidlyt73ucjmtczrtcvdcfksulgfpx5gdag2j76hqdo3kcpdx2v2ve",
+    "filename": "fortune-5.png",
+    "fileSize": "0.41MB"
+  },
+  "fortune-6": {
+    "name": "Minor Blessing",
+    "ipfsHash": "bafybeiee2kczjgzseaqan5ldewlschfwalexzygehewu6joeow2etbkera",
+    "ipfsUrl": "https://gateway.pinata.cloud/ipfs/bafybeiee2kczjgzseaqan5ldewlschfwalexzygehewu6joeow2etbkera",
+    "filename": "fortune-6.png",
+    "fileSize": "0.35MB"
+  }
+}

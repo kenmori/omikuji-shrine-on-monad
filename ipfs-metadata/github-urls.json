@@ -1,0 +1,37 @@
+{
+  "fortune-0": {
+    "name": "Super Ultra Great Blessing",
+    "imageUrl": "https://yourusername.github.io/yourrepo/nft-images/fortune-0.png",
+    "method": "GitHub Pages / Public URL"
+  },
+  "fortune-1": {
+    "name": "Ultra Great Blessing",
+    "imageUrl": "https://yourusername.github.io/yourrepo/nft-images/fortune-1.png",
+    "method": "GitHub Pages / Public URL"
+  },
+  "fortune-2": {
+    "name": "Great Blessing",
+    "imageUrl": "https://yourusername.github.io/yourrepo/nft-images/fortune-2.png",
+    "method": "GitHub Pages / Public URL"
+  },
+  "fortune-3": {
+    "name": "Middle Blessing",
+    "imageUrl": "https://yourusername.github.io/yourrepo/nft-images/fortune-3.png",
+    "method": "GitHub Pages / Public URL"
+  },
+  "fortune-4": {
+    "name": "Small Blessing",
+    "imageUrl": "https://yourusername.github.io/yourrepo/nft-images/fortune-4.png",
+    "method": "GitHub Pages / Public URL"
+  },
+  "fortune-5": {
+    "name": "Blessing",
+    "imageUrl": "https://yourusername.github.io/yourrepo/nft-images/fortune-5.png",
+    "method": "GitHub Pages / Public URL"
+  },
+  "fortune-6": {
+    "name": "Minor Blessing",
+    "imageUrl": "https://yourusername.github.io/yourrepo/nft-images/fortune-6.png",
+    "method": "GitHub Pages / Public URL"
+  }
+}

@@ -10,7 +10,10 @@
       "Bash(ls:*)",
       "Bash(rm:*)",
       "Bash(npm run dev:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(npm run deploy:localhost:*)",
+      "Bash(grep:*)",
+      "Bash(npm uninstall:*)"
     ],
     "deny": []
   }

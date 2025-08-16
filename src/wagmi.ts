@@ -1,16 +1,13 @@
-import { getDefaultConfig } from '@rainbow-me/rainbowkit';
-import {
-  mainnet,
-} from 'wagmi/chains';
+import { getDefaultConfig } from '@rainbow-me/rainbowkit'
 
-// Define Monad-style localhost (using MON instead of ETH)
-const localhostMON = {
+// Define localhost chain with proper configuration
+export const localhost = {
   id: 31337,
-  name: 'Localhost MON',
+  name: 'Localhost',
   nativeCurrency: {
     decimals: 18,
-    name: 'MON',
-    symbol: 'MON',
+    name: 'Ether',
+    symbol: 'ETH',
   },
   rpcUrls: {
     default: {
@@ -18,15 +15,15 @@ const localhostMON = {
     },
   },
   testnet: true,
-} as const;
+} as const
 
-// Define Monad testnet
-const monadTestnet = {
+// Define Monad Testnet
+export const monadTestnet = {
   id: 41454,
   name: 'Monad Testnet',
   nativeCurrency: {
     decimals: 18,
-    name: 'MON',
+    name: 'Monad',
     symbol: 'MON',
   },
   rpcUrls: {
@@ -35,14 +32,17 @@ const monadTestnet = {
     },
   },
   blockExplorers: {
-    default: { name: 'Monad Explorer', url: 'https://explorer.monad.xyz' },
+    default: {
+      name: 'Monad Explorer',
+      url: 'https://explorer.monad.xyz',
+    },
   },
   testnet: true,
-} as const;
+} as const
 
 export const config = getDefaultConfig({
-  appName: 'Omikuji Shrine',
-  projectId: 'YOUR_PROJECT_ID', // Get this from https://cloud.walletconnect.com
-  chains: [localhostMON, monadTestnet],
-  ssr: false, // If your dApp uses server side rendering (SSR)
-});
+  appName: 'Omikuji Shrine on Monad',
+  projectId: 'omikuji-test-project', // Simple test project ID
+  chains: [localhost, monadTestnet],
+  ssr: false,
+})
