@@ -401,18 +401,6 @@ function App() {
     }
   }, [writeError]);
 
-  // Function to switch to Localhost network
-  const switchToLocalhost = async () => {
-    try {
-      await switchChain({ chainId: localhost.id });
-    } catch (error) {
-      console.error('Failed to switch network:', error);
-      addNotification({
-        type: 'error',
-        message: 'Failed to switch to Localhost network. Please switch manually in MetaMask.',
-      });
-    }
-  };
 
   const drawOmikuji = async () => {
     console.log('drawOmikuji function called');
@@ -425,7 +413,6 @@ function App() {
     console.log('Contract address:', CONTRACT_ADDRESS);
     console.log('isPending:', isPending);
     console.log('isConfirming:', isConfirming);
-    
     // Check if price is a valid BigInt
     if (price) {
       console.log('Price as string:', price.toString());
@@ -446,7 +433,7 @@ function App() {
       console.log('Wrong network, current chain ID:', chain?.id, 'expected:', localhost.id);
       addNotification({
         type: 'error',
-        message: 'Please switch to Localhost network.',
+        message: 'Please switch to Localhost network in MetaMask.',
       });
       return;
     }
@@ -897,6 +884,26 @@ ${currentUrl}`;
                 </div>
               );
             })}
+          </div>
+          
+          {/* Special NFT Mint Section */}
+          <div className="special-mint-section">
+            <div className="special-mint-info">
+              <h3>🏆 Special Completion NFT</h3>
+              <p>Complete your collection by self-minting all 7 fortune types to unlock a special commemorative NFT!</p>
+              <p className="self-mint-note">
+                <strong>Note:</strong> Special NFT can only be minted through self-mint completion (not purchasable from others)
+              </p>
+            </div>
+            <div className="special-mint-button-container">
+              <button 
+                className="special-mint-button"
+                disabled={true}
+                title="Coming Soon"
+              >
+                🚀 Mint Special NFT - Coming Soon
+              </button>
+            </div>
           </div>
         </div>
       )}

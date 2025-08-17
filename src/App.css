@@ -1796,3 +1796,23 @@ body::before {
     font-size: 0.9rem;
   }
 }
+
+.special-mint-section {
+  margin-top: 24px;
+}
+
+.special-mint-button {
+  margin-top: 24px;
+  background: #836ef9;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  min-width: 120px;
+  white-space: nowrap;
+}
