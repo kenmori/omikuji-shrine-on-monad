@@ -201,6 +201,7 @@ function App() {
   const [showAnimation, setShowAnimation] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [showCredits, setShowCredits] = useState(false);
+  const [showResult, setShowResult] = useState(false);
 
   // Read the omikuji price
   const { data: price } = useReadContract({
@@ -449,6 +450,7 @@ function App() {
         };
         setLastResult(mockResult);
         setShowAnimation(false);
+        setShowResult(true);
         
         // Update estimated minted count to match the new token ID
         setEstimatedMinted(tokenId);
@@ -603,37 +605,18 @@ ${currentUrl}`;
             )}
 
             {lastResult && !showAnimation && (
-              <div className={`result-card ${(lastResult.tokenId === '777' || lastResult.tokenId === '7777') ? 'lucky-number' : ''}`}>
-                <div className="nft-header">
-                  <div className={`nft-number ${(lastResult.tokenId === '777' || lastResult.tokenId === '7777') ? 'lucky-number-glow' : ''}`}>
-                    #{lastResult.tokenId}
-                    {(lastResult.tokenId === '777' || lastResult.tokenId === '7777') && <span className="lucky-sparkle">✨</span>}
+              <div className="result-notification">
+                <div className="result-summary">
+                  <div className="result-icon">🎋</div>
+                  <div className="result-text">
+                    <div className="result-title">Fortune Drawn!</div>
+                    <div className="result-subtitle">#{lastResult.tokenId} - {fortuneNames[lastResult.result]}</div>
                   </div>
-                  <div className="nft-collection">Omikuji Shrine on Monad NFT</div>
-                </div>
-                <div className="fortune-result">{fortuneNames[lastResult.result]}</div>
-                <div className="nft-image-display">
-                  <img 
-                    src={`https://gateway.pinata.cloud/ipfs/${getIPFSHashForResult(lastResult.result)}`} 
-                    alt={fortuneNames[lastResult.result]} 
-                    className="nft-image"
-                  />
-                </div>
-                <div className="artwork-info">
-                  <div className="artwork-title">"{getArtworkInfo(lastResult.result).title}"</div>
-                  <div className="artwork-artist">by {getArtworkInfo(lastResult.result).artist}</div>
-                  <div className="artwork-period">{getArtworkInfo(lastResult.result).period}</div>
-                  <div className="artwork-description">{getArtworkInfo(lastResult.result).description}</div>
-                </div>
-                <div className="fortune-message">"{lastResult.message}"</div>
-                
-                {/* Share to X Button */}
-                <div className="share-section">
                   <button 
-                    className="share-x-button"
-                    onClick={() => shareToX(lastResult)}
+                    className="view-result-button"
+                    onClick={() => setShowResult(true)}
                   >
-                    𝕏 Share on X
+                    View Details
                   </button>
                 </div>
               </div>
@@ -756,6 +739,58 @@ ${currentUrl}`;
                 <small>All original artworks are in the public domain. These NFTs are original interpretations inspired by these masterpieces of Japanese art.</small>
                 <br /><br />
                 <small><strong>Important Note:</strong> The fortune results are randomly assigned and are not related to the value or rarity of the original artworks depicted in the NFTs.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Result Details Modal */}
+      {showResult && lastResult && (
+        <div className="credits-modal-overlay" onClick={() => setShowResult(false)}>
+          <div className="credits-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="credits-header">
+              <h3>Your Fortune Result</h3>
+              <button 
+                className="credits-close"
+                onClick={() => setShowResult(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="credits-content result-content">
+              <div className={`nft-header ${(lastResult.tokenId === '777' || lastResult.tokenId === '7777') ? 'lucky-number' : ''}`}>
+                <div className={`nft-number ${(lastResult.tokenId === '777' || lastResult.tokenId === '7777') ? 'lucky-number-glow' : ''}`}>
+                  #{lastResult.tokenId}
+                  {(lastResult.tokenId === '777' || lastResult.tokenId === '7777') && <span className="lucky-sparkle">✨</span>}
+                </div>
+                <div className="nft-collection">Omikuji Shrine on Monad NFT</div>
+              </div>
+              <div className="fortune-result">"{getArtworkInfo(lastResult.result).title}"</div>
+              <div className="fortune-type">{fortuneNames[lastResult.result]}</div>
+              <div className="nft-image-display">
+                <img 
+                  src={`https://gateway.pinata.cloud/ipfs/${getIPFSHashForResult(lastResult.result)}`} 
+                  alt={fortuneNames[lastResult.result]} 
+                  className="nft-image"
+                />
+              </div>
+              <div className="artwork-info">
+                <div className="artwork-title">"{getArtworkInfo(lastResult.result).title}"</div>
+                <div className="artwork-artist">by {getArtworkInfo(lastResult.result).artist}</div>
+                <div className="artwork-period">{getArtworkInfo(lastResult.result).period}</div>
+                <div className="artwork-description">{getArtworkInfo(lastResult.result).description}</div>
+              </div>
+              <div className="fortune-message">"{lastResult.message}"</div>
+              
+              {/* Share to X Button */}
+              <div className="share-section">
+                <button 
+                  className="share-x-button"
+                  onClick={() => shareToX(lastResult)}
+                >
+                  𝕏 Share on X
+                </button>
               </div>
             </div>
           </div>

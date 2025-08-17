@@ -267,8 +267,8 @@ body::before {
 }
 
 .result-card {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 165, 0, 0.1) 100%);
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding: 32px;
   margin: 24px 0;
@@ -355,7 +355,14 @@ body::before {
 .fortune-result {
   font-size: 2rem;
   font-weight: 700;
-  color: #ffd700;
+  color: #ff3a0b;
+  margin-bottom: 8px;
+}
+
+.fortune-type {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 16px;
 }
 
@@ -844,9 +851,9 @@ body::before {
 .share-x-button {
   background: #000000;
   color: white;
-  border: none;
+  border: 1px solid white;
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -1132,4 +1139,90 @@ body::before {
   .credit-item {
     font-size: 14px;
   }
+}
+
+/* Result Notification */
+.result-notification {
+  margin: 24px 0;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.result-summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.result-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.result-text {
+  flex: 1;
+}
+
+.result-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffd700;
+  margin-bottom: 4px;
+}
+
+.result-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.view-result-button {
+  background: #ffd700;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.view-result-button:hover {
+  background: #ffed4e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .result-summary {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .result-text {
+    order: -1;
+  }
+  
+  .result-icon {
+    font-size: 1.5rem;
+  }
+  
+  .result-title {
+    font-size: 1.1rem;
+  }
+  
+  .result-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+/* Result Content - Black background for result modal */
+.credits-content.result-content {
+  background: #000;
+  color: white;
 }
