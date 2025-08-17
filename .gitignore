@@ -64,3 +64,5 @@ build/
 .secret
 private.key
 mnemonic.txt
+
+metadata/

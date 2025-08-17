@@ -9,10 +9,10 @@ contract UpdatedIPFSOmikujiNFT is ERC721, Ownable {
     uint256 private _currentTokenId;
     uint256 public omikujiPrice = 0.1 ether; // 0.1 MON
     
-    // IPFS基本URL
-    string private _baseTokenURI = "https://gateway.pinata.cloud/ipfs/";
+    // IPFS基本URL (メタデータ用)
+    string private _baseTokenURI = "https://gateway.pinata.cloud/ipfs/bafybeiheroulmr3bs5sxyllk4xpikceu7soquqg4ipvhmkdtpmpujrgtky/";
     
-    // 各運勢タイプのIPFSハッシュ
+    // 各運勢タイプのIPFSハッシュ（表示用、メタデータには含まれない）
     mapping(uint8 => string) public fortuneImages;
     
     // Pack fortune data into single storage slot for gas efficiency
@@ -156,30 +156,14 @@ contract UpdatedIPFSOmikujiNFT is ERC721, Ownable {
         _baseTokenURI = baseURI;
     }
     
-    // トークンURIを生成（IPFS画像付きメタデータ）
+    // トークンURIを生成（静的IPFSメタデータ）
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
         require(_ownerOf(tokenId) != address(0), "Token does not exist");
         
         Fortune memory fortune = fortunes[tokenId];
-        string memory imageUrl = string(abi.encodePacked(_baseTokenURI, fortuneImages[fortune.result]));
         
-        // NFTメタデータJSON形式
-        string memory json = string(abi.encodePacked(
-            '{"name":"Omikuji #', _toString(tokenId), 
-            '","description":"', messages[fortune.result],
-            '","image":"', imageUrl,
-            '","attributes":[',
-                '{"trait_type":"Fortune","value":"', fortuneNames[fortune.result], '"},',
-                '{"trait_type":"Rarity","value":"', _getRarityString(fortune.result), '"},',
-                '{"trait_type":"Timestamp","value":', _toString(fortune.timestamp), '},',
-                '{"trait_type":"Drawer","value":"', _toHexString(fortune.drawer), '"}',
-            ']}'
-        ));
-        
-        return string(abi.encodePacked(
-            'data:application/json;base64,',
-            _base64encode(bytes(json))
-        ));
+        // 各運勢タイプに基づいて静的メタデータファイルを参照
+        return string(abi.encodePacked(_baseTokenURI, _toString(fortune.result), ".json"));
     }
     
     // View functions
@@ -205,7 +189,7 @@ contract UpdatedIPFSOmikujiNFT is ERC721, Ownable {
     function getFortuneImageUrl(uint256 tokenId) external view returns (string memory) {
         require(_ownerOf(tokenId) != address(0), "Token does not exist");
         Fortune memory fortune = fortunes[tokenId];
-        return string(abi.encodePacked(_baseTokenURI, fortuneImages[fortune.result]));
+        return string(abi.encodePacked("https://gateway.pinata.cloud/ipfs/", fortuneImages[fortune.result]));
     }
     
     // 確率情報を取得
