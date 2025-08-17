@@ -30,15 +30,63 @@ Omikuji Shrine on Monad is a Web3 fortune-telling dApp that combines traditional
 | **Blessing (吉)** | 🌟 | 30.0% | Chinese Lions (Karajishi) | Kanō Eitoku |
 | **Minor Blessing (末吉)** | ⭐ | 33.0% | Wind God and Thunder God | Tawaraya Sōtatsu |
 
-## 🎯 Special Features
+## 🔥 Burn & Mint System
 
-- **Self-Mint Completion System**: Track your personally minted fortune types (0-7)
-- **Completion Rewards**: Special recognition for collecting all 7 fortune types through self-minting
+The innovative Burn & Mint system allows you to exchange unwanted NFTs for new fortune draws:
+
+### 🎯 How It Works
+1. **Eligible NFTs**: Only "Blessing (吉)" and "Minor Blessing (末吉)" can be burned
+2. **Burn Requirement**: Must have 3+ NFTs of the same type
+3. **Exchange Rate**: 3 NFTs → 1 new fortune draw (no payment required)
+4. **Atomic Operation**: Burning and minting happen in a single transaction
+
+### ✨ Benefits
+- **No Accumulation**: Prevents free mint hoarding - burn immediately creates new NFT
+- **Better Odds**: Get another chance at rarer fortunes
+- **Cost Efficient**: No additional MON payment required
+- **Gallery Refresh**: Automatically updates your collection display
+
+### 🔧 Technical Implementation
+- **Smart Contract**: `burnAndMint()` function ensures atomicity
+- **Data Consistency**: Gallery counts update immediately after burn
+- **Event Tracking**: Full blockchain event logging for transparency
+
+## 🏆 Self-Mint Collection System
+
+A unique feature that tracks **only the NFTs you personally mint**, not purchased from others:
+
+### 🎯 Core Concept
+- **Self-Mint Only**: Special NFT completion rewards can **only** be earned through personal minting
+- **No Trading Shortcuts**: Purchasing NFTs from others won't count toward completion
+- **Authentic Achievement**: Proves you experienced each fortune type firsthand
+- **Progress Tracking**: Visual gallery shows your personal minting progress (0-7 types)
+
+### 🎮 How It Works
+1. **Draw Omikuji**: Pay 0.1 MON and mint an NFT yourself
+2. **Track Progress**: System records which fortune types you've personally minted
+3. **Complete Collection**: Mint all 7 different fortune types yourself
+4. **Earn Recognition**: Unlock special completion status and future rewards
+
+### 🔓 Special Completion Features
+- **Coming Soon Button**: Unlocks when you complete self-mint collection
+- **Exclusive Access**: Future special NFTs only available to self-mint completers
+- **Achievement Badge**: Visual recognition of your dedication
+- **Self-Mint Only Policy**: Clearly stated - cannot be purchased from others
+
+### 📊 Gallery Display
+- **Personal Collection**: Shows only your self-minted fortunes
+- **Progress Counter**: Visual indication of completion status
+- **Type Tracking**: Count of each fortune type you've personally minted
+
+## 🎯 Additional Features
+
+- **🔥 Burn & Mint System**: Exchange 3 low-value NFTs for a new fortune draw
 - **Lucky Numbers**: Special animations and enhanced fortunes for tokens #777 and #7777
 - **Art Credits**: Complete attribution to museums and Wikipedia sources
 - **Social Sharing**: Share your fortune results directly to X/Twitter
 - **Unlimited Supply**: No maximum cap on NFT minting
 - **Real-time Counter**: See total minted count in real-time
+- **Free Mint System**: Earn free draws through burning NFTs
 
 ## 🛠️ Technology Stack
 
@@ -47,7 +95,43 @@ Omikuji Shrine on Monad is a Web3 fortune-telling dApp that combines traditional
 - **Blockchain**: Monad Network + Localhost testing
 - **Smart Contracts**: Solidity + Hardhat
 - **Storage**: IPFS via Pinata
+- **Testing**: Vitest + React Testing Library
 - **Deployment**: Vercel
+
+## 🧪 Testing & Quality Assurance
+
+### Automated Testing
+```bash
+# Run all tests
+npm run test:run
+
+# Watch mode for development
+npm run test:watch
+
+# Test coverage
+npm run test:coverage
+```
+
+### Display Consistency Tests
+- ✅ Fortune name mapping validation
+- ✅ Artwork information accuracy
+- ✅ IPFS hash verification
+- ✅ Burn eligibility logic
+- ✅ Gallery count calculations
+- ✅ Burn&mint data transformations
+
+### Manual Testing Tools
+Open browser developer console and use:
+```javascript
+// Test display consistency
+window.testHelper.compareResults(6, 6, 6)
+
+// Test burn eligibility
+window.testHelper.testBurnEligibility([6,6,6])
+
+// Extract current display info
+window.testHelper.extractDisplayedInfo()
+```
 
 ## 🚀 Getting Started
 
@@ -74,11 +158,21 @@ npm run deploy:local
 npm run dev
 ```
 
-### Adding Test MON to MetaMask
-1. Import one of these test private keys to MetaMask:
+### Network Configuration
+
+#### Localhost Development
+1. Import test private key to MetaMask:
    - `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80`
 2. Switch to Localhost network (Chain ID: 31337)
 3. You'll have 10,000 MON for testing
+
+#### Monad Testnet
+1. Add Monad Testnet to MetaMask:
+   - **Network Name**: Monad Testnet
+   - **RPC URL**: `https://testnet-rpc.monad.xyz`
+   - **Chain ID**: `10143`
+   - **Currency Symbol**: `MON`
+2. Get test tokens from [Monad Faucet](https://faucet.monad.xyz)
 
 ## 🎨 Art Attribution
 
@@ -117,10 +211,21 @@ This project is open source. Please respect the original artists and maintain pr
 
 ## 🔗 Links
 
-- **Live Demo**: [Coming Soon on Vercel]
+- **Live Demo**: [omikuji-shrine-on-monad.vercel.app](https://omikuji-shrine-on-monad.vercel.app)
 - **GitHub**: [omikuji-shrine-on-monad](https://github.com/kenmori/omikuji-shrine-on-monad)
 - **Creator**: [@d_omajime](https://x.com/d_omajime)
 - **Monad Network**: [monad.xyz](https://monad.xyz)
+
+## 📝 Contract Information
+
+### Production (Monad Testnet)
+- **Contract Address**: `0x5d3DEde8ebe694F63B09Fec5D1AB8d9e0974f00d`
+- **Network**: Monad Testnet (Chain ID: 10143)
+- **Block Explorer**: [explorer.monad.xyz](https://explorer.monad.xyz)
+
+### Development (Localhost)
+- **Network**: Localhost (Chain ID: 31337)
+- **Contract**: Deployed locally via `npm run deploy:localhost`
 
 ---
 
