@@ -3,7 +3,7 @@ import { useAccount, useReadContract, useWriteContract, useWaitForTransactionRec
 import { formatEther, parseAbiItem } from 'viem';
 import { useState, useEffect } from 'react';
 import './App.css';
-import { localhost } from './wagmi';
+import { localhost, monadTestnet } from './wagmi';
 import { usePublicClient } from 'wagmi';
 
 // Test Configuration
@@ -95,7 +95,10 @@ const OMIKUJI_ABI = [
   }
 ] as const;
 
-const CONTRACT_ADDRESS = '0x1fA02b2d6A771842690194Cf62D91bdd92BfE28d' as `0x${string}`;
+// Environment-based configuration
+const NETWORK = import.meta.env.VITE_NETWORK || 'localhost';
+const CONTRACT_ADDRESS = (import.meta.env.VITE_CONTRACT_ADDRESS || '0x1fA02b2d6A771842690194Cf62D91bdd92BfE28d') as `0x${string}`;
+const CURRENT_NETWORK = NETWORK === 'localhost' ? localhost : monadTestnet;
 
 const fortuneNames = [
   "Super Ultra Great Blessing (大大大吉)",
@@ -429,11 +432,11 @@ function App() {
       return;
     }
     
-    if (chain?.id !== localhost.id) {
-      console.log('Wrong network, current chain ID:', chain?.id, 'expected:', localhost.id);
+    if (chain?.id !== CURRENT_NETWORK.id) {
+      console.log('Wrong network, current chain ID:', chain?.id, 'expected:', CURRENT_NETWORK.id);
       addNotification({
         type: 'error',
-        message: 'Please switch to Localhost network in MetaMask.',
+        message: `Please switch to ${CURRENT_NETWORK.name} in MetaMask.`,
       });
       return;
     }
@@ -921,7 +924,7 @@ ${currentUrl}`;
                 <div className="notification-message">{notification.message}</div>
                 {notification.txHash && (
                   <a 
-                    href={`https://testnet.monadexplorer.com/tx/${notification.txHash}`}
+                    href={`${CURRENT_NETWORK.blockExplorers?.default?.url || '#'}/tx/${notification.txHash}`}
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="notification-link"

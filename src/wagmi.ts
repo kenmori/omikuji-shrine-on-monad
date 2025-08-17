@@ -19,7 +19,7 @@ export const localhost = {
 
 // Define Monad Testnet
 export const monadTestnet = {
-  id: 41454,
+  id: 10143,
   name: 'Monad Testnet',
   nativeCurrency: {
     decimals: 18,
@@ -28,13 +28,13 @@ export const monadTestnet = {
   },
   rpcUrls: {
     default: {
-      http: ['https://rpc.monad.xyz'],
+      http: ['https://testnet-rpc.monad.xyz'],
     },
   },
   blockExplorers: {
     default: {
       name: 'Monad Explorer',
-      url: 'https://explorer.monad.xyz',
+      url: 'https://testnet.monadexplorer.com',
     },
   },
   testnet: true,
