@@ -1,9 +1,10 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt, useSwitchChain } from 'wagmi';
-import { formatEther } from 'viem';
+import { formatEther, parseAbiItem } from 'viem';
 import { useState, useEffect } from 'react';
 import './App.css';
 import { localhost } from './wagmi';
+import { usePublicClient } from 'wagmi';
 
 // Test Configuration
   const TEST_CONFIG = {
@@ -122,49 +123,70 @@ const getIPFSHashForResult = (result: number): string => {
   return fortuneIPFSHashes[result] || fortuneIPFSHashes[6]; // fallback to minor blessing
 };
 
-// Artwork information for each fortune type
+// Artwork information for each fortune type with detailed descriptions
 const artworkInfo = [
   {
     title: "Fine Wind, Clear Morning (from Thirty-six Views of Mount Fuji)",
     artist: "Katsushika Hokusai (葛飾北斎)",
     period: "c. 1830-1832",
-    description: "One of Hokusai's most famous works, depicting Mount Fuji in brilliant red at sunrise. Also known as 'Red Fuji', this iconic ukiyo-e print symbolizes good fortune and divine blessing, making it perfect for the rarest omikuji result."
+    description: "One of Hokusai's most famous works, depicting Mount Fuji in brilliant red at sunrise. Also known as 'Red Fuji', this iconic ukiyo-e print symbolizes good fortune and divine blessing, making it perfect for the rarest omikuji result.",
+    overview: "This is one of Hokusai's most celebrated masterpieces from the Thirty-six Views of Mount Fuji series. The print captures Mount Fuji bathed in brilliant red light during sunrise, creating a scene of divine majesty and spiritual significance. Known as 'Red Fuji' or 'South Wind, Clear Sky,' this work represents the mountain at its most auspicious moment.",
+    style: "Hokusai's mastery is evident in his use of bold, simplified forms and dramatic color contrasts. The mountain dominates the composition with its perfect triangular silhouette, while subtle gradations in the sky create depth and atmosphere. His technique demonstrates the mature ukiyo-e style at its pinnacle.",
+    significance: "This work has become an international symbol of Japanese art and culture. It represents the spiritual connection between humanity and nature in Japanese aesthetics, embodying concepts of mono no aware (the pathos of things) and the eternal beauty of the natural world."
   },
   {
     title: "The Great Wave off Kanagawa",
     artist: "Katsushika Hokusai (葛飾北斎)",
     period: "c. 1831",
-    description: "Perhaps the most recognizable Japanese artwork worldwide, this masterpiece shows a towering wave threatening boats while Mount Fuji stands serene in the background. It represents the power of nature and perseverance."
+    description: "Perhaps the most recognizable Japanese artwork worldwide, this masterpiece shows a towering wave threatening boats while Mount Fuji stands serene in the background. It represents the power of nature and perseverance.",
+    overview: "The most famous ukiyo-e print in the world, depicting a massive wave about to crash down on three boats while Mount Fuji sits calmly in the background. This dynamic composition captures a moment of extreme tension between human vulnerability and nature's overwhelming power.",
+    style: "Hokusai's revolutionary composition uses dramatic perspective and movement to create unprecedented dynamism in printmaking. The wave's foam creates claw-like fingers reaching toward the boats, while the geometric stability of Mount Fuji provides visual anchor to the composition.",
+    significance: "This work transcended its original medium to become a global icon, influencing Western artists like Debussy and countless contemporary creators. It represents the Japanese understanding of life's fragility and the sublime power of nature."
   },
   {
     title: "Minamoto no Yoshitsune on Horseback",
     artist: "Isoda Koryūsai (磯田湖龍齋)",
     period: "c. 1770s",
-    description: "A dynamic ukiyo-e depicting the legendary warrior Minamoto no Yoshitsune mounted in full armor. This artwork embodies strength, courage, and the samurai spirit of medieval Japan."
+    description: "A dynamic ukiyo-e depicting the legendary warrior Minamoto no Yoshitsune mounted in full armor. This artwork embodies strength, courage, and the samurai spirit of medieval Japan.",
+    overview: "This powerful print depicts Minamoto no Yoshitsune, one of Japan's most legendary military commanders, in full battle regalia. Yoshitsune was a key figure in the Genpei War and is celebrated in Japanese literature and theater as an ideal of samurai valor and tragic heroism.",
+    style: "Koryūsai's distinctive style combines bold outlines with intricate detail work, particularly evident in the elaborate armor decoration and horse's dynamic pose. His use of color and pattern creates visual richness while maintaining clarity of form.",
+    significance: "This work exemplifies the Edo period's romanticization of the warrior class and represents the cultural idealization of bushido (the way of the warrior). Yoshitsune remains a beloved figure in Japanese culture, symbolizing loyalty, skill, and tragic destiny."
   },
   {
     title: "The actor Matsumoto Yonesaburo in the Role of Shinobu Disguised as Courtesan Kewaizaka no Shoushō",
     artist: "Tōshūsai Sharaku (東洲斎写楽)",
     period: "1794",
-    description: "One of Sharaku's psychologically penetrating actor portraits from the golden age of kabuki theater. Known for capturing the essence and emotion of performers with remarkable realism and intensity."
+    description: "One of Sharaku's psychologically penetrating actor portraits from the golden age of kabuki theater. Known for capturing the essence and emotion of performers with remarkable realism and intensity.",
+    overview: "This portrait captures the kabuki actor Matsumoto Yonesaburo performing as Shinobu disguised as the courtesan Kewaizaka no Shoushō. Sharaku's genius lies in revealing both the actor's physical features and the character's psychological complexity, creating a multi-layered artistic statement.",
+    style: "Sharaku's distinctive approach rejected idealized beauty in favor of psychological truth. His bold use of exaggerated features, dramatic expressions, and unconventional poses captured the intensity of live theatrical performance, allowing viewers to experience the actor's transformation.",
+    significance: "Sharaku's brief but extraordinary career (just 10 months) produced some of the most psychologically penetrating portraits in art history. His work documents the golden age of kabuki while challenging conventional notions of beauty and representation."
   },
   {
-    title: "Kabuki Actor Ōtani Oniji III as Yakko Edobei",
+    title: "The Third Otani Oniji as Edo Hyoe (三代目大谷鬼次の江戸兵衛)",
     artist: "Tōshūsai Sharaku (東洲斎写楽)",
     period: "1794",
-    description: "Another masterful actor portrait by Sharaku, showing the dramatic expression and character of kabuki performance. Sharaku's brief but brilliant career produced some of the most psychologically complex portraits in Japanese art."
+    description: "Another masterful actor portrait by Sharaku, showing the dramatic expression and character of kabuki performance. Sharaku's brief but brilliant career produced some of the most psychologically complex portraits in Japanese art.",
+    overview: "This is one of Toshusai Sharaku's most famous and striking kabuki actor portraits, created around 1794. The print depicts Sandaime Otani Oniji (Third-generation Otani Oniji), a renowned kabuki actor known for his powerful performances in villain roles (katakiyaku), performing as 'Edo Hyoe.' This character was typically portrayed as a rough, intimidating townsman or ruffian from Edo (modern-day Tokyo). Oniji was particularly celebrated for his ability to embody menacing, antagonistic characters with intense physical presence and dramatic facial expressions.",
+    style: "Sharaku was famous for his bold, exaggerated portrayals that captured both the actor's physical features and the character's psychological depth. Rather than flattering portraits, he created dramatically stylized images that conveyed the intensity and emotion of live theatrical performance, allowing viewers to experience the stage atmosphere.",
+    significance: "This work showcases Sharaku's genius for capturing villain characters' fierce intensity, demonstrating how kabuki actors completely transformed into their roles. Sharaku remains one of art history's greatest mysteries, producing approximately 140 works during just 10 months before vanishing completely. His works serve as invaluable documentation of 18th-century Japanese theater culture and gained international acclaim, representing the pinnacle of ukiyo-e portraiture."
   },
   {
     title: "Chinese Lions (Karajishi)",
     artist: "Kanō Eitoku (狩野永徳)",
     period: "1543-1590",
-    description: "A powerful painting of karajishi (Chinese lions) by the master of the Kanō school. These mythical creatures were believed to ward off evil spirits and bring protection, often found guarding temples and shrines."
+    description: "A powerful painting of karajishi (Chinese lions) by the master of the Kanō school. These mythical creatures were believed to ward off evil spirits and bring protection, often found guarding temples and shrines.",
+    overview: "This magnificent painting depicts karajishi (Chinese lions), mythical protective creatures that originated in Chinese Buddhist art and were adopted into Japanese culture. These lion-dogs were believed to ward off evil spirits and bring divine protection, making them popular subjects for temple and palace decoration.",
+    style: "Eitoku's mastery of the Kanō school style is evident in his bold brushwork, dynamic composition, and masterful use of gold backgrounds. His lions possess both fierce power and decorative elegance, demonstrating the synthesis of Chinese influences with native Japanese aesthetic sensibilities.",
+    significance: "As the leading artist of the Kanō school during Japan's unification period, Eitoku's works decorated the palaces of military rulers and established the visual language of power in early modern Japan. His karajishi represent the protective spirit that guards sacred spaces and noble households."
   },
   {
     title: "Wind God and Thunder God (風神雷神図)",
     artist: "Tawaraya Sōtatsu (俵屋宗達)",
     period: "c. 1615",
-    description: "This iconic folding screen depicts Raijin (Thunder God) and Fūjin (Wind God) amid swirling clouds. A masterpiece of the Rinpa school, it has inspired countless artists and remains one of Japan's most beloved artworks."
+    description: "This iconic folding screen depicts Raijin (Thunder God) and Fūjin (Wind God) amid swirling clouds. A masterpiece of the Rinpa school, it has inspired countless artists and remains one of Japan's most beloved artworks.",
+    overview: "This legendary folding screen painting depicts Fūjin (Wind God) and Raijin (Thunder God), two of the most important deities in Japanese Buddhism and Shinto. Set against gold clouds, these powerful figures control the forces of nature, representing the awesome power of wind and thunder in Japanese cosmology.",
+    style: "Sōtatsu's revolutionary style combines bold, simplified forms with rich decorative effects. His use of gold backgrounds, dynamic poses, and expressive brushwork established the aesthetic foundation of the Rinpa school, emphasizing decorative beauty and natural motifs.",
+    significance: "This masterpiece has inspired generations of Japanese artists, including Ogata Kōrin and modern creators. It represents the Japanese artistic tradition of finding beauty in natural forces and spiritual themes, becoming an enduring symbol of Japanese cultural identity."
   }
 ];
 
@@ -214,6 +236,17 @@ interface Notification {
   txHash?: string;
 }
 
+interface OmikujiHistory {
+  id: string;
+  tokenId: string;
+  result: number;
+  message: string;
+  date: string;
+  timestamp: number;
+  txHash: string;
+  blockNumber: bigint;
+}
+
 function App() {
   const { address, isConnected, chain } = useAccount();
   const { switchChain } = useSwitchChain();
@@ -225,6 +258,12 @@ function App() {
   const [showResult, setShowResult] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const [omikujiHistory, setOmikujiHistory] = useState<OmikujiHistory[]>([]);
+  const [showHistory, setShowHistory] = useState(false);
+  const [isLoadingHistory, setIsLoadingHistory] = useState(false);
+  const [selectedArtwork, setSelectedArtwork] = useState<number | null>(null);
+  
+  const publicClient = usePublicClient();
 
   // Read the omikuji price
   const { data: price } = useReadContract({
@@ -508,6 +547,11 @@ function App() {
         setShowAnimation(false);
         setShowResult(true);
         
+        // Reload history after new mint (with delay to allow blockchain to update)
+        setTimeout(() => {
+          loadOmikujiHistory();
+        }, 3000);
+        
         // Update estimated minted count to match the new token ID
         setEstimatedMinted(tokenId);
       }, TEST_CONFIG.ANIMATION_DURATION);
@@ -571,6 +615,57 @@ ${currentUrl}`;
     window.open(xUrl, '_blank');
   };
 
+  // Load history from blockchain events
+  const loadOmikujiHistory = async () => {
+    if (!address || !publicClient) return;
+    
+    setIsLoadingHistory(true);
+    try {
+      const logs = await publicClient.getLogs({
+        address: CONTRACT_ADDRESS,
+        event: parseAbiItem('event OmikujiDrawn(address indexed drawer, uint256 indexed tokenId, uint8 result, string message)'),
+        args: {
+          drawer: address
+        },
+        fromBlock: 'earliest',
+        toBlock: 'latest'
+      });
+      
+      const historyItems: OmikujiHistory[] = await Promise.all(
+        logs.map(async (log) => {
+          const block = await publicClient.getBlock({ blockHash: log.blockHash! });
+          return {
+            id: log.transactionHash!,
+            tokenId: log.args.tokenId!.toString(),
+            result: Number(log.args.result!),
+            message: log.args.message!,
+            date: new Date(Number(block.timestamp) * 1000).toLocaleDateString('ja-JP'),
+            timestamp: Number(block.timestamp) * 1000,
+            txHash: log.transactionHash!,
+            blockNumber: log.blockNumber!
+          };
+        })
+      );
+      
+      // Sort by timestamp (newest first)
+      historyItems.sort((a, b) => b.timestamp - a.timestamp);
+      setOmikujiHistory(historyItems.slice(0, 10)); // Keep latest 10
+    } catch (error) {
+      console.error('Error loading history from blockchain:', error);
+    } finally {
+      setIsLoadingHistory(false);
+    }
+  };
+
+  // Load history when address changes or on mount
+  useEffect(() => {
+    if (address && publicClient) {
+      loadOmikujiHistory();
+    } else {
+      setOmikujiHistory([]);
+    }
+  }, [address, publicClient]);
+
   // Initialize BGM
   useEffect(() => {
     const bgmAudio = new Audio('/audio/Hurusato.mp3');
@@ -608,14 +703,6 @@ ${currentUrl}`;
       </div>
       <div className="wallet-section">
         <ConnectButton showBalance={false} />
-        {isConnected && chain?.id !== localhost.id && (
-          <button 
-            className="network-switch-button"
-            onClick={switchToLocalhost}
-          >
-            Switch to Localhost
-          </button>
-        )}
         {isConnected && chain && (
           <div className="network-info">
             Current Network: {chain.name || 'Unknown'}
@@ -633,6 +720,44 @@ ${currentUrl}`;
           {isPlaying ? '🔊' : '🔇'}
         </button>
       </div>
+      
+      {/* History Control */}
+      {(omikujiHistory.length > 0 || isLoadingHistory) && isConnected && (
+        <div className="history-control">
+          <button 
+            className="history-button"
+            onClick={() => setShowHistory(!showHistory)}
+            title="Omikuji History"
+            disabled={isLoadingHistory}
+          >
+            {isLoadingHistory ? '⏳' : '📜'}
+          </button>
+          {showHistory && (
+            <div className="history-dropdown">
+              <div className="history-header">History</div>
+              <div className="history-list">
+                {isLoadingHistory ? (
+                  <div className="history-item">
+                    <div className="history-loading">読み込み中...</div>
+                  </div>
+                ) : omikujiHistory.length === 0 ? (
+                  <div className="history-item">
+                    <div className="history-empty">履歴がありません</div>
+                  </div>
+                ) : (
+                  omikujiHistory.map((item) => (
+                    <div key={item.id} className="history-item">
+                      <div className="history-date">{item.date}</div>
+                      <div className="history-result">{fortuneNames[item.result]}</div>
+                      <div className="history-token">#{item.tokenId}</div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
       <div className="shrine-container">
         <h1 className="shrine-title">🏮 Omikuji Shrine on Monad 🏮</h1>
         <p className="shrine-subtitle">Digital Fortune Telling on Monad Network</p>
@@ -762,6 +887,8 @@ ${currentUrl}`;
                       src={`https://gateway.pinata.cloud/ipfs/${getIPFSHashForResult(index)}`}
                       alt={name}
                       className="artwork-preview"
+                      onClick={() => hasFortune && setSelectedArtwork(index)}
+                      style={{ cursor: hasFortune ? 'pointer' : 'default' }}
                     />
                   </div>
                   <div className="gallery-info">
@@ -943,6 +1070,54 @@ ${currentUrl}`;
                 <div className="artwork-description">{getArtworkInfo(lastResult.result).description}</div>
               </div>
               <div className="fortune-message">"{lastResult.message}"</div>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Artwork Detail Modal */}
+      {selectedArtwork !== null && (
+        <div className="artwork-modal-overlay" onClick={() => setSelectedArtwork(null)}>
+          <div className="artwork-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="artwork-modal-header">
+              <h3>{getArtworkInfo(selectedArtwork).title}</h3>
+              <button 
+                className="artwork-modal-close"
+                onClick={() => setSelectedArtwork(null)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="artwork-modal-content">
+              <div className="artwork-modal-image">
+                <img 
+                  src={`https://gateway.pinata.cloud/ipfs/${getIPFSHashForResult(selectedArtwork)}`}
+                  alt={getArtworkInfo(selectedArtwork).title}
+                  className="expanded-artwork"
+                />
+              </div>
+              <div className="artwork-modal-info">
+                <div className="artwork-meta">
+                  <div className="artwork-title-large">{getArtworkInfo(selectedArtwork).title}</div>
+                  <div className="artwork-artist-large">{getArtworkInfo(selectedArtwork).artist}</div>
+                  <div className="artwork-period-large">{getArtworkInfo(selectedArtwork).period}</div>
+                </div>
+                
+                <div className="artwork-section">
+                  <h4>Overview</h4>
+                  <p>{getArtworkInfo(selectedArtwork).overview}</p>
+                </div>
+                
+                <div className="artwork-section">
+                  <h4>{selectedArtwork === 2 ? "Koryūsai's Distinctive Style" : selectedArtwork === 3 || selectedArtwork === 4 ? "Sharaku's Distinctive Style" : "Distinctive Style"}</h4>
+                  <p>{getArtworkInfo(selectedArtwork).style}</p>
+                </div>
+                
+                <div className="artwork-section">
+                  <h4>Historical Significance</h4>
+                  <p>{getArtworkInfo(selectedArtwork).significance}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
