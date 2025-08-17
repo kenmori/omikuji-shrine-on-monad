@@ -95,7 +95,7 @@ const OMIKUJI_ABI = [
   }
 ] as const;
 
-const CONTRACT_ADDRESS = '0xCD8a1C3ba11CF5ECfa6267617243239504a98d90' as `0x${string}`;
+const CONTRACT_ADDRESS = '0x1fA02b2d6A771842690194Cf62D91bdd92BfE28d' as `0x${string}`;
 
 const fortuneNames = [
   "Super Ultra Great Blessing (大大大吉)",
@@ -703,13 +703,7 @@ ${currentUrl}`;
       </div>
       <div className="wallet-section">
         <ConnectButton showBalance={false} />
-        {isConnected && chain && (
-          <div className="network-info">
-            Current Network: {chain.name || 'Unknown'}
-          </div>
-        )}
       </div>
-      
       {/* BGM Control */}
       <div className="bgm-control">
         <button 

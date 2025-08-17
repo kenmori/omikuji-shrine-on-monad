@@ -6,9 +6,9 @@
   "scripts": {
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
-    "deploy": "npx hardhat run scripts/deploy.js",
-    "deploy:localhost": "npx hardhat run scripts/deploy.js --network localhost",
-    "deploy:monad": "npx hardhat run scripts/deploy.js --network monad",
+    "deploy": "npx hardhat run scripts/deploy-updated-nft.js",
+    "deploy:localhost": "npx hardhat run scripts/deploy-updated-nft.js --network localhost",
+    "deploy:monad": "npx hardhat run scripts/deploy-updated-nft.js --network monad",
     "node": "npx hardhat node",
     "generate:metadata": "node scripts/generate_metadata.js",
     "dev": "vite",
