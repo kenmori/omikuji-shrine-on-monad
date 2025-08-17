@@ -87,27 +87,12 @@ body::before {
 
 /* Supply Information */
 .supply-info {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 32px;
-  backdrop-filter: blur(10px);
 }
 
 .supply-stats {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  gap: 16px;
 }
 
 .supply-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  flex: 1;
 }
 
 .supply-label {
@@ -121,6 +106,7 @@ body::before {
   font-size: 1.2rem;
   font-weight: 700;
   color: white;
+  padding-left: 10px;
 }
 
 .supply-value.remaining {
@@ -846,6 +832,40 @@ body::before {
 @media (max-width: 768px) {
   .nft-image {
     max-width: 250px;
+  }
+}
+
+/* Share Section */
+.share-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.share-x-button {
+  background: #000000;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.share-x-button:hover {
+  background: #333333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .share-x-button {
+    padding: 10px 20px;
+    font-size: 13px;
   }
 }
 

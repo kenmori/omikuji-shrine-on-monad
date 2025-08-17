@@ -152,6 +152,34 @@ const getArtworkInfo = (result: number) => {
   return artworkInfo[result] || artworkInfo[6]; // fallback to minor blessing
 };
 
+// Helper function to get artist name for sharing
+const getArtistName = (result: number): string => {
+  const artists = [
+    "Katsushika Hokusai", // Fine Wind, Clear Morning
+    "Katsushika Hokusai", // The Great Wave off Kanagawa
+    "Isoda Koryūsai", // Minamoto no Yoshitsune on Horseback
+    "Tōshūsai Sharaku", // The actor Matsumoto Yonesaburo...
+    "Tōshūsai Sharaku", // Kabuki Actor Ōtani Oniji III...
+    "Kanō Eitoku", // Chinese Lions (Karajishi)
+    "Tawaraya Sōtatsu" // Wind God and Thunder God
+  ];
+  return artists[result] || artists[6];
+};
+
+// Helper function to get artwork short name for sharing
+const getArtworkShortName = (result: number): string => {
+  const artworkNames = [
+    "Hokusai's Fine Wind, Clear Morning",
+    "Hokusai's Great Wave",
+    "Koryūsai's Minamoto no Yoshitsune",
+    "Sharaku's Matsumoto Yonesaburo",
+    "Sharaku's Ōtani Oniji III",
+    "Kanō Eitoku's Chinese Lions",
+    "Sōtatsu's Wind God and Thunder God"
+  ];
+  return artworkNames[result] || artworkNames[6];
+};
+
 interface OmikujiResult {
   tokenId: string;
   result: number;
@@ -367,15 +395,14 @@ function App() {
       console.log('Starting omikuji animation...');
       debugger; // Debug point when animation starts
       
-      // Update estimated minted count
-      setEstimatedMinted(prev => prev + 1);
-      
       // Show animation first
       setShowAnimation(true);
       
       // After animation, show result
       setTimeout(() => {
-        const tokenId = estimatedMinted + 1;
+        // Use current totalSupply + 1 as the new token ID
+        const currentSupply = totalSupply ? Number(totalSupply) : 0;
+        const tokenId = currentSupply + 1;
         
         // Use the same probability distribution as the contract
         const randomValue = Math.floor(Math.random() * 10000); // 0-9999
@@ -422,9 +449,12 @@ function App() {
         };
         setLastResult(mockResult);
         setShowAnimation(false);
+        
+        // Update estimated minted count to match the new token ID
+        setEstimatedMinted(tokenId);
       }, TEST_CONFIG.ANIMATION_DURATION);
     }
-  }, [isConfirmed, lastResult, showAnimation]);
+  }, [isConfirmed, lastResult, showAnimation, totalSupply]);
 
   // Update countdown timer
   useEffect(() => {
@@ -460,6 +490,27 @@ function App() {
     } else {
       return `${secs}s`;
     }
+  };
+
+  // Share to X function
+  const shareToX = (result: OmikujiResult) => {
+    const fortuneName = fortuneNames[result.result];
+    const artworkName = getArtworkShortName(result.result);
+    const currentUrl = window.location.href;
+    
+    const shareText = `🎋 Drew my fortune on Monad Testnet!
+Result: "${fortuneName}" 🏮
+${artworkName} appeared ✨
+Token ID: #${result.tokenId}
+by @d_omajime
+@monad @monad_dev
+
+${currentUrl}`;
+
+    const encodedText = encodeURIComponent(shareText);
+    const xUrl = `https://x.com/intent/tweet?text=${encodedText}`;
+    
+    window.open(xUrl, '_blank');
   };
 
 
@@ -575,6 +626,16 @@ function App() {
                   <div className="artwork-description">{getArtworkInfo(lastResult.result).description}</div>
                 </div>
                 <div className="fortune-message">"{lastResult.message}"</div>
+                
+                {/* Share to X Button */}
+                <div className="share-section">
+                  <button 
+                    className="share-x-button"
+                    onClick={() => shareToX(lastResult)}
+                  >
+                    𝕏 Share on X
+                  </button>
+                </div>
               </div>
             )}
           </>
