@@ -1,6 +1,6 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt, useSwitchChain } from 'wagmi';
-import { formatEther, parseAbiItem } from 'viem';
+import { formatEther, parseAbiItem, decodeEventLog } from 'viem';
 import { useState, useEffect } from 'react';
 import './App.css';
 import { localhost, monadTestnet } from './wagmi';
@@ -86,6 +86,13 @@ const OMIKUJI_ABI = [
     "inputs": [{"internalType": "uint256[]", "name": "tokenIds", "type": "uint256[]"}],
     "name": "burnForReroll",
     "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "uint256[]", "name": "tokenIds", "type": "uint256[]"}],
+    "name": "burnAndMint",
+    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -337,7 +344,7 @@ function App() {
   });
 
   // Get self-minted fortunes
-  const { data: selfMintedFortunes } = useReadContract({
+  const { data: selfMintedFortunes, refetch: refetchSelfMintedFortunes } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: OMIKUJI_ABI,
     functionName: 'getSelfMintedFortunes',
@@ -353,7 +360,7 @@ function App() {
   });
 
   // Check burn eligibility
-  const { data: burnData } = useReadContract({
+  const { data: burnData, refetch: refetchBurnData } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: OMIKUJI_ABI,
     functionName: 'canBurnForReroll',
@@ -377,6 +384,33 @@ function App() {
       isCompleted
     });
   }, [address, selfMintProgress, selfMintedFortunes, isCompleted]);
+
+  // Debug: Log NFT result vs gallery data
+  useEffect(() => {
+    if (lastResult) {
+      console.log('🎯 NFT Result Display:', {
+        tokenId: lastResult.tokenId,
+        result: lastResult.result,
+        message: lastResult.message,
+        fortuneName: fortuneNames[lastResult.result]
+      });
+    }
+  }, [lastResult]);
+
+  useEffect(() => {
+    if (selfMintedFortunes && address) {
+      const fortuneArray = Array.from(selfMintedFortunes).map(n => Number(n));
+      console.log('🏛️ Gallery Data (selfMintedFortunes) Updated:', {
+        timestamp: new Date().toISOString(),
+        address,
+        rawData: selfMintedFortunes,
+        processedArray: fortuneArray,
+        lastFortune: fortuneArray[fortuneArray.length - 1],
+        lastFortuneName: fortuneArray.length > 0 ? fortuneNames[fortuneArray[fortuneArray.length - 1]] : 'None',
+        totalCount: fortuneArray.length
+      });
+    }
+  }, [selfMintedFortunes, address]);
 
   // Update burn eligibility
   useEffect(() => {
@@ -436,8 +470,66 @@ function App() {
         message: 'Transaction successful! Your omikuji is being prepared...',
         txHash: hash,
       });
+      
+      // Check if this was a burn transaction by looking for TokensBurned event
+      setTimeout(async () => {
+        if (publicClient) {
+          try {
+            const receipt = await publicClient.getTransactionReceipt({ hash });
+            const hasBurnEvent = receipt.logs.some(log => {
+              try {
+                const decoded = decodeEventLog({
+                  abi: OMIKUJI_ABI,
+                  data: log.data,
+                  topics: log.topics,
+                });
+                return decoded.eventName === 'TokensBurned';
+              } catch {
+                return false;
+              }
+            });
+            
+            if (hasBurnEvent) {
+              console.log('🔥 Burn transaction detected, refreshing data...');
+              await refetchSelfMintedFortunes();
+              await refetchBurnData();
+              
+              // Check if this was burnAndMint (which also emits OmikujiDrawn)
+              const hasOmikujiEvent = receipt.logs.some(log => {
+                try {
+                  const decoded = decodeEventLog({
+                    abi: OMIKUJI_ABI,
+                    data: log.data,
+                    topics: log.topics,
+                  });
+                  return decoded.eventName === 'OmikujiDrawn';
+                } catch {
+                  return false;
+                }
+              });
+              
+              if (hasOmikujiEvent) {
+                // This was burnAndMint, show animation and result
+                console.log('🎯 BurnAndMint detected, showing result...');
+                // Force additional refresh for burn&mint to ensure gallery updates
+                setTimeout(async () => {
+                  await refetchSelfMintedFortunes();
+                  console.log('🔄 Post-burnAndMint gallery refresh completed');
+                }, 3000);
+              } else {
+                // This was just burn for free mint, refresh page
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
+              }
+            }
+          } catch (error) {
+            console.error('Error checking transaction type:', error);
+          }
+        }
+      }, 1000);
     }
-  }, [isConfirmed, hash]);
+  }, [isConfirmed, hash, publicClient, refetchSelfMintedFortunes, refetchBurnData]);
 
   // Handle transaction error
   useEffect(() => {
@@ -548,11 +640,27 @@ function App() {
         try {
           // Get transaction receipt to find the event
           const receipt = await publicClient.getTransactionReceipt({ hash });
+          console.log('📋 Transaction receipt:', receipt);
+          console.log('📋 Number of logs:', receipt.logs.length);
+          
+          // Decode all logs to see what events we have
+          receipt.logs.forEach((log, index) => {
+            try {
+              const decoded = decodeEventLog({
+                abi: OMIKUJI_ABI,
+                data: log.data,
+                topics: log.topics,
+              });
+              console.log(`📋 Log ${index}:`, decoded);
+            } catch (error) {
+              console.log(`📋 Log ${index}: Could not decode`, error.message);
+            }
+          });
           
           // Find OmikujiDrawn event
           const omikujiDrawnEvent = receipt.logs.find(log => {
             try {
-              const decoded = publicClient.decodeEventLog({
+              const decoded = decodeEventLog({
                 abi: OMIKUJI_ABI,
                 data: log.data,
                 topics: log.topics,
@@ -564,7 +672,7 @@ function App() {
           });
           
           if (omikujiDrawnEvent) {
-            const decoded = publicClient.decodeEventLog({
+            const decoded = decodeEventLog({
               abi: OMIKUJI_ABI,
               data: omikujiDrawnEvent.data,
               topics: omikujiDrawnEvent.topics,
@@ -577,10 +685,13 @@ function App() {
               message: string;
             };
             
-            console.log('Actual result from blockchain:', {
+            console.log('🔍 Actual result from blockchain:', {
               tokenId: Number(tokenId),
-              result,
-              message
+              result: Number(result),
+              resultType: typeof result,
+              message,
+              artworkInfo: getArtworkInfo(Number(result)),
+              fortuneName: fortuneNames[Number(result)]
             });
             
             const actualResult: OmikujiResult = {
@@ -593,25 +704,56 @@ function App() {
             setShowAnimation(false);
             setShowResult(true);
             
-            // Reload history after new mint (with delay to allow blockchain to update)
-            setTimeout(() => {
+            // Reload history and refetch self-minted fortunes data
+            setTimeout(async () => {
               loadOmikujiHistory();
-            }, 2000);
+              await refetchSelfMintedFortunes();
+              
+              // Force multiple refreshes to ensure data consistency
+              setTimeout(async () => {
+                await refetchSelfMintedFortunes();
+                console.log('🔄 Second refresh of selfMintedFortunes completed');
+              }, 2000);
+            }, 1000);
             
             // Update estimated minted count
             setEstimatedMinted(Number(tokenId));
           } else {
             console.error('Could not find OmikujiDrawn event in transaction receipt');
-            // Fallback to mock result if event not found
-            const currentSupply = totalSupply ? Number(totalSupply) : 0;
-            const mockResult: OmikujiResult = {
-              tokenId: (currentSupply + 1).toString(),
-              result: 6, // Default to Minor Blessing
-              message: "Result retrieved successfully!"
-            };
-            setLastResult(mockResult);
-            setShowAnimation(false);
-            setShowResult(true);
+            console.log('Available logs:', receipt.logs);
+            
+            // Try to get result from selfMintedFortunes as fallback
+            setTimeout(async () => {
+              await refetchSelfMintedFortunes();
+              
+              // Get the latest self-minted fortune
+              if (selfMintedFortunes && selfMintedFortunes.length > 0) {
+                const latestFortune = Number(selfMintedFortunes[selfMintedFortunes.length - 1]);
+                const currentSupply = totalSupply ? Number(totalSupply) : selfMintedFortunes.length;
+                
+                console.log('🔄 Fallback using selfMintedFortunes:', {
+                  latestFortune,
+                  allFortunes: Array.from(selfMintedFortunes).map(n => Number(n))
+                });
+                
+                const fallbackResult: OmikujiResult = {
+                  tokenId: currentSupply.toString(),
+                  result: latestFortune,
+                  message: "Result retrieved from contract data!"
+                };
+                setLastResult(fallbackResult);
+              } else {
+                // Ultimate fallback
+                const mockResult: OmikujiResult = {
+                  tokenId: "1",
+                  result: 6,
+                  message: "Unable to retrieve result!"
+                };
+                setLastResult(mockResult);
+              }
+              setShowAnimation(false);
+              setShowResult(true);
+            }, 500);
           }
         } catch (error) {
           console.error('Error fetching actual result:', error);
@@ -625,10 +767,15 @@ function App() {
           setLastResult(mockResult);
           setShowAnimation(false);
           setShowResult(true);
+          
+          // Also refetch for error case
+          setTimeout(() => {
+            refetchSelfMintedFortunes();
+          }, 1000);
         }
       }, TEST_CONFIG.ANIMATION_DURATION);
     }
-  }, [isConfirmed, hash, lastResult, showAnimation, totalSupply, publicClient]);
+  }, [isConfirmed, hash, lastResult, showAnimation, totalSupply, publicClient, refetchSelfMintedFortunes]);
 
   // Update countdown timer
   useEffect(() => {
@@ -711,7 +858,7 @@ ${currentUrl}`;
             tokenId: log.args.tokenId!.toString(),
             result: Number(log.args.result!),
             message: log.args.message!,
-            date: new Date(Number(block.timestamp) * 1000).toLocaleDateString('ja-JP'),
+            date: new Date(Number(block.timestamp) * 1000).toISOString().replace('T', ' ').slice(0, 19) + ' UTC',
             timestamp: Number(block.timestamp) * 1000,
             txHash: log.transactionHash!,
             blockNumber: log.blockNumber!
@@ -768,8 +915,8 @@ ${currentUrl}`;
     }
   };
 
-  // Handle burn for reroll
-  const handleBurnForReroll = async (fortuneType: number) => {
+  // Handle burn and mint for reroll
+  const handleBurnAndMint = async (fortuneType: number) => {
     if (!address || !publicClient) return;
 
     try {
@@ -792,20 +939,20 @@ ${currentUrl}`;
       // Take first 3 tokens
       const tokenIds = tokens.slice(0, 3);
 
-      console.log('Burning tokens:', tokenIds.map(t => Number(t)));
+      console.log('Burning and minting with tokens:', tokenIds.map(t => Number(t)));
 
-      // Call burn function
+      // Call burnAndMint function (atomic operation)
       writeContract({
         address: CONTRACT_ADDRESS,
         abi: OMIKUJI_ABI,
-        functionName: 'burnForReroll',
+        functionName: 'burnAndMint',
         args: [tokenIds],
       });
     } catch (error) {
-      console.error('Error burning tokens:', error);
+      console.error('Error burning and minting:', error);
       addNotification({
         type: 'error',
-        message: 'Failed to burn tokens',
+        message: 'Failed to burn and mint',
       });
     }
   };
@@ -913,6 +1060,22 @@ ${currentUrl}`;
                   <span>Price: {price ? formatEther(price) : '0.1'} MON</span>
                 )}
               </div>
+              
+              {/* Burn & Mint Section (Compact) */}
+              {canBurn.canBurn && (
+                <div className="burn-section-compact">
+                  <div className="burn-info-compact">
+                    <span className="burn-text">🔥 Have {canBurn.count} {fortuneNames[canBurn.fortuneType]}? Burn 3 → Get 1 new</span>
+                  </div>
+                  <button 
+                    className="burn-button-compact"
+                    onClick={() => handleBurnAndMint(canBurn.fortuneType)}
+                    disabled={isPending || isConfirming}
+                  >
+                    🔥 Burn & Mint
+                  </button>
+                </div>
+              )}
               </div>
             )}
 
@@ -939,21 +1102,33 @@ ${currentUrl}`;
             )}
 
             {lastResult && !showAnimation && (
-              <div className="result-notification">
-                <div className="result-summary">
-                  <div className="result-icon">🎋</div>
-                  <div className="result-text">
-                    <div className="result-title">Fortune Drawn!</div>
-                    <div className="result-subtitle">#{lastResult.tokenId} - {fortuneNames[lastResult.result]}</div>
+              <>
+                <div className="result-notification">
+                  <div className="result-summary">
+                    <div className="result-icon">🎋</div>
+                    <div className="result-text">
+                      <div className="result-title">Fortune Drawn!</div>
+                      <div className="result-subtitle">#{lastResult.tokenId} - {fortuneNames[lastResult.result]}</div>
+                    </div>
+                    <button 
+                      className="view-result-button"
+                      onClick={() => setShowResult(true)}
+                    >
+                      View Details
+                    </button>
                   </div>
+                </div>
+                
+                <div className="reload-section">
                   <button 
-                    className="view-result-button"
-                    onClick={() => setShowResult(true)}
+                    className="reload-button"
+                    onClick={() => window.location.reload()}
+                    title="Reload Page"
                   >
-                    View Details
+                    🔄
                   </button>
                 </div>
-              </div>
+              </>
             )}
           </>
         )}
@@ -979,17 +1154,20 @@ ${currentUrl}`;
           </div>
           <div className="fortune-gallery">
             {fortuneNames.map((name, index) => {
-              // Convert selfMintedFortunes to numbers and count occurrences
+              // Use selfMintedFortunes for gallery display (shows collection progress)
               const selfMintedArray = selfMintedFortunes ? Array.from(selfMintedFortunes).map(n => Number(n)) : [];
               const fortuneCount = selfMintedArray.filter(f => f === index).length;
               const hasFortune = fortuneCount > 0;
               const artworkInfo = getArtworkInfo(index);
-              
-              // Debug individual fortune check
-              console.log(`Fortune ${index} (${name}):`, {
-                selfMintedArray,
+
+              // Debug gallery display
+              console.log(`🎨 Gallery Card ${index}:`, {
+                name,
+                index,
                 fortuneCount,
-                hasFortune
+                hasFortune,
+                artworkTitle: artworkInfo.title,
+                ipfsHash: getIPFSHashForResult(index)
               });
               
               return (
@@ -1026,23 +1204,6 @@ ${currentUrl}`;
                 <strong>Note:</strong> Special NFT can only be minted through self-mint completion (not purchasable from others)
               </p>
             </div>
-            {/* Burn for Reroll Section */}
-            {canBurn.canBurn && (
-              <div className="burn-section">
-                <div className="burn-info">
-                  <h4>🔥 Burn for Reroll</h4>
-                  <p>You have {canBurn.count} {fortuneNames[canBurn.fortuneType]} NFTs!</p>
-                  <p>Burn 3 of them to get 1 free omikuji draw with better chances.</p>
-                </div>
-                <button 
-                  className="burn-button"
-                  onClick={() => handleBurnForReroll(canBurn.fortuneType)}
-                  disabled={isPending || isConfirming}
-                >
-                  🔥 Burn 3 for Free Draw
-                </button>
-              </div>
-            )}
             
             <div className="special-mint-button-container">
               <button 

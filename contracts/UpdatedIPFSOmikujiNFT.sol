@@ -255,10 +255,90 @@ contract UpdatedIPFSOmikujiNFT is ERC721, Ownable {
             _burn(tokenIds[i]);
         }
         
+        // Remove 3 entries of this fortune type from selfMintedFortunes
+        _removeSelfMintedFortunes(msg.sender, fortuneType, 3);
+        
         // Grant 1 free mint
         freeMints[msg.sender]++;
         
         emit TokensBurned(msg.sender, tokenIds, fortuneType, 1);
+    }
+    
+    // Burn 3 tokens and immediately mint a new one (atomic operation)
+    function burnAndMint(uint256[] calldata tokenIds) external returns (uint256) {
+        require(tokenIds.length == 3, "Must burn exactly 3 tokens");
+        
+        uint8 fortuneType = fortunes[tokenIds[0]].result;
+        require(fortuneType == 5 || fortuneType == 6, "Can only burn Blessing or Minor Blessing");
+        
+        // Verify all tokens are the same type and owned by sender
+        for (uint i = 0; i < 3; i++) {
+            require(ownerOf(tokenIds[i]) == msg.sender, "Not owner of token");
+            require(fortunes[tokenIds[i]].result == fortuneType, "All tokens must be same fortune type");
+            _burn(tokenIds[i]);
+        }
+        
+        // Remove 3 entries of this fortune type from selfMintedFortunes
+        _removeSelfMintedFortunes(msg.sender, fortuneType, 3);
+        
+        // Emit burn event
+        emit TokensBurned(msg.sender, tokenIds, fortuneType, 0); // 0 free mints since we mint immediately
+        
+        // Immediately mint new omikuji (same logic as drawOmikuji but without payment)
+        unchecked {
+            _currentTokenId++;
+        }
+        uint256 newTokenId = _currentTokenId;
+        
+        // Generate random result using same probability distribution
+        uint256 randomValue = uint256(keccak256(abi.encodePacked(
+            block.timestamp,
+            block.prevrandao,
+            msg.sender,
+            newTokenId,
+            tokenIds[0] // Add burned token as additional entropy
+        ))) % 10000; // 0-9999の範囲
+        
+        uint8 result;
+        
+        // Same probability distribution as drawOmikuji
+        if (randomValue < 50) {
+            result = 0; // 0.5% - Super Ultra Great Blessing
+        } else if (randomValue < 200) {
+            result = 1; // 1.5% - Ultra Great Blessing  
+        } else if (randomValue < 700) {
+            result = 2; // 5.0% - Great Blessing
+        } else if (randomValue < 1700) {
+            result = 3; // 10.0% - Middle Blessing
+        } else if (randomValue < 3700) {
+            result = 4; // 20.0% - Small Blessing
+        } else if (randomValue < 6700) {
+            result = 5; // 30.0% - Blessing
+        } else {
+            result = 6; // 33.0% - Minor Blessing
+        }
+        
+        // Store fortune data
+        fortunes[newTokenId] = Fortune({
+            result: result,
+            timestamp: uint32(block.timestamp),
+            drawer: msg.sender
+        });
+        
+        // Record self-mint for completion tracking
+        selfMintedFortunes[msg.sender].push(result);
+        
+        // Check if user completed all 7 types
+        if (!hasCompletedSelfMint[msg.sender] && _checkSelfMintCompletion(msg.sender)) {
+            hasCompletedSelfMint[msg.sender] = true;
+        }
+        
+        // Mint NFT to sender
+        _mint(msg.sender, newTokenId);
+        
+        emit OmikujiDrawn(msg.sender, newTokenId, result, messages[result]);
+        
+        return newTokenId;
     }
     
     // Check how many tokens of specific type user owns
@@ -319,6 +399,22 @@ contract UpdatedIPFSOmikujiNFT is ERC721, Ownable {
         }
         
         return true;
+    }
+    
+    // Internal function to remove specific fortune types from selfMintedFortunes
+    function _removeSelfMintedFortunes(address user, uint8 fortuneType, uint256 count) internal {
+        uint8[] storage userFortunes = selfMintedFortunes[user];
+        uint256 removed = 0;
+        
+        // Remove from the end to avoid index shifting issues
+        for (int i = int(userFortunes.length) - 1; i >= 0 && removed < count; i--) {
+            if (userFortunes[uint(i)] == fortuneType) {
+                // Remove this element by moving the last element here and popping
+                userFortunes[uint(i)] = userFortunes[userFortunes.length - 1];
+                userFortunes.pop();
+                removed++;
+            }
+        }
     }
     
     // Owner functions
