@@ -94,7 +94,7 @@ const OMIKUJI_ABI = [
   }
 ] as const;
 
-const CONTRACT_ADDRESS = '0xa85233C63b9Ee964Add6F2cffe00Fd84eb32338f' as `0x${string}`;
+const CONTRACT_ADDRESS = '0xCD8a1C3ba11CF5ECfa6267617243239504a98d90' as `0x${string}`;
 
 const fortuneNames = [
   "Super Ultra Great Blessing (大大大吉)",
@@ -280,6 +280,16 @@ function App() {
     functionName: 'checkSelfMintCompletion',
     args: address ? [address] : undefined,
   });
+
+  // Debug: Log self-mint data
+  useEffect(() => {
+    console.log('Self-mint debug:', {
+      address,
+      selfMintProgress: selfMintProgress ? Number(selfMintProgress) : 0,
+      selfMintedFortunes: selfMintedFortunes ? Array.from(selfMintedFortunes).map(n => Number(n)) : [],
+      isCompleted
+    });
+  }, [address, selfMintProgress, selfMintedFortunes, isCompleted]);
 
   // For now, we'll show max supply info (total minted will be available after contract update)
   const [estimatedMinted, setEstimatedMinted] = useState(0);
@@ -638,37 +648,6 @@ ${currentUrl}`;
           </div>
         </div>
 
-        {/* Self-Mint Progress */}
-        {isConnected && (
-          <div className="self-mint-progress">
-            <h3 className="progress-title">🎋 Your Self-Mint Progress</h3>
-            <div className="progress-summary">
-              <span className="progress-count">{selfMintProgress ? Number(selfMintProgress) : 0}/7</span>
-              <span className="progress-label">Fortune Types Collected</span>
-              {isCompleted && <span className="completion-badge">🏆 COMPLETED!</span>}
-            </div>
-            <div className="fortune-grid">
-              {fortuneNames.map((name, index) => {
-                const hasFortune = selfMintedFortunes && 
-                  Array.from(selfMintedFortunes).includes(index);
-                return (
-                  <div key={index} className={`fortune-card ${hasFortune ? 'collected' : 'uncollected'}`}>
-                    <div className="fortune-icon">{hasFortune ? '✅' : '❌'}</div>
-                    <div className="fortune-name">{name}</div>
-                    <div className="fortune-probability">
-                      {index === 0 ? '0.5%' : 
-                       index === 1 ? '1.5%' : 
-                       index === 2 ? '5.0%' : 
-                       index === 3 ? '10.0%' : 
-                       index === 4 ? '20.0%' : 
-                       index === 5 ? '30.0%' : '33.0%'}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
 
         {isConnected && (
           <>
@@ -752,6 +731,55 @@ ${currentUrl}`;
           </div>
         )}
       </div>
+
+      {/* Self-Mint Progress Gallery */}
+      {isConnected && (
+        <div className="gallery-container">
+          <div className="gallery-header">
+            <div className="gallery-summary">
+              <span className="progress-label">Gallery</span>
+              {isCompleted && <span className="completion-badge">🏆 COMPLETED!</span>}
+            </div>
+          </div>
+          <div className="fortune-gallery">
+            {fortuneNames.map((name, index) => {
+              // Convert selfMintedFortunes to numbers and count occurrences
+              const selfMintedArray = selfMintedFortunes ? Array.from(selfMintedFortunes).map(n => Number(n)) : [];
+              const fortuneCount = selfMintedArray.filter(f => f === index).length;
+              const hasFortune = fortuneCount > 0;
+              const artworkInfo = getArtworkInfo(index);
+              
+              // Debug individual fortune check
+              console.log(`Fortune ${index} (${name}):`, {
+                selfMintedArray,
+                fortuneCount,
+                hasFortune
+              });
+              
+              return (
+                <div key={index} className={`gallery-card ${hasFortune ? 'collected' : 'uncollected'}`}>
+                  <div className="gallery-image">
+                    <img 
+                      src={`https://gateway.pinata.cloud/ipfs/${getIPFSHashForResult(index)}`}
+                      alt={name}
+                      className="artwork-preview"
+                    />
+                  </div>
+                  <div className="gallery-info">
+                    <div className="artwork-title">"{artworkInfo.title}"</div>
+                    <div className="artwork-artist">by {artworkInfo.artist}</div>
+                    {hasFortune && (
+                      <div className="fortune-count-text">
+                        Amount: {fortuneCount}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
       
       {/* Notifications */}
       {notifications.length > 0 && (
