@@ -451,7 +451,6 @@ function App() {
   useEffect(() => {
     if (isConfirmed && !lastResult && !showAnimation) {
       console.log('Starting omikuji animation...');
-      debugger; // Debug point when animation starts
       
       // Show animation first
       setShowAnimation(true);
