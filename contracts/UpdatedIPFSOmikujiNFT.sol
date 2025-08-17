@@ -74,12 +74,18 @@ contract UpdatedIPFSOmikujiNFT is ERC721, Ownable {
     }
     
     function drawOmikuji() external payable returns (uint256) {
+        // Check cooldown period (24 hours)
+        require(block.timestamp >= lastDrawTime[msg.sender] + COOLDOWN_PERIOD, "Cooldown period not met");
+        
         // Check if user has free mints from burning
         if (freeMints[msg.sender] > 0) {
             freeMints[msg.sender]--;
         } else {
             require(msg.value >= omikujiPrice, "Insufficient payment");
         }
+        
+        // Update last draw time
+        lastDrawTime[msg.sender] = block.timestamp;
         
         unchecked {
             _currentTokenId++;
@@ -181,13 +187,21 @@ contract UpdatedIPFSOmikujiNFT is ERC721, Ownable {
         return string(abi.encodePacked(_baseTokenURI, _toString(fortune.result), ".json"));
     }
     
+    // Cooldown mapping - 24 hours
+    mapping(address => uint256) public lastDrawTime;
+    uint256 public constant COOLDOWN_PERIOD = 24 hours;
+    
     // View functions
-    function canDrawOmikuji(address) external pure returns (bool) {
-        return true; // No cooldown for testing
+    function canDrawOmikuji(address user) external view returns (bool) {
+        return block.timestamp >= lastDrawTime[user] + COOLDOWN_PERIOD;
     }
     
-    function getTimeUntilNextDraw(address) external pure returns (uint256) {
-        return 0; // No cooldown
+    function getTimeUntilNextDraw(address user) external view returns (uint256) {
+        uint256 nextDrawTime = lastDrawTime[user] + COOLDOWN_PERIOD;
+        if (block.timestamp >= nextDrawTime) {
+            return 0;
+        }
+        return nextDrawTime - block.timestamp;
     }
     
     function getFortuneMessage(uint256 tokenId) external view returns (string memory) {
@@ -417,6 +431,7 @@ contract UpdatedIPFSOmikujiNFT is ERC721, Ownable {
         }
     }
     
+
     // Owner functions
     function setPrice(uint256 _price) external onlyOwner {
         omikujiPrice = _price;

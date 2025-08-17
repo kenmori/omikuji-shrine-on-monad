@@ -1269,6 +1269,47 @@ body::before {
   }
 }
 
+/* Burn Management Section */
+.burn-management-section {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(255, 87, 34, 0.05);
+  border: 1px solid rgba(255, 87, 34, 0.1);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.burn-management-button {
+  background: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 8px;
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto 8px auto;
+}
+
+.burn-management-button:hover {
+  background: #f4511e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+}
+
+.burn-note {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-top: 8px;
+}
+
 @media (max-width: 768px) {
   .result-summary {
     flex-direction: column;
@@ -1907,4 +1948,245 @@ body::before {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   min-width: 120px;
   white-space: nowrap;
+}
+
+/* Burn Modal Styles */
+.burn-modal {
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.burn-modal-body {
+  padding: 20px;
+}
+
+.burn-warning {
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 20px;
+  color: #856404;
+  font-size: 0.9rem;
+}
+
+.burn-instructions {
+  margin-bottom: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.no-nfts {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 40px;
+}
+
+.nft-selection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.nft-item {
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+.nft-item:hover {
+  border-color: rgba(131, 110, 249, 0.5);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.nft-item.selected {
+  border-color: #836ef9;
+  background: rgba(131, 110, 249, 0.1);
+}
+
+.nft-image {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.nft-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nft-info {
+  text-align: center;
+}
+
+.fortune-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.token-id {
+  font-size: 0.7rem;
+  color: #666;
+  margin: 0;
+}
+
+.selection-indicator {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #836ef9;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.burn-actions {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+  text-align: center;
+}
+
+.burn-confirm {
+  margin-bottom: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.burn-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cancel-burn-button,
+.confirm-burn-button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.cancel-burn-button {
+  background: rgba(108, 117, 125, 0.1);
+  color: #6c757d;
+  border: 1px solid rgba(108, 117, 125, 0.3);
+}
+
+.cancel-burn-button:hover {
+  background: rgba(108, 117, 125, 0.2);
+}
+
+.confirm-burn-button {
+  background: #dc3545;
+  color: white;
+}
+
+.confirm-burn-button:hover:not(:disabled) {
+  background: #c82333;
+  transform: translateY(-1px);
+}
+
+.confirm-burn-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.burn-management-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.burn-management-button {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 8px;
+}
+
+.burn-management-button:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+}
+
+.burn-single-button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 8px;
+}
+
+.burn-single-button:hover:not(:disabled) {
+  background: #c82333;
+  transform: translateY(-1px);
+}
+
+.burn-single-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.burn-note {
+  display: block;
+  color: #666;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .burn-modal {
+    max-width: 95vw;
+    margin: 10px;
+  }
+  
+  .nft-selection-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+  }
+  
+  .burn-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cancel-burn-button,
+  .confirm-burn-button {
+    width: 100%;
+    max-width: 200px;
+  }
 }

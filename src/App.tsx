@@ -6,9 +6,9 @@ import './App.css';
 import { localhost, monadTestnet } from './wagmi';
 import { usePublicClient } from 'wagmi';
 
-// Test Configuration
-  const TEST_CONFIG = {
-  DISABLE_COOLDOWN: true, // Set to false for production
+// Configuration based on environment
+const TEST_CONFIG = {
+  DISABLE_COOLDOWN: import.meta.env.VITE_NETWORK === 'localhost', // Only disable cooldown for localhost
   ANIMATION_DURATION: 3000, // Animation duration in ms
 } as const;
 
@@ -133,7 +133,7 @@ const OMIKUJI_ABI = [
 // Environment-based configuration
 const NETWORK = import.meta.env.VITE_NETWORK || 'localhost';
 const CONTRACT_ADDRESS = (import.meta.env.VITE_CONTRACT_ADDRESS || '0x1fA02b2d6A771842690194Cf62D91bdd92BfE28d') as `0x${string}`;
-const CURRENT_NETWORK = NETWORK === 'localhost' ? localhost : monadTestnet;
+const CURRENT_NETWORK = (NETWORK === 'localhost' || NETWORK === 'development') ? localhost : monadTestnet;
 
 const fortuneNames = [
   "Super Ultra Great Blessing (大大大吉)",
@@ -980,18 +980,30 @@ ${currentUrl}`;
 
   // Handle burn and mint for reroll
   const handleBurnAndMint = async (fortuneType: number) => {
-    if (!address || !publicClient) return;
+    console.log('🔥 handleBurnAndMint called with fortuneType:', fortuneType);
+    console.log('🔥 Address:', address);
+    console.log('🔥 PublicClient:', !!publicClient);
+    
+    if (!address || !publicClient) {
+      console.log('🔥 Missing address or publicClient, returning');
+      return;
+    }
 
     try {
       // Get user's tokens of this type
+      console.log('🔥 Fetching tokens of type:', fortuneType);
       const tokens = await publicClient.readContract({
         address: CONTRACT_ADDRESS,
         abi: OMIKUJI_ABI,
         functionName: 'getOwnedTokensByType',
         args: [address, fortuneType],
       }) as bigint[];
+      
+      console.log('🔥 Found tokens:', tokens);
+      console.log('🔥 Token count:', tokens.length);
 
       if (tokens.length < 3) {
+        console.log('🔥 Not enough tokens, need 3, have:', tokens.length);
         addNotification({
           type: 'error',
           message: 'Not enough tokens to burn',
@@ -1019,6 +1031,7 @@ ${currentUrl}`;
       });
     }
   };
+
 
   return (
     <div className="app">
@@ -1491,11 +1504,13 @@ ${currentUrl}`;
                   <h4>Historical Significance</h4>
                   <p>{getArtworkInfo(selectedArtwork).significance}</p>
                 </div>
+                
               </div>
             </div>
           </div>
         </div>
       )}
+
     </div>
   );
 }
