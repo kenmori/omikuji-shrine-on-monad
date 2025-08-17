@@ -305,7 +305,7 @@ function App() {
   const publicClient = usePublicClient();
 
   // Read the omikuji price
-  const { data: price } = useReadContract({
+  const { data: price, error: priceError, isLoading: priceLoading } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: OMIKUJI_ABI,
     functionName: 'omikujiPrice',
@@ -384,6 +384,45 @@ function App() {
       isCompleted
     });
   }, [address, selfMintProgress, selfMintedFortunes, isCompleted]);
+
+  // Debug: Log contract connection and price
+  useEffect(() => {
+    console.log('📊 Contract Connection Debug:', {
+      network: NETWORK,
+      contractAddress: CONTRACT_ADDRESS,
+      currentNetwork: CURRENT_NETWORK,
+      chainId: chain?.id,
+      expectedChainId: CURRENT_NETWORK.id,
+      chainMatch: chain?.id === CURRENT_NETWORK.id,
+      rpcUrl: CURRENT_NETWORK.rpcUrls?.default?.http?.[0],
+      price: price ? price.toString() : 'undefined',
+      priceError: priceError?.message || 'none',
+      priceErrorDetails: priceError,
+      priceLoading,
+      isConnected,
+      address
+    });
+
+    // Test basic contract connectivity
+    if (publicClient && isConnected && chain?.id === CURRENT_NETWORK.id) {
+      console.log('🔍 Testing contract connectivity...');
+      publicClient.readContract({
+        address: CONTRACT_ADDRESS,
+        abi: OMIKUJI_ABI,
+        functionName: 'omikujiPrice',
+      }).then(result => {
+        console.log('✅ Direct contract call successful:', result?.toString());
+      }).catch(error => {
+        console.error('❌ Direct contract call failed:', error);
+        console.error('Full error details:', {
+          name: error.name,
+          message: error.message,
+          cause: error.cause,
+          data: error.data
+        });
+      });
+    }
+  }, [price, priceError, priceLoading, isConnected, address, chain, publicClient]);
 
   // Debug: Log NFT result vs gallery data
   useEffect(() => {
@@ -591,12 +630,36 @@ function App() {
     }
     
     if (!price) {
-      console.log('No price available, returning');
-      addNotification({
-        type: 'error',
-        message: 'Unable to fetch contract price. Please check connection.',
-      });
-      return;
+      console.log('No price available, using fallback');
+      console.log('Price debug:', { price, priceError, priceLoading });
+      
+      // Use fallback price if contract price is not available
+      const fallbackPrice = BigInt('100000000000000000'); // 0.1 ETH in wei
+      console.log('Using fallback price:', fallbackPrice.toString());
+      
+      try {
+        console.log('Attempting to write contract with fallback price...');
+        console.log('Contract address:', CONTRACT_ADDRESS);
+        console.log('Value to send:', fallbackPrice.toString());
+        
+        const result = writeContract({
+          address: CONTRACT_ADDRESS,
+          abi: OMIKUJI_ABI,
+          functionName: 'drawOmikuji',
+          value: fallbackPrice,
+          gas: 500000n,
+        });
+        
+        console.log('writeContract call completed with fallback, result:', result);
+        return; // Exit early since we handled the transaction
+      } catch (error: any) {
+        console.error('Error with fallback price:', error);
+        addNotification({
+          type: 'error',
+          message: `Failed to submit transaction with fallback price: ${error?.message}`,
+        });
+        return;
+      }
     }
 
     try {
@@ -1057,7 +1120,7 @@ ${currentUrl}`;
                 {freeMints && Number(freeMints) > 0 ? (
                   <span className="free-mint-available">🎁 Free Mint Available ({Number(freeMints)})</span>
                 ) : (
-                  <span>Price: {price ? formatEther(price) : '0.1'} MON</span>
+                  <span>Price: {price ? formatEther(price) : '0.1'} MON {!price && priceError ? '(fallback)' : ''}</span>
                 )}
               </div>
               
