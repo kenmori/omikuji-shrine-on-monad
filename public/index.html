@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>おみくじ神社 - Omikuji Shrine</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
@@ -119,19 +120,21 @@
             font-size: 0.95rem;
         }
 
-        .success { 
-            background: rgba(34, 197, 94, 0.1); 
-            color: #22c55e; 
+        .success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
             border: 1px solid rgba(34, 197, 94, 0.2);
         }
-        .error { 
-            background: rgba(239, 68, 68, 0.1); 
-            color: #ef4444; 
+
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
             border: 1px solid rgba(239, 68, 68, 0.2);
         }
-        .info { 
-            background: rgba(59, 130, 246, 0.1); 
-            color: #3b82f6; 
+
+        .info {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
             border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
@@ -199,8 +202,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .connect-status {
@@ -426,12 +434,13 @@
                 padding: 32px 24px;
                 margin: 16px;
             }
-            
+
             .shrine-title {
                 font-size: 2.5rem;
             }
-            
-            .rainbow-button, .omikuji-button {
+
+            .rainbow-button,
+            .omikuji-button {
                 width: 100%;
             }
 
@@ -448,13 +457,14 @@
         }
     </style>
 </head>
+
 <body>
     <div class="shrine-container">
         <h1 class="shrine-title">🏮 おみくじ神社 🏮</h1>
         <p class="shrine-subtitle">Digital Omikuji Shrine on Monad</p>
-        
+
         <div class="torii">⛩️</div>
-        
+
         <div class="wallet-section">
             <div id="wallet-status">
                 <button id="connect-wallet" class="rainbow-button">
@@ -475,7 +485,7 @@
         </div>
 
         <div id="status-message" class="status-text" style="display: none;"></div>
-        
+
         <div id="omikuji-result" style="display: none;"></div>
     </div>
 
@@ -497,7 +507,7 @@
 
         const fortuneNames = [
             "大吉 (Daikichi)",
-            "吉 (Kichi)", 
+            "吉 (Kichi)",
             "中吉 (Chukichi)",
             "小吉 (Shokichi)",
             "末吉 (Sue-kichi)",
@@ -645,9 +655,9 @@
         function createWalletItem(key, wallet) {
             const item = document.createElement('div');
             item.className = 'wallet-item';
-            
+
             const isDetected = key === 'walletconnect' || wallet.detect();
-            
+
             item.innerHTML = `
                 <div class="wallet-icon" style="background: ${wallet.color};">${wallet.icon}</div>
                 <div class="wallet-name">${wallet.name}</div>
@@ -671,25 +681,25 @@
             try {
                 const wallet = walletProviders[walletKey];
                 showStatus(`${wallet.name}に接続中...`, "info");
-                
+
                 if (!window.ethereum) {
                     throw new Error('ウォレットが見つかりません');
                 }
 
                 provider = new ethers.providers.Web3Provider(window.ethereum);
                 await provider.send("eth_requestAccounts", []);
-                
+
                 const network = await provider.getNetwork();
                 console.log("Current network:", network);
-                
+
                 if (network.chainId !== 31337 && network.chainId !== 41454) {
                     showStatus("MonadネットワークまたはLocalhostに切り替えてください", "error");
                     return;
                 }
-                
+
                 signer = provider.getSigner();
                 userAddress = await signer.getAddress();
-                
+
                 contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
 
                 document.getElementById("wallet-status").innerHTML = `
@@ -699,12 +709,12 @@
                         <button id="disconnect-wallet" class="disconnect-btn">接続解除</button>
                     </div>
                 `;
-                
+
                 document.getElementById("omikuji-section").style.display = "block";
                 document.getElementById("disconnect-wallet").addEventListener("click", disconnectWallet);
-                
+
                 showStatus(`${wallet.name}接続完了！`, "success");
-                
+
             } catch (error) {
                 console.error("Wallet connection error:", error);
                 showStatus(`ウォレット接続に失敗しました: ${error.message}`, "error");
@@ -730,10 +740,10 @@
 
                 const price = ethers.utils.parseEther("0.001");
                 const tx = await contract.drawOmikuji({ value: price });
-                
+
                 showStatus("トランザクション送信完了。確認中...", "info");
                 const receipt = await tx.wait();
-                
+
                 const event = receipt.events.find(e => e.event === 'OmikujiDrawn');
                 if (event) {
                     const [drawer, tokenId, result, message] = event.args;
@@ -742,7 +752,7 @@
                 } else {
                     showStatus("結果の取得に失敗しました", "error");
                 }
-                
+
             } catch (error) {
                 console.error("Draw omikuji error:", error);
                 showStatus(`エラー: ${error.message}`, "error");
@@ -755,7 +765,7 @@
         function displayOmikujiResult(tokenId, resultIndex, message) {
             const fortuneName = fortuneNames[resultIndex];
             const resultDiv = document.getElementById("omikuji-result");
-            
+
             resultDiv.innerHTML = `
                 <div class="result-card">
                     <div class="fortune-result">${fortuneName}</div>
@@ -766,7 +776,7 @@
                     </div>
                 </div>
             `;
-            
+
             resultDiv.style.display = "block";
         }
 
@@ -775,7 +785,7 @@
             statusDiv.textContent = message;
             statusDiv.className = `status-text ${type}`;
             statusDiv.style.display = "block";
-            
+
             if (type === "success") {
                 setTimeout(() => {
                     statusDiv.style.display = "none";
@@ -790,7 +800,7 @@
         // Auto-connect check
         window.addEventListener("load", async () => {
             await new Promise(resolve => setTimeout(resolve, 100)); // Wait for wallet injection
-            
+
             if (window.ethereum && window.ethereum.selectedAddress) {
                 for (const [key, wallet] of Object.entries(walletProviders)) {
                     if (key !== 'walletconnect' && wallet.detect()) {
@@ -802,4 +812,5 @@
         });
     </script>
 </body>
+
 </html>

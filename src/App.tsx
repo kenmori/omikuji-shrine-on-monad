@@ -61,6 +61,27 @@ const OMIKUJI_ABI = [
     "type": "function"
   },
   {
+    "inputs": [{"internalType": "address", "name": "user", "type": "address"}],
+    "name": "getSelfMintProgress",
+    "outputs": [{"internalType": "uint8", "name": "", "type": "uint8"}],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "address", "name": "user", "type": "address"}],
+    "name": "getSelfMintedFortunes",
+    "outputs": [{"internalType": "uint8[]", "name": "", "type": "uint8[]"}],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "address", "name": "user", "type": "address"}],
+    "name": "checkSelfMintCompletion",
+    "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {"indexed": true, "internalType": "address", "name": "drawer", "type": "address"},
@@ -234,6 +255,30 @@ function App() {
     address: CONTRACT_ADDRESS,
     abi: OMIKUJI_ABI,
     functionName: 'totalSupply',
+  });
+
+  // Get self-mint progress
+  const { data: selfMintProgress } = useReadContract({
+    address: CONTRACT_ADDRESS,
+    abi: OMIKUJI_ABI,
+    functionName: 'getSelfMintProgress',
+    args: address ? [address] : undefined,
+  });
+
+  // Get self-minted fortunes
+  const { data: selfMintedFortunes } = useReadContract({
+    address: CONTRACT_ADDRESS,
+    abi: OMIKUJI_ABI,
+    functionName: 'getSelfMintedFortunes',
+    args: address ? [address] : undefined,
+  });
+
+  // Check if self-mint completion
+  const { data: isCompleted } = useReadContract({
+    address: CONTRACT_ADDRESS,
+    abi: OMIKUJI_ABI,
+    functionName: 'checkSelfMintCompletion',
+    args: address ? [address] : undefined,
   });
 
   // For now, we'll show max supply info (total minted will be available after contract update)
@@ -411,26 +456,26 @@ function App() {
         const randomValue = Math.floor(Math.random() * 10000); // 0-9999
         let fortuneResult: number;
         
-        if (randomValue < 10) {
-          // 0.1% - Super Ultra Great Blessing
+        if (randomValue < 50) {
+          // 0.5% - Super Ultra Great Blessing
           fortuneResult = 0;
-        } else if (randomValue < 110) {
-          // 1.0% - Ultra Great Blessing  
+        } else if (randomValue < 200) {
+          // 1.5% - Ultra Great Blessing  
           fortuneResult = 1;
-        } else if (randomValue < 610) {
+        } else if (randomValue < 700) {
           // 5.0% - Great Blessing
           fortuneResult = 2;
-        } else if (randomValue < 1610) {
+        } else if (randomValue < 1700) {
           // 10.0% - Middle Blessing
           fortuneResult = 3;
-        } else if (randomValue < 3610) {
+        } else if (randomValue < 3700) {
           // 20.0% - Small Blessing
           fortuneResult = 4;
-        } else if (randomValue < 6610) {
+        } else if (randomValue < 6700) {
           // 30.0% - Blessing
           fortuneResult = 5;
         } else {
-          // 33.9% - Minor Blessing
+          // 33.0% - Minor Blessing
           fortuneResult = 6;
         }
         
@@ -592,6 +637,38 @@ ${currentUrl}`;
             </div>
           </div>
         </div>
+
+        {/* Self-Mint Progress */}
+        {isConnected && (
+          <div className="self-mint-progress">
+            <h3 className="progress-title">🎋 Your Self-Mint Progress</h3>
+            <div className="progress-summary">
+              <span className="progress-count">{selfMintProgress ? Number(selfMintProgress) : 0}/7</span>
+              <span className="progress-label">Fortune Types Collected</span>
+              {isCompleted && <span className="completion-badge">🏆 COMPLETED!</span>}
+            </div>
+            <div className="fortune-grid">
+              {fortuneNames.map((name, index) => {
+                const hasFortune = selfMintedFortunes && 
+                  Array.from(selfMintedFortunes).includes(index);
+                return (
+                  <div key={index} className={`fortune-card ${hasFortune ? 'collected' : 'uncollected'}`}>
+                    <div className="fortune-icon">{hasFortune ? '✅' : '❌'}</div>
+                    <div className="fortune-name">{name}</div>
+                    <div className="fortune-probability">
+                      {index === 0 ? '0.5%' : 
+                       index === 1 ? '1.5%' : 
+                       index === 2 ? '5.0%' : 
+                       index === 3 ? '10.0%' : 
+                       index === 4 ? '20.0%' : 
+                       index === 5 ? '30.0%' : '33.0%'}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {isConnected && (
           <>

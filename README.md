@@ -22,16 +22,18 @@ Omikuji Shrine on Monad is a Web3 fortune-telling dApp that combines traditional
 
 | Fortune Type | Rarity | Probability | Featured Artwork | Artist |
 |--------------|--------|-------------|------------------|---------|
-| **Super Ultra Great Blessing (大大大吉)** | 🌟🌟🌟🌟🌟🌟 | 0.1% | Fine Wind, Clear Morning | Katsushika Hokusai |
-| **Ultra Great Blessing (大大吉)** | 🌟🌟🌟🌟🌟 | 1.0% | The Great Wave off Kanagawa | Katsushika Hokusai |
+| **Super Ultra Great Blessing (大大大吉)** | 🌟🌟🌟🌟🌟🌟 | 0.5% | Fine Wind, Clear Morning | Katsushika Hokusai |
+| **Ultra Great Blessing (大大吉)** | 🌟🌟🌟🌟🌟 | 1.5% | The Great Wave off Kanagawa | Katsushika Hokusai |
 | **Great Blessing (大吉)** | 🌟🌟🌟🌟 | 5.0% | Minamoto no Yoshitsune on Horseback | Isoda Koryūsai |
 | **Middle Blessing (中吉)** | 🌟🌟🌟 | 10.0% | Matsumoto Yonesaburo as Shinobu | Tōshūsai Sharaku |
 | **Small Blessing (小吉)** | 🌟🌟 | 20.0% | Kabuki Actor Ōtani Oniji III | Tōshūsai Sharaku |
 | **Blessing (吉)** | 🌟 | 30.0% | Chinese Lions (Karajishi) | Kanō Eitoku |
-| **Minor Blessing (末吉)** | ⭐ | 33.9% | Wind God and Thunder God | Tawaraya Sōtatsu |
+| **Minor Blessing (末吉)** | ⭐ | 33.0% | Wind God and Thunder God | Tawaraya Sōtatsu |
 
 ## 🎯 Special Features
 
+- **Self-Mint Completion System**: Track your personally minted fortune types (0-7)
+- **Completion Rewards**: Special recognition for collecting all 7 fortune types through self-minting
 - **Lucky Numbers**: Special animations and enhanced fortunes for tokens #777 and #7777
 - **Art Credits**: Complete attribution to museums and Wikipedia sources
 - **Social Sharing**: Share your fortune results directly to X/Twitter
