@@ -1,116 +1,125 @@
-  ☐ プロジェクトの現在の構造を確認する          
-     ☐ おみくじスマートコントラクトを設計・実装する
-     ☐ NFT機能付きおみくじ結果システムを実装する
-     ☐ ウォレット接続機能を実装する
-     ☐ 日本的な神社UIを作成する
+# 🏮 Omikuji Shrine on Monad
 
+![Omikuji Shrine on Monad](./public/og-image.png)
 
+*Digital Fortune Telling on Monad Network - Draw your fortune and mint unique NFTs inspired by classical Japanese art*
+
+## 🎋 About
+
+Omikuji Shrine on Monad is a Web3 fortune-telling dApp that combines traditional Japanese omikuji (fortune slips) with NFT technology on the Monad network. Draw your fortune and receive a unique NFT featuring masterpieces of classical Japanese art.
+
+## ✨ Features
+
+- 🎭 **Traditional Omikuji Experience**: Seven different fortune types with authentic Japanese meanings
+- 🖼️ **Classical Art NFTs**: Each fortune is paired with famous Japanese artworks from master artists
+- 🎵 **Atmospheric BGM**: Traditional Japanese music enhances the spiritual experience
+- 💰 **Affordable Minting**: Only 0.1 MON per fortune draw
+- 🔗 **Seamless Wallet Integration**: RainbowKit-powered wallet connectivity
+- 📱 **Mobile Responsive**: Beautiful design across all devices
+- 🌐 **Monad Network**: Built on the fast and efficient Monad blockchain
+
+## 🎨 Fortune Types & Artwork Mapping
+
+| Fortune Type | Rarity | Probability | Featured Artwork | Artist |
+|--------------|--------|-------------|------------------|---------|
+| **Super Ultra Great Blessing (大大大吉)** | 🌟🌟🌟🌟🌟🌟 | 0.1% | Fine Wind, Clear Morning | Katsushika Hokusai |
+| **Ultra Great Blessing (大大吉)** | 🌟🌟🌟🌟🌟 | 1.0% | The Great Wave off Kanagawa | Katsushika Hokusai |
+| **Great Blessing (大吉)** | 🌟🌟🌟🌟 | 5.0% | Minamoto no Yoshitsune on Horseback | Isoda Koryūsai |
+| **Middle Blessing (中吉)** | 🌟🌟🌟 | 10.0% | Matsumoto Yonesaburo as Shinobu | Tōshūsai Sharaku |
+| **Small Blessing (小吉)** | 🌟🌟 | 20.0% | Kabuki Actor Ōtani Oniji III | Tōshūsai Sharaku |
+| **Blessing (吉)** | 🌟 | 30.0% | Chinese Lions (Karajishi) | Kanō Eitoku |
+| **Minor Blessing (末吉)** | ⭐ | 33.9% | Wind God and Thunder God | Tawaraya Sōtatsu |
+
+## 🎯 Special Features
+
+- **Lucky Numbers**: Special animations and enhanced fortunes for tokens #777 and #7777
+- **Art Credits**: Complete attribution to museums and Wikipedia sources
+- **Social Sharing**: Share your fortune results directly to X/Twitter
+- **Unlimited Supply**: No maximum cap on NFT minting
+- **Real-time Counter**: See total minted count in real-time
+
+## 🛠️ Technology Stack
+
+- **Frontend**: React + TypeScript + Vite
+- **Wallet Integration**: RainbowKit + Wagmi
+- **Blockchain**: Monad Network + Localhost testing
+- **Smart Contracts**: Solidity + Hardhat
+- **Storage**: IPFS via Pinata
+- **Deployment**: Vercel
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- MetaMask or compatible wallet
+- MON tokens for minting
+
+### Local Development
+```bash
+# Clone the repository
+git clone https://github.com/kenmori/omikuji-shrine-on-monad.git
+
+# Install dependencies
+npm install
+
+# Start local Hardhat node
+npm run node
+
+# Deploy contracts (in another terminal)
+npm run deploy:local
+
+# Start development server
+npm run dev
 ```
-⏺ Update Todos
-  ⎿  ☐ Hardhatローカルノードを起動
-     ☐ スマートコントラクトをlocalhostにデプロイ
-     ☐ フロントエンドでコントラクトアドレスを設定
-     ☐ ブラウザでアプリを表示
 
-⏺ Update Todos
-  ⎿  ☐ Hardhatローカルノードを起動
-     ☐ スマートコントラクトをlocalhostにデプロイ
-     ☐ フロントエンドでコントラクトアドレスを設定
-     ☐ ブラウザでアプリを表示
-```
+### Adding Test MON to MetaMask
+1. Import one of these test private keys to MetaMask:
+   - `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80`
+2. Switch to Localhost network (Chain ID: 31337)
+3. You'll have 10,000 MON for testing
 
+## 🎨 Art Attribution
 
+All artworks featured in this project are inspired by masterpieces in the public domain:
+- Museum collections (MFA Boston, Metropolitan Museum)
+- Wikipedia Commons
+- Traditional Japanese art heritage
 
+**Important**: Fortune results are randomly assigned and not related to the artistic or historical value of the featured artworks.
 
+## 🎵 Credits
 
+- **BGM**: "Hurusato" by [@hiroseyuki113](https://x.com/hiroseyuki113) - [Original Source](https://original-bgm.booth.pm/items/3784404)
+- **Artwork**: Classical Japanese masters (Hokusai, Sharaku, Sōtatsu, etc.)
+- **Creator**: [@d_omajime](https://x.com/d_omajime)
 
+## 🤝 Contributing
 
- 推奨方法: MetaMaskにテストアカウントをインポート
+We welcome contributions! Please feel free to:
 
-  1. MetaMaskで「アカウントを追加」→「アカウントをインポート」を選択
-  2. 「秘密鍵」を選択
-  3. 以下のいずれかの秘密鍵を貼り付け：
-    xx
-  4. インポート後、「Localhost MON」ネットワークに切り替えると10,000 MONが表示されます
+- 🐛 **Report Issues**: Found a bug? [Open an issue](https://github.com/kenmori/omikuji-shrine-on-monad/issues)
+- 💡 **Feature Requests**: Have an idea? [Create a feature request](https://github.com/kenmori/omikuji-shrine-on-monad/issues)
+- 🔀 **Pull Requests**: Want to contribute code? [Submit a PR](https://github.com/kenmori/omikuji-shrine-on-monad/pulls)
 
+### Areas for Contribution
+- UI/UX improvements
+- Additional fortune types
+- Mobile optimization
+- Performance enhancements
+- Documentation improvements
+- Localization (multiple languages)
 
-  - package.json完全書き換え (依存関係追加)
-  - src/構造でのReactアプリ作成
+## 📄 License
 
+This project is open source. Please respect the original artists and maintain proper attribution when using the artwork references.
 
-  - `npm run node` でHardhatローカルネットワーク起動
+## 🔗 Links
 
-  ### 2. **ウォレット接続UI要求段階**
-  **問題**:
-  - カスタムウォレットUIが機能しない
-  - atlantisdex.xyz と同じRainbowKit UIを要求
+- **Live Demo**: [Coming Soon on Vercel]
+- **GitHub**: [omikuji-shrine-on-monad](https://github.com/kenmori/omikuji-shrine-on-monad)
+- **Creator**: [@d_omajime](https://x.com/d_omajime)
+- **Monad Network**: [monad.xyz](https://monad.xyz)
 
-  **解決策**:
-  - RainbowKitライブラリの導入決定
+---
 
-  ### 3. **プロジェクト全面改造段階**
-  **問題**:
-  - HTML/JS構成では適切なRainbowKit統合が困難
-  - 「プロジェクト全体を変更しましょう」と明示的に要求
-
-  **解決策**:
-  - React + TypeScript + Vite + RainbowKit構成に完全移行
-  - package.json完全書き換え (依存関係追加)
-  - src/構造でのReactアプリ作成
-
-  ### 4. **技術設定問題解決段階**
-  **問題**:
-  - JSX構文エラー (`<br>` → `<br />`)
-  - Hardhat ESM互換性エラー (hardhat.config.js → .cjs)
-  - MetaMaskローカルネットワーク設定問題
-
-  **解決策**:
-  - JSX self-closing tags修正
-  - Hardhat設定ファイル拡張子変更
-  - カスタムローカルMONチェーン定義 (31337, MON通貨)
-
-  ### 5. **テストトークン配布段階**
-  **問題**:
-  - ローカルネットワークでMON残高0
-  - 本番テストネットからの送金が必要かの疑問
-
-  **解決策**:
-  - Hardhatデフォルトテストアカウント活用 (各10,000 MON)
-  - 秘密鍵提供でMetaMaskインポート方式採用
-
-  ### **最終構成**
-  - **フロントエンド**: React + TypeScript + Vite + RainbowKit
-  - **ブロックチェーン**: Hardhat (ローカル) + OmikujiShrine.sol
-  - **ウォレット接続**: RainbowKit ConnectButton
-  - **ネットワーク**: Localhost MON (31337) + Monad Testnet (41454)
-  - **開発サーバー**: http://localhost:3000
-
-  **現在の状態**: 完全動作可能なRainbowKit統合おみくじdApp
-
-
-
-###
-
-仕様
-
-ゲーム仕様
-運勢システム
-運勢の種類とレア度
-運勢名レア度確率特徴大大大吉🌟🌟🌟🌟🌟🌟
-超激レア0.1%奇跡的な幸運大大吉🌟🌟🌟🌟🌟
-超レア1.9%非常に稀な大吉運大吉🌟🌟🌟🌟
-レア8%最高の運勢中吉🌟🌟🌟
-アンコモン15%良い運勢小吉🌟🌟
-コモン25%ちょっとした幸運吉🌟
-ベーシック30% 普通の幸運末吉 普通20.1%後から良くなる
-
-確率分布
-
-Super Ultra Great Blessing (大大大吉): 0.1% (1/1000)
-Ultra Great Blessing (大大吉): 1.9% (19/1000)
-Great Blessing (大吉): 8% (80/1000)
-Middle Blessing (中吉): 15% (150/1000)
-Small Blessing (小吉): 25% (250/1000)
-Blessing (吉): 30% (300/1000)
-Minor Blessing (末吉): 20% (200/1000)
-合計: 100%
+*May your fortune bring you great blessings! 🙏*
