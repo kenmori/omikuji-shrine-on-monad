@@ -202,6 +202,8 @@ function App() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [showCredits, setShowCredits] = useState(false);
   const [showResult, setShowResult] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
   // Read the omikuji price
   const { data: price } = useReadContract({
@@ -515,6 +517,35 @@ ${currentUrl}`;
     window.open(xUrl, '_blank');
   };
 
+  // Initialize BGM
+  useEffect(() => {
+    const bgmAudio = new Audio('/audio/Hurusato.mp3');
+    bgmAudio.loop = true;
+    bgmAudio.volume = 0.3; // Set volume to 30%
+    setAudio(bgmAudio);
+
+    return () => {
+      bgmAudio.pause();
+      bgmAudio.src = '';
+    };
+  }, []);
+
+  // Toggle BGM
+  const toggleBGM = async () => {
+    if (!audio) return;
+
+    try {
+      if (isPlaying) {
+        audio.pause();
+        setIsPlaying(false);
+      } else {
+        await audio.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.error('BGM playback error:', error);
+    }
+  };
 
   return (
     <div className="app">
@@ -536,6 +567,17 @@ ${currentUrl}`;
             Current Network: {chain.name || 'Unknown'}
           </div>
         )}
+      </div>
+      
+      {/* BGM Control */}
+      <div className="bgm-control">
+        <button 
+          className="bgm-button"
+          onClick={toggleBGM}
+          title={isPlaying ? 'Pause BGM' : 'Play BGM'}
+        >
+          {isPlaying ? '🔊' : '🔇'}
+        </button>
       </div>
       <div className="shrine-container">
         <h1 className="shrine-title">🏮 Omikuji Shrine on Monad 🏮</h1>
@@ -597,7 +639,7 @@ ${currentUrl}`;
                     <div className="torii-animation">⛩️</div>
                     <div className="drawing-text">Drawing your fortune...</div>
                     <div className="omikuji-paper">
-                      <div className="paper-shake-text">🎋</div>
+                      <img src="/asset/monad-logo.png" alt="Monad Logo" className="paper-shake-logo" />
                     </div>
                   </div>
                 </div>
@@ -689,7 +731,7 @@ ${currentUrl}`;
           className="credits-button"
           onClick={() => setShowCredits(!showCredits)}
         >
-          Art Credits
+          Credits
         </button>
       </div>
       
@@ -698,7 +740,7 @@ ${currentUrl}`;
         <div className="credits-modal-overlay" onClick={() => setShowCredits(false)}>
           <div className="credits-modal" onClick={(e) => e.stopPropagation()}>
             <div className="credits-header">
-              <h3>Original Artwork Credits</h3>
+              <h3>Credits</h3>
               <button 
                 className="credits-close"
                 onClick={() => setShowCredits(false)}
@@ -734,6 +776,10 @@ ${currentUrl}`;
               <div className="credit-item">
                 <strong>Minor Blessing:</strong><br />
                 Inspired by "<a href="https://en.wikipedia.org/wiki/Wind_God_and_Thunder_God_(K%C5%8Drin)" target="_blank" rel="noopener noreferrer" className="artwork-link">Wind God and Thunder God</a>" (風神雷神図) by Tawaraya Sōtatsu (俵屋宗達)
+              </div>
+              <div className="credit-item">
+                <strong>BGM:</strong><br />
+                "<a href="https://original-bgm.booth.pm/items/3784404" target="_blank" rel="noopener noreferrer" className="artwork-link">Hurusato</a>" by <a href="https://x.com/hiroseyuki113" target="_blank" rel="noopener noreferrer" className="artwork-link">@hiroseyuki113</a> - Thanks!
               </div>
               <div className="credits-note">
                 <small>All original artworks are in the public domain. These NFTs are original interpretations inspired by these masterpieces of Japanese art.</small>
@@ -775,13 +821,6 @@ ${currentUrl}`;
                   className="nft-image"
                 />
               </div>
-              <div className="artwork-info">
-                <div className="artwork-title">"{getArtworkInfo(lastResult.result).title}"</div>
-                <div className="artwork-artist">by {getArtworkInfo(lastResult.result).artist}</div>
-                <div className="artwork-period">{getArtworkInfo(lastResult.result).period}</div>
-                <div className="artwork-description">{getArtworkInfo(lastResult.result).description}</div>
-              </div>
-              <div className="fortune-message">"{lastResult.message}"</div>
               
               {/* Share to X Button */}
               <div className="share-section">
@@ -792,6 +831,14 @@ ${currentUrl}`;
                   𝕏 Share on X
                 </button>
               </div>
+              
+              <div className="artwork-info">
+                <div className="artwork-title">"{getArtworkInfo(lastResult.result).title}"</div>
+                <div className="artwork-artist">by {getArtworkInfo(lastResult.result).artist}</div>
+                <div className="artwork-period">{getArtworkInfo(lastResult.result).period}</div>
+                <div className="artwork-description">{getArtworkInfo(lastResult.result).description}</div>
+              </div>
+              <div className="fortune-message">"{lastResult.message}"</div>
             </div>
           </div>
         </div>

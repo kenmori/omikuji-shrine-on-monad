@@ -72,7 +72,7 @@ body::before {
 }
 
 .shrine-title {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   color: white;
   margin-bottom: 16px;
@@ -418,23 +418,6 @@ body::before {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Omikuji Animation */
-.omikuji-animation {
-  position: fixed;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  backdrop-filter: blur(8px);
-}
-
 .animation-container {
   position: relative;
   text-align: center;
@@ -541,12 +524,12 @@ body::before {
   margin-top: 20px;
 }
 
-.paper-shake-text {
-  font-size: 60px;
+.paper-shake-logo {
+  width: 60px;
+  height: 60px;
   animation: shake 0.5s ease-in-out infinite;
   display: block;
   margin: 0 auto;
-  text-align: center;
 }
 
 @keyframes shake {
@@ -1225,4 +1208,48 @@ body::before {
 .credits-content.result-content {
   background: #000;
   color: white;
+}
+
+/* BGM Control */
+.bgm-control {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.bgm-button {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bgm-button:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .bgm-control {
+    top: 75px;
+    left: 50%;
+  }
+  
+  .bgm-button {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
 }
