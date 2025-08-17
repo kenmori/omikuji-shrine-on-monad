@@ -725,8 +725,8 @@
       "artifacts": []
     },
     "/Users/kenjimorita/git/omikuji-shrine-on-monad/contracts/UpdatedIPFSOmikujiNFT.sol": {
-      "lastModificationDate": 1755416313070,
-      "contentHash": "9cb48305ded1cb4950511f14693813c6",
+      "lastModificationDate": 1755431040121,
+      "contentHash": "b7c43996ddae9626d5f9586656a4ff89",
       "sourceName": "contracts/UpdatedIPFSOmikujiNFT.sol",
       "solcConfig": {
         "version": "0.8.27",

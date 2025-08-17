@@ -30,12 +30,22 @@ contract UpdatedIPFSOmikujiNFT is ERC721, Ownable {
         string message
     );
     
+    event TokensBurned(
+        address indexed burner,
+        uint256[] tokenIds,
+        uint8 fortuneType,
+        uint256 freeMintGranted
+    );
+    
     // Mappings
     mapping(uint256 => Fortune) public fortunes;
     
     // Self-mint tracking for completion rewards
     mapping(address => uint8[]) public selfMintedFortunes;
     mapping(address => bool) public hasCompletedSelfMint;
+    
+    // Burn system for rerolling
+    mapping(address => uint256) public freeMints; // Track free mints from burning
     
     // Predefined messages to save gas
     string[7] private messages = [
@@ -64,7 +74,12 @@ contract UpdatedIPFSOmikujiNFT is ERC721, Ownable {
     }
     
     function drawOmikuji() external payable returns (uint256) {
-        require(msg.value >= omikujiPrice, "Insufficient payment");
+        // Check if user has free mints from burning
+        if (freeMints[msg.sender] > 0) {
+            freeMints[msg.sender]--;
+        } else {
+            require(msg.value >= omikujiPrice, "Insufficient payment");
+        }
         
         unchecked {
             _currentTokenId++;
@@ -224,6 +239,68 @@ contract UpdatedIPFSOmikujiNFT is ERC721, Ownable {
         }
         
         return count;
+    }
+    
+    // Burn 3 tokens of the same type (Blessing or Minor Blessing) for 1 free mint
+    function burnForReroll(uint256[] calldata tokenIds) external {
+        require(tokenIds.length == 3, "Must burn exactly 3 tokens");
+        
+        uint8 fortuneType = fortunes[tokenIds[0]].result;
+        require(fortuneType == 5 || fortuneType == 6, "Can only burn Blessing or Minor Blessing");
+        
+        // Verify all tokens are the same type and owned by sender
+        for (uint i = 0; i < 3; i++) {
+            require(ownerOf(tokenIds[i]) == msg.sender, "Not owner of token");
+            require(fortunes[tokenIds[i]].result == fortuneType, "All tokens must be same fortune type");
+            _burn(tokenIds[i]);
+        }
+        
+        // Grant 1 free mint
+        freeMints[msg.sender]++;
+        
+        emit TokensBurned(msg.sender, tokenIds, fortuneType, 1);
+    }
+    
+    // Check how many tokens of specific type user owns
+    function getOwnedTokensByType(address owner, uint8 fortuneType) external view returns (uint256[] memory) {
+        uint256 balance = balanceOf(owner);
+        uint256[] memory tempTokens = new uint256[](balance);
+        uint256 count = 0;
+        
+        for (uint256 i = 1; i <= _currentTokenId; i++) {
+            if (_ownerOf(i) == owner && fortunes[i].result == fortuneType) {
+                tempTokens[count] = i;
+                count++;
+            }
+        }
+        
+        // Create array with exact size
+        uint256[] memory result = new uint256[](count);
+        for (uint256 i = 0; i < count; i++) {
+            result[i] = tempTokens[i];
+        }
+        
+        return result;
+    }
+    
+    // Check if user can burn for reroll
+    function canBurnForReroll(address user) external view returns (bool, uint8, uint256) {
+        // Check Blessing (5)
+        uint256 blessingCount = 0;
+        // Check Minor Blessing (6)  
+        uint256 minorBlessingCount = 0;
+        
+        for (uint256 i = 1; i <= _currentTokenId; i++) {
+            if (_ownerOf(i) == user) {
+                if (fortunes[i].result == 5) blessingCount++;
+                if (fortunes[i].result == 6) minorBlessingCount++;
+            }
+        }
+        
+        if (blessingCount >= 3) return (true, 5, blessingCount);
+        if (minorBlessingCount >= 3) return (true, 6, minorBlessingCount);
+        
+        return (false, 0, 0);
     }
     
     // Internal function to check completion

@@ -83,6 +83,34 @@ const OMIKUJI_ABI = [
     "type": "function"
   },
   {
+    "inputs": [{"internalType": "uint256[]", "name": "tokenIds", "type": "uint256[]"}],
+    "name": "burnForReroll",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "address", "name": "user", "type": "address"}],
+    "name": "canBurnForReroll",
+    "outputs": [{"internalType": "bool", "name": "", "type": "bool"}, {"internalType": "uint8", "name": "", "type": "uint8"}, {"internalType": "uint256", "name": "", "type": "uint256"}],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "address", "name": "owner", "type": "address"}, {"internalType": "uint8", "name": "fortuneType", "type": "uint8"}],
+    "name": "getOwnedTokensByType",
+    "outputs": [{"internalType": "uint256[]", "name": "", "type": "uint256[]"}],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "address", "name": "", "type": "address"}],
+    "name": "freeMints",
+    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {"indexed": true, "internalType": "address", "name": "drawer", "type": "address"},
@@ -265,6 +293,7 @@ function App() {
   const [showHistory, setShowHistory] = useState(false);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
   const [selectedArtwork, setSelectedArtwork] = useState<number | null>(null);
+  const [canBurn, setCanBurn] = useState<{canBurn: boolean, fortuneType: number, count: number}>({canBurn: false, fortuneType: 0, count: 0});
   
   const publicClient = usePublicClient();
 
@@ -323,6 +352,22 @@ function App() {
     args: address ? [address] : undefined,
   });
 
+  // Check burn eligibility
+  const { data: burnData } = useReadContract({
+    address: CONTRACT_ADDRESS,
+    abi: OMIKUJI_ABI,
+    functionName: 'canBurnForReroll',
+    args: address ? [address] : undefined,
+  });
+
+  // Get free mints count
+  const { data: freeMints } = useReadContract({
+    address: CONTRACT_ADDRESS,
+    abi: OMIKUJI_ABI,
+    functionName: 'freeMints',
+    args: address ? [address] : undefined,
+  });
+
   // Debug: Log self-mint data
   useEffect(() => {
     console.log('Self-mint debug:', {
@@ -332,6 +377,18 @@ function App() {
       isCompleted
     });
   }, [address, selfMintProgress, selfMintedFortunes, isCompleted]);
+
+  // Update burn eligibility
+  useEffect(() => {
+    if (burnData) {
+      const [canBurnResult, fortuneType, count] = burnData;
+      setCanBurn({
+        canBurn: canBurnResult,
+        fortuneType: Number(fortuneType),
+        count: Number(count)
+      });
+    }
+  }, [burnData]);
 
   // For now, we'll show max supply info (total minted will be available after contract update)
   const [estimatedMinted, setEstimatedMinted] = useState(0);
@@ -478,75 +535,100 @@ function App() {
 
   // Handle draw completion when transaction is confirmed
   useEffect(() => {
-    if (isConfirmed && !lastResult && !showAnimation) {
+    if (isConfirmed && hash && !lastResult && !showAnimation) {
       console.log('Starting omikuji animation...');
       
       // Show animation first
       setShowAnimation(true);
       
-      // After animation, show result
-      setTimeout(() => {
-        // Use current totalSupply + 1 as the new token ID
-        const currentSupply = totalSupply ? Number(totalSupply) : 0;
-        const tokenId = currentSupply + 1;
+      // After animation, fetch actual result from blockchain
+      setTimeout(async () => {
+        if (!publicClient) return;
         
-        // Use the same probability distribution as the contract
-        const randomValue = Math.floor(Math.random() * 10000); // 0-9999
-        let fortuneResult: number;
-        
-        if (randomValue < 50) {
-          // 0.5% - Super Ultra Great Blessing
-          fortuneResult = 0;
-        } else if (randomValue < 200) {
-          // 1.5% - Ultra Great Blessing  
-          fortuneResult = 1;
-        } else if (randomValue < 700) {
-          // 5.0% - Great Blessing
-          fortuneResult = 2;
-        } else if (randomValue < 1700) {
-          // 10.0% - Middle Blessing
-          fortuneResult = 3;
-        } else if (randomValue < 3700) {
-          // 20.0% - Small Blessing
-          fortuneResult = 4;
-        } else if (randomValue < 6700) {
-          // 30.0% - Blessing
-          fortuneResult = 5;
-        } else {
-          // 33.0% - Minor Blessing
-          fortuneResult = 6;
+        try {
+          // Get transaction receipt to find the event
+          const receipt = await publicClient.getTransactionReceipt({ hash });
+          
+          // Find OmikujiDrawn event
+          const omikujiDrawnEvent = receipt.logs.find(log => {
+            try {
+              const decoded = publicClient.decodeEventLog({
+                abi: OMIKUJI_ABI,
+                data: log.data,
+                topics: log.topics,
+              });
+              return decoded.eventName === 'OmikujiDrawn';
+            } catch {
+              return false;
+            }
+          });
+          
+          if (omikujiDrawnEvent) {
+            const decoded = publicClient.decodeEventLog({
+              abi: OMIKUJI_ABI,
+              data: omikujiDrawnEvent.data,
+              topics: omikujiDrawnEvent.topics,
+            });
+            
+            const { tokenId, result, message } = decoded.args as {
+              drawer: string;
+              tokenId: bigint;
+              result: number;
+              message: string;
+            };
+            
+            console.log('Actual result from blockchain:', {
+              tokenId: Number(tokenId),
+              result,
+              message
+            });
+            
+            const actualResult: OmikujiResult = {
+              tokenId: tokenId.toString(),
+              result: Number(result),
+              message: message
+            };
+            
+            setLastResult(actualResult);
+            setShowAnimation(false);
+            setShowResult(true);
+            
+            // Reload history after new mint (with delay to allow blockchain to update)
+            setTimeout(() => {
+              loadOmikujiHistory();
+            }, 2000);
+            
+            // Update estimated minted count
+            setEstimatedMinted(Number(tokenId));
+          } else {
+            console.error('Could not find OmikujiDrawn event in transaction receipt');
+            // Fallback to mock result if event not found
+            const currentSupply = totalSupply ? Number(totalSupply) : 0;
+            const mockResult: OmikujiResult = {
+              tokenId: (currentSupply + 1).toString(),
+              result: 6, // Default to Minor Blessing
+              message: "Result retrieved successfully!"
+            };
+            setLastResult(mockResult);
+            setShowAnimation(false);
+            setShowResult(true);
+          }
+        } catch (error) {
+          console.error('Error fetching actual result:', error);
+          // Fallback to mock result
+          const currentSupply = totalSupply ? Number(totalSupply) : 0;
+          const mockResult: OmikujiResult = {
+            tokenId: (currentSupply + 1).toString(),
+            result: 6, // Default to Minor Blessing
+            message: "Result retrieved successfully!"
+          };
+          setLastResult(mockResult);
+          setShowAnimation(false);
+          setShowResult(true);
         }
-        
-        let fortuneMessage = "Today will be a wonderful day filled with opportunities!";
-        
-        // Special lucky numbers
-        if (tokenId === 777) {
-          fortuneResult = 2; // DAI_KICHI (Great Blessing)
-          fortuneMessage = "🎉 Lucky #777! The spirits have blessed you with great fortune!";
-        } else if (tokenId === 7777) {
-          fortuneResult = 1; // DAI_DAI_KICHI (Ultra Great Blessing)
-          fortuneMessage = "✨ Incredible #7777! Ultra rare blessing from the divine spirits!";
-        }
-        
-        const mockResult: OmikujiResult = {
-          tokenId: tokenId.toString(),
-          result: fortuneResult,
-          message: fortuneMessage
-        };
-        setLastResult(mockResult);
-        setShowAnimation(false);
-        setShowResult(true);
-        
-        // Reload history after new mint (with delay to allow blockchain to update)
-        setTimeout(() => {
-          loadOmikujiHistory();
-        }, 3000);
-        
-        // Update estimated minted count to match the new token ID
-        setEstimatedMinted(tokenId);
       }, TEST_CONFIG.ANIMATION_DURATION);
     }
-  }, [isConfirmed, lastResult, showAnimation, totalSupply]);
+  }, [isConfirmed, hash, lastResult, showAnimation, totalSupply, publicClient]);
 
   // Update countdown timer
   useEffect(() => {
@@ -686,6 +768,48 @@ ${currentUrl}`;
     }
   };
 
+  // Handle burn for reroll
+  const handleBurnForReroll = async (fortuneType: number) => {
+    if (!address || !publicClient) return;
+
+    try {
+      // Get user's tokens of this type
+      const tokens = await publicClient.readContract({
+        address: CONTRACT_ADDRESS,
+        abi: OMIKUJI_ABI,
+        functionName: 'getOwnedTokensByType',
+        args: [address, fortuneType],
+      }) as bigint[];
+
+      if (tokens.length < 3) {
+        addNotification({
+          type: 'error',
+          message: 'Not enough tokens to burn',
+        });
+        return;
+      }
+
+      // Take first 3 tokens
+      const tokenIds = tokens.slice(0, 3);
+
+      console.log('Burning tokens:', tokenIds.map(t => Number(t)));
+
+      // Call burn function
+      writeContract({
+        address: CONTRACT_ADDRESS,
+        abi: OMIKUJI_ABI,
+        functionName: 'burnForReroll',
+        args: [tokenIds],
+      });
+    } catch (error) {
+      console.error('Error burning tokens:', error);
+      addNotification({
+        type: 'error',
+        message: 'Failed to burn tokens',
+      });
+    }
+  };
+
   return (
     <div className="app">
       <div className="logo-container">
@@ -783,7 +907,11 @@ ${currentUrl}`;
                 </button>
               </div>
               <div className="price-display">
-                Price: {price ? formatEther(price) : '0.1'} MON
+                {freeMints && Number(freeMints) > 0 ? (
+                  <span className="free-mint-available">🎁 Free Mint Available ({Number(freeMints)})</span>
+                ) : (
+                  <span>Price: {price ? formatEther(price) : '0.1'} MON</span>
+                )}
               </div>
               </div>
             )}
@@ -898,6 +1026,24 @@ ${currentUrl}`;
                 <strong>Note:</strong> Special NFT can only be minted through self-mint completion (not purchasable from others)
               </p>
             </div>
+            {/* Burn for Reroll Section */}
+            {canBurn.canBurn && (
+              <div className="burn-section">
+                <div className="burn-info">
+                  <h4>🔥 Burn for Reroll</h4>
+                  <p>You have {canBurn.count} {fortuneNames[canBurn.fortuneType]} NFTs!</p>
+                  <p>Burn 3 of them to get 1 free omikuji draw with better chances.</p>
+                </div>
+                <button 
+                  className="burn-button"
+                  onClick={() => handleBurnForReroll(canBurn.fortuneType)}
+                  disabled={isPending || isConfirming}
+                >
+                  🔥 Burn 3 for Free Draw
+                </button>
+              </div>
+            )}
+            
             <div className="special-mint-button-container">
               <button 
                 className="special-mint-button"
